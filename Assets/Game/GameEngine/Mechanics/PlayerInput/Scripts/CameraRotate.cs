@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class CameraRotate : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
     [SerializeField] private FloatBehaviour _rotationSercetivity;
     [SerializeField] private Transform _transformRotate;
     [SerializeField] private VectorEventReceiver _rotateReceiver;

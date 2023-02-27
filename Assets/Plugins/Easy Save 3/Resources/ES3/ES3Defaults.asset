@@ -30,12 +30,12 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Zenject
+    - Elementary
     - Assembly-CSharp-firstpass
     - Zenject-IntegrationTests
-    - Sirenix.OdinInspector.CompatibilityLayer
     - Assembly-CSharp
-    - Elementary
     - Entities
+    - Sirenix.OdinInspector.CompatibilityLayer
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Zenject-TestFramework
     showAdvancedSettings: 1

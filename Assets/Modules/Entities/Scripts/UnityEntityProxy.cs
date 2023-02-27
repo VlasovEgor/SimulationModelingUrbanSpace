@@ -8,6 +8,11 @@ namespace Entities
         [SerializeField]
         private UnityEntity entity;
 
+        public UnityEntity GetBaseEntity()
+        {
+            return entity;
+        }
+
         public void SetBaseEntity(UnityEntity entity)
         {
             this.entity = entity;

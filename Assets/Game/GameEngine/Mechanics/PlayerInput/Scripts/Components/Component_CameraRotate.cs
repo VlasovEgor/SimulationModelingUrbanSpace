@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Component_Rotate : MonoBehaviour, IComponent_Rotate
+public class Component_CameraRotate : MonoBehaviour, IComponent_CameraRotate
 {
     [SerializeField] private VectorEventReceiver _rotateReceiver;
 

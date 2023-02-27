@@ -7,6 +7,7 @@ public class GameContextInstaller : MonoInstaller
         BindMoveInDirectionController();
         BindRotateController();
         BindZoomController();
+        BindBoostController();
     }
 
     private void BindMoveInDirectionController()
@@ -24,6 +25,12 @@ public class GameContextInstaller : MonoInstaller
     private void BindZoomController()
     {
         Container.BindInterfacesAndSelfTo<ZoomController>().
+            AsSingle();
+    }
+
+    private void BindBoostController()
+    {
+        Container.BindInterfacesAndSelfTo<BoostController>().
             AsSingle();
     }
 }

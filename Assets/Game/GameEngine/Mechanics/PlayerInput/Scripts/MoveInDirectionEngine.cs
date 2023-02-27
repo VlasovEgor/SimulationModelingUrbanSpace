@@ -8,6 +8,9 @@ public class MoveInDirectionEngine : MonoBehaviour
 
     [SerializeField] private BoolBehavior _movingBoolBehavior;
 
+    [SerializeField] private BoolBehavior _canBoost;
+    [SerializeField] private IntBehaviour _boost;
+
     public bool IsMoving
     {
         get { return _direction != Vector3.zero; }
@@ -24,6 +27,7 @@ public class MoveInDirectionEngine : MonoBehaviour
     {
         UpdateMove();
         MotionCheck();
+        Boost();
     }
 
     public void Move(Vector3 direction)
@@ -34,6 +38,14 @@ public class MoveInDirectionEngine : MonoBehaviour
         {
             StartMove();
         }   
+    }
+
+    private void Boost()
+    {
+        if (_canBoost.Value == true)
+        {
+            _direction *= _boost.Value;
+        }
     }
 
     private void StartMove()

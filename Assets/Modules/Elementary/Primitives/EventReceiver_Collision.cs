@@ -12,12 +12,13 @@ public sealed class EventReceiver_Collision : MonoBehaviour
     public event Action<Collision> OnCollisionExited;
 
     private void OnCollisionEnter(Collision collision)
-    {
+    {   
         this.OnCollisionEntered?.Invoke(collision);
     }
 
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log("PIZDEC");
         this.OnCollisionStaying?.Invoke(collision);
     }
 

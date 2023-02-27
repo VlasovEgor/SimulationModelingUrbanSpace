@@ -3,7 +3,9 @@ using UnityEngine;
 public class MoveInDirectionMechanics : MonoBehaviour
 {
     [SerializeField] private MoveInDirectionEngine _moveEngine;
+    
     [SerializeField] private IntBehaviour _speed;
+    
     [SerializeField] private Transform _transform;
 
     private void Update()

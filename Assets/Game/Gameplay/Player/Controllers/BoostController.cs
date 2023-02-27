@@ -3,30 +3,30 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class ZoomController : IInitializable, IDisposable
+public class BoostController : IInitializable, IDisposable
 {
-    private IComponent_Zoom _zoomComponent;
+    private IComponent_Boost _boostComponent;
     private ManipulationInput _manipulationInput;
 
     [Inject]
     private void Construct(ManipulationInput manipulationInput, IEntity character)
     {
         _manipulationInput = manipulationInput;
-        _zoomComponent = character.Get<IComponent_Zoom>();
+        _boostComponent = character.Get<IComponent_Boost>();
     }
 
     void IInitializable.Initialize()
     {
-        _manipulationInput.CameraZoomed += Zoom;
+        _manipulationInput.CameraBoosted += OnBoost;
     }
 
     void IDisposable.Dispose()
     {
-        _manipulationInput.CameraZoomed -= Zoom;
+        _manipulationInput.CameraBoosted -= OnBoost;
     }
 
-    private void Zoom(float zoom)
+    private void OnBoost(bool isBoost)
     {
-        _zoomComponent.Zoom(zoom);
+        _boostComponent.CanBoost(isBoost);
     }
 }

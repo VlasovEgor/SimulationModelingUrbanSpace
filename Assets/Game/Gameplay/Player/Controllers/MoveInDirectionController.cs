@@ -17,12 +17,12 @@ public class MoveInDirectionController : IInitializable , IDisposable
 
     void IInitializable.Initialize()
     {
-        _manipulationInput.OnCameraMove += OnDirectionMoved;
+        _manipulationInput.CameraMoved += OnDirectionMoved;
     }
 
     void IDisposable.Dispose()
     {
-        _manipulationInput.OnCameraMove -= OnDirectionMoved;
+        _manipulationInput.CameraMoved -= OnDirectionMoved;
     }
 
     private void OnDirectionMoved(Vector3 screenDirection)
