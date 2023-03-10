@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+[CreateAssetMenu (fileName = "New BuildingConfig",
+    menuName = "Buildings/New BuildingConfig")
+    ]
+public class Building: ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string _id;
+    [SerializeField] private GameObject _buildingPrefab;
+    [SerializeField] private string _title;
+    [SerializeField] private Sprite _icon;
+
+    public string Id 
     {
-        
+        get { return _id; } 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public string Title 
+    { 
+        get { return _title; } 
+    }
+
+    public Sprite Icon
+    { 
+        get { return _icon; } 
+    }
+
+    public GameObject BuildingPrefab
+    { 
+        get { return _buildingPrefab; } 
     }
 }
