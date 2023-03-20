@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e737f63f5e6e141b4d3c6bcbee2d7a, type: 3}
+  m_Name: CommericalBuilding24
+  m_EditorClassIdentifier: 
+  _id: CommericalBuilding24
+  _buildingPrefab: {fileID: 3561586114588050495, guid: 816364c5c3eec3a46b763b9844573218, type: 3}
+  _title: "\u041D\u0435\u0431\u043E\u0441\u043A\u0440\u0435\u0431 2"
+  _icon: {fileID: 21300000, guid: f0c2e36b679fbbe498d268451236678d, type: 3}

@@ -18,6 +18,7 @@ public class MovementCollisionLayer : MonoBehaviour
         var positionZ = _visualTransform.position.z;
 
         Vector3 newPosition = new Vector3(positionX, _collisionTransform.position.y, positionZ);
+        _visualTransform.position= newPosition;
         _collisionTransform.position = newPosition;
     }
 }

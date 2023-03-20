@@ -10,6 +10,7 @@ public class ManipulationInput : MonoBehaviour
     public event Action LeftMouseButtonClicked;
     public event Action LeftMouseButtonDoubleClicked;
     public event Action<int> RotatedKeyboard;
+    public event Action DeleteButtonClicked;
 
     private const float DOUBLE_CLICK_TIME = 0.2f;
     private float _lastClickTime;
@@ -22,6 +23,7 @@ public class ManipulationInput : MonoBehaviour
         CameraBoostKeyboard();
         LeftMouseButtonPressed();
         RotateKeyboard();
+        DeleteButton();
     }
 
     private void CameraMoveKeyboard()
@@ -94,6 +96,14 @@ public class ManipulationInput : MonoBehaviour
         else
         {
             RotatedKeyboard?.Invoke(0);
+        }
+    }
+
+    private void DeleteButton()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            DeleteButtonClicked?.Invoke();
         }
     }
 }

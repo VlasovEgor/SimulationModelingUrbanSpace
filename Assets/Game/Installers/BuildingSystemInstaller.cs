@@ -3,8 +3,7 @@ using Zenject;
 
 public class BuildingSystemInstaller : MonoInstaller
 {
-    [SerializeField] private BuildingCreator _buildingCreator;
-    [SerializeField] private BuildingsManager _buildingsManager;
+    [SerializeField] private Transform _parentBuildingTransform;
 
     public override void InstallBindings()
     {
@@ -12,6 +11,7 @@ public class BuildingSystemInstaller : MonoInstaller
         BindBuildingsManager();
         BindBuildingSelector();
         BindBuildingCreator();
+        BindBuildingDestroyer();
     }
 
     private void BindBuildingFactory()
@@ -23,8 +23,7 @@ public class BuildingSystemInstaller : MonoInstaller
 
     private void BindBuildingsManager()
     {
-        Container.Bind<BuildingsManager>().
-            FromInstance(_buildingsManager).
+        Container.BindInterfacesAndSelfTo<BuildingsManager>().
             AsSingle();
     }
 
@@ -37,7 +36,15 @@ public class BuildingSystemInstaller : MonoInstaller
     private void BindBuildingCreator()
     {
         Container.BindInterfacesAndSelfTo<BuildingCreator>().
-            FromInstance(_buildingCreator).
+            AsSingle();
+
+        var buildingCreator = Container.Resolve<BuildingCreator>();
+        buildingCreator.SetParentTransform(_parentBuildingTransform);
+    }
+
+    private void BindBuildingDestroyer()
+    {
+        Container.BindInterfacesAndSelfTo<BuildingDestroyer>().
             AsSingle();
     }
 }

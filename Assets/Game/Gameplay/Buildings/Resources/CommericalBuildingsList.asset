@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb9eb30fa233ff4599bc2649703b4ee, type: 3}
+  m_Name: CommericalBuildingsList
+  m_EditorClassIdentifier: 
+  Buildings:
+  - {fileID: 11400000, guid: ec0c85e3aa074794d83e96b152580a9c, type: 2}
+  - {fileID: 11400000, guid: 7b8d9da8f601eba43b64c4122fb0d52e, type: 2}
+  - {fileID: 11400000, guid: 9008e2ea8b415ac46ad6620bb969949c, type: 2}
+  - {fileID: 11400000, guid: 8d2f2749a9859774aa41648c84023944, type: 2}
+  - {fileID: 11400000, guid: 88485ef92d52b924d9bbfa383ca51cd2, type: 2}
+  - {fileID: 11400000, guid: 8a89dc5c1d7e2c2438608c61bc7fee0a, type: 2}
+  - {fileID: 11400000, guid: 07d8966f2396a8143af7b1354fcbeb76, type: 2}
+  - {fileID: 11400000, guid: 64e417c3e6c6a954788da96e6f255b1a, type: 2}
+  - {fileID: 11400000, guid: 7e702830ef1cbfb4eb503f2e2436c1b1, type: 2}
+  - {fileID: 11400000, guid: f9549276de497c946a32c43b7a0599f4, type: 2}
+  - {fileID: 11400000, guid: 41207ed484cda874f81de51535ef6f19, type: 2}
+  - {fileID: 11400000, guid: cd869548922a67a4581518a50c9b7c98, type: 2}
+  - {fileID: 11400000, guid: d12790c0b4b59944b967f0d5d0aa89c6, type: 2}
+  - {fileID: 11400000, guid: c3396dd5769686d46bae934e8a987138, type: 2}
+  - {fileID: 11400000, guid: af48170956a70bc43a93fcc03b3bc839, type: 2}
+  - {fileID: 11400000, guid: 998bf0d92b5acfc499b040ed8b17861c, type: 2}
+  - {fileID: 11400000, guid: 81d976eeda286124cb638cbca4e44688, type: 2}
+  - {fileID: 11400000, guid: 2d8e35a86cb33474294504c9c306210e, type: 2}
+  - {fileID: 11400000, guid: 6c66e9567b927d841bd0f3808c2e616c, type: 2}
+  - {fileID: 11400000, guid: 4a4ebb7bbcaa5c849a1e2ec4449c9f2d, type: 2}
+  - {fileID: 11400000, guid: ce1abba15c52b614f86c1021fda6e3f9, type: 2}
+  - {fileID: 11400000, guid: e98519897dafea84a9d2ff0bb8f08417, type: 2}
+  - {fileID: 11400000, guid: 54905911fe4494544bf4a44772006f84, type: 2}
+  - {fileID: 11400000, guid: 8855e8c291f559f45a170872af672c8e, type: 2}
+  - {fileID: 11400000, guid: 198bbac3a79d7fd409953bb3e8a3c2f3, type: 2}
+  - {fileID: 11400000, guid: 8ce5474276174cd4fabf94148ac5acc7, type: 2}
+  - {fileID: 11400000, guid: bdd4e12abbc95a844b3164745a9e789c, type: 2}
+  - {fileID: 11400000, guid: 4ab4b1171fc5a5343bbdeea3434cc3e8, type: 2}
+  - {fileID: 11400000, guid: 58297139027ca6e4bba52997158e1cda, type: 2}
+  ID: COMMERICAL

@@ -47,7 +47,7 @@ public class BuildingSelector : IInitializable, IDisposable
 
         if (Physics.Raycast(ray, out raycastHit) == true)
         {
-            if(raycastHit.collider != null)
+            if (raycastHit.collider != null)
             {
                 _currentBulding = raycastHit.collider.GetComponent<UnityEntityProxy>();
             }

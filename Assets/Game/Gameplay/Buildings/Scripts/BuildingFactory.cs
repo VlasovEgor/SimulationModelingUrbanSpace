@@ -10,9 +10,9 @@ public class BuildingFactory : IBuildingFactory
         _container = diContainer;
     }
 
-    public GameObject Create(GameObject buildingPrefab)
+    public GameObject Create(GameObject buildingPrefab, Transform parentTransform)
     {
-        return  _container.InstantiatePrefab(buildingPrefab);
+        return  _container.InstantiatePrefab(buildingPrefab, parentTransform);
     }
 
 }

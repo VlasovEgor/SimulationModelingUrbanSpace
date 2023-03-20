@@ -13,7 +13,6 @@ public sealed class EventReceiver_Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ABOBA");
         OnTriggerEntered?.Invoke(other);
     }
 
