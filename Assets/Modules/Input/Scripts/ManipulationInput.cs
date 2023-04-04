@@ -7,10 +7,12 @@ public class ManipulationInput : MonoBehaviour
     public event Action<Vector2> CameraRotated;
     public event Action<float> CameraZoomed;
     public event Action<bool> CameraBoosted;
-    public event Action LeftMouseButtonClicked;
+    public event Action LeftMouseButtonUp;
+    public event Action LeftMouseButtonDown;
     public event Action LeftMouseButtonDoubleClicked;
     public event Action<int> RotatedKeyboard;
     public event Action DeleteButtonClicked;
+    public event Action RightMouseButtonClicked;
 
     private const float DOUBLE_CLICK_TIME = 0.2f;
     private float _lastClickTime;
@@ -24,6 +26,8 @@ public class ManipulationInput : MonoBehaviour
         LeftMouseButtonPressed();
         RotateKeyboard();
         DeleteButton();
+        OnLeftMouseButtonUp();
+        OnRightMouseButtonClicked();
     }
 
     private void CameraMoveKeyboard()
@@ -63,7 +67,7 @@ public class ManipulationInput : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            LeftMouseButtonClicked?.Invoke();
+            LeftMouseButtonDown?.Invoke();
 
             float timeSinceLastClick = Time.time - _lastClickTime;
 
@@ -73,7 +77,7 @@ public class ManipulationInput : MonoBehaviour
             }
             else
             {
-                LeftMouseButtonClicked?.Invoke();
+                LeftMouseButtonDown?.Invoke();
             }
 
             _lastClickTime= Time.time;
@@ -104,6 +108,22 @@ public class ManipulationInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             DeleteButtonClicked?.Invoke();
+        }
+    }
+
+    private void OnLeftMouseButtonUp()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            LeftMouseButtonUp?.Invoke();
+        }
+    }
+
+    private void OnRightMouseButtonClicked()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            RightMouseButtonClicked?.Invoke();
         }
     }
 }

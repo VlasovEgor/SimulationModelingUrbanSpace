@@ -10,7 +10,7 @@ public class BuildingListPresenter : MonoBehaviour
 
     [Inject] private BuildingsManager _buildingsManager;
 
-    [Inject] private BuildingCreator _buildingCreator;
+    [Inject] private StructureCreator _structureCreator;
 
     private List<BildingSelectionView> _activeView = new();
     private List<BuildingSelectionPresenter> _activePresenter = new();
@@ -25,7 +25,7 @@ public class BuildingListPresenter : MonoBehaviour
             _activeView.Add(view);
 
             BuildingSelectionPresenter presenter = new BuildingSelectionPresenter(building, view);
-            presenter.Construct(_buildingCreator);
+            presenter.Construct(_structureCreator);
             _activePresenter.Add(presenter);
         }
 

@@ -9,6 +9,7 @@ public class Building: ScriptableObject
     [SerializeField] private GameObject _buildingPrefab;
     [SerializeField] private string _title;
     [SerializeField] private Sprite _icon;
+    [SerializeField] private VertexType _type;
 
     public string Id 
     {
@@ -28,5 +29,10 @@ public class Building: ScriptableObject
     public GameObject BuildingPrefab
     { 
         get { return _buildingPrefab; } 
+    }
+
+    public VertexType Type
+    {
+        get { return _type; }
     }
 }

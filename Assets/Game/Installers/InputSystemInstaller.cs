@@ -12,6 +12,11 @@ public class InputSystemInstaller : MonoInstaller
     public override void InstallBindings()
     {
         BindManipulationInput();
+
+        BindMoveInDirectionController();
+        BindRotateController();
+        BindZoomController();
+        BindBoostController();
     }
 
     private void BindManipulationInput()
@@ -21,6 +26,29 @@ public class InputSystemInstaller : MonoInstaller
             AsSingle();
     }
 
+    private void BindMoveInDirectionController()
+    {
+        Container.BindInterfacesAndSelfTo<MoveInDirectionController>().
+            AsSingle();
+    }
+
+    private void BindRotateController()
+    {
+        Container.BindInterfacesAndSelfTo<RotateController>().
+            AsSingle();
+    }
+
+    private void BindZoomController()
+    {
+        Container.BindInterfacesAndSelfTo<ZoomController>().
+            AsSingle();
+    }
+
+    private void BindBoostController()
+    {
+        Container.BindInterfacesAndSelfTo<BoostController>().
+            AsSingle();
+    }
 
 
     private void ConstructStateManager()

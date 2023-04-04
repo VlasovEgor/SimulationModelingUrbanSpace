@@ -1,6 +1,5 @@
 using Entities;
 using System;
-using UnityEngine;
 using Zenject;
 
 public class ZoomController : IInitializable, IDisposable

@@ -16,3 +16,4 @@ MonoBehaviour:
   _buildingPrefab: {fileID: 3561586114588050495, guid: cdacf02fdb0c05449a89c6eb48c7dea8, type: 3}
   _title: "\u0421\u0442\u0430\u043D\u0446\u0438\u044F \u043E\u0431\u0449. \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442\u0430"
   _icon: {fileID: 21300000, guid: 3cd2e52823a888941b27b08290c55503, type: 3}
+  _type: 3

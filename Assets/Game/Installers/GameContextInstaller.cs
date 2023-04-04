@@ -4,33 +4,19 @@ public class GameContextInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        BindMoveInDirectionController();
-        BindRotateController();
-        BindZoomController();
-        BindBoostController();
+        BindGraph();
+        BindStructureCreator();
     }
 
-    private void BindMoveInDirectionController()
+    private void BindGraph()
     {
-        Container.BindInterfacesAndSelfTo<MoveInDirectionController>().
+        Container.Bind<Graph>().
             AsSingle();
     }
 
-    private void BindRotateController()
+    private void BindStructureCreator()
     {
-        Container.BindInterfacesAndSelfTo<RotateController>().
-            AsSingle();
-    }
-
-    private void BindZoomController()
-    {
-        Container.BindInterfacesAndSelfTo<ZoomController>().
-            AsSingle();
-    }
-
-    private void BindBoostController()
-    {
-        Container.BindInterfacesAndSelfTo<BoostController>().
+        Container.Bind<StructureCreator>().
             AsSingle();
     }
 }

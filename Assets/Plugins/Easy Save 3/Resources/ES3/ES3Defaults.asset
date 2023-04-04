@@ -32,8 +32,8 @@ MonoBehaviour:
     - Zenject
     - Elementary
     - Assembly-CSharp-firstpass
-    - Zenject-IntegrationTests
     - Assembly-CSharp
+    - Zenject-IntegrationTests
     - Entities
     - Sirenix.OdinInspector.CompatibilityLayer
     - Sirenix.OdinInspector.CompatibilityLayer.Editor

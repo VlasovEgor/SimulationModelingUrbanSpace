@@ -4,18 +4,17 @@ public class BuildingSelectionPresenter
     private readonly BildingSelectionView _bildingSelectionView;
 
     private Building _building;
-
-    private BuildingCreator _buildingCreator;
-
+    private StructureCreator _structureCreator;
+    
     public BuildingSelectionPresenter(Building building, BildingSelectionView bildingSelectionView)
     {
         _bildingSelectionView = bildingSelectionView;
         _building = building;
     }
 
-    public void Construct(BuildingCreator buildingCreator)
+    public void Construct(StructureCreator structureCreator)
     {
-        _buildingCreator = buildingCreator;
+        _structureCreator = structureCreator;
     }
 
     public void Start()
@@ -32,6 +31,6 @@ public class BuildingSelectionPresenter
 
     private void OnButtonClicked()
     {
-        _buildingCreator.Create(_building.BuildingPrefab);
+        _structureCreator.Create(_building);
     }
 }
