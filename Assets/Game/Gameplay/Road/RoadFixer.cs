@@ -29,13 +29,13 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         _placementRoad.RoadSegmentsChanged -= FixRoadSegments;
     }
 
-    private void FixRoadSegments(Vertex firstSegment, Vertex secomdSegment)
+    private void FixRoadSegments(UrbanVertex firstSegment, UrbanVertex secomdSegment)
     {
         FixRoadSegment(firstSegment);
         FixRoadSegment(secomdSegment);
     }
 
-    public void FixRoadSegment(Vertex vertex)
+    public void FixRoadSegment(UrbanVertex vertex)
     {
         var neighbourt = _placementRoad.GetNeighbourt(vertex);
         int roadCount = 0;
@@ -46,8 +46,16 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
             CreateDeadEnd(neighbourt, vertex);
         }
         else if (roadCount == 2)
-        {
-             CreateCorner(neighbourt, vertex);
+        {   
+            if(CreateStraightRoad(neighbourt, vertex))
+            {
+                return;
+            }
+            else
+            {
+                CreateCorner(neighbourt, vertex);
+            }
+             
         }
         else if (roadCount == 3)
         {
@@ -59,7 +67,7 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         }
     }
 
-    public void ModifyRoad(Vertex vertex, GameObject newModel, Vector3 direction)
+    public void ModifyRoad(UrbanVertex vertex, GameObject newModel, Vector3 direction)
     {
         var directionRotation = vertex.Position - direction;
         var newSegment = Instantiate(newModel, vertex.Position,Quaternion.LookRotation(directionRotation), _parentTransfrom);
@@ -67,13 +75,13 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         SwapModel(vertex, newSegment);
     }
 
-    public void SwapModel(Vertex vertex, GameObject model)
+    public void SwapModel(UrbanVertex vertex, GameObject model)
     {
         Destroy(vertex.Object);
         vertex.Object= model;
     }
 
-    private void CreateDeadEnd(List<Vertex> neighbourt, Vertex roadSegment)
+    private void CreateDeadEnd(List<UrbanVertex> neighbourt, UrbanVertex roadSegment)
     {
         Direction[] directions = DeterminePpositionNeighbors(neighbourt, roadSegment);// [0]-up, [1]-right, [2]-down, [3]-left
 
@@ -95,8 +103,25 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         }
     }
 
+    private bool CreateStraightRoad(List<UrbanVertex> neighbourt, UrbanVertex roadSegment)
+    {
+        Direction[] directions = DeterminePpositionNeighbors(neighbourt, roadSegment);// [0]-up, [1]-right, [2]-down, [3]-left
 
-    private void CreateCorner(List<Vertex> neighbourt, Vertex roadSegment)
+        if (directions[0].direction == true && directions[2].direction == true)
+        {
+            ModifyRoad(roadSegment, _corner, directions[1].position);
+            return true;
+        }
+        else if (directions[1].direction == true && directions[3].direction == true)
+        {
+            ModifyRoad(roadSegment, _corner, directions[2].position);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void CreateCorner(List<UrbanVertex> neighbourt, UrbanVertex roadSegment)
     {
         Direction[] directions = DeterminePpositionNeighbors(neighbourt, roadSegment);// [0]-up, [1]-right, [2]-down, [3]-left
 
@@ -118,7 +143,7 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         }
     }
 
-    private void Create3Way(List<Vertex> neighbourt, Vertex roadSegment)
+    private void Create3Way(List<UrbanVertex> neighbourt, UrbanVertex roadSegment)
     {
         Direction[] directions = DeterminePpositionNeighbors(neighbourt, roadSegment);// [0]-up, [1]-right, [2]-down, [3]-left
 
@@ -140,12 +165,12 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         }
     }
 
-    private void Create4Way(Vertex vertex)
+    private void Create4Way(UrbanVertex vertex)
     {
         ModifyRoad(vertex, _fourWay, vertex.Object.transform.rotation.ToEuler());
     }
 
-    private Direction[] DeterminePpositionNeighbors(List<Vertex> neighbourt, Vertex vertex)
+    private Direction[] DeterminePpositionNeighbors(List<UrbanVertex> neighbourt, UrbanVertex vertex)
     {
         Direction[] directions = new Direction[4];// up, right, down,left
 

@@ -2,31 +2,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Graph 
-{   
-    private List<Vertex> _vertices = new();
+public class Graph
+{
+    private List<UrbanVertex> _vertices = new();
     private List<Edge> _edges = new();
 
-    public int VertexCount 
-    { 
-        get { return _vertices.Count;} 
-    }
-
-    public int EdgeCount 
-    { 
-        get { return _edges.Count;}
-    }
-
-    public void AddVertex(Vertex vertex)
+    public void AddVertex(UrbanVertex vertex)
     {
         _vertices.Add(vertex);
     }
 
-    public void RemoveVertex(Vertex vertex) 
-    {   
+    public void RemoveVertex(UrbanVertex vertex)
+    {
         var neighbours = GetVerticesList(vertex);
 
-        foreach (var neighbor in neighbours) 
+        foreach (var neighbor in neighbours)
         {
             foreach (var edge in _edges)
             {
@@ -40,7 +30,7 @@ public class Graph
         _vertices.Remove(vertex);
     }
 
-    public void AddEdge(Vertex from, Vertex to) //non-oriented edge
+    public void AddEdge(UrbanVertex from, UrbanVertex to) //non-oriented edge
     {
         var edge = new Edge(from, to);
         _edges.Add(edge);
@@ -50,7 +40,7 @@ public class Graph
     }
 
     public void RemoveEdge(Edge edge)
-    { 
+    {
         _edges.Remove(edge);
     }
 
@@ -69,11 +59,11 @@ public class Graph
         return false;
     }
 
-    public Vertex GetVertexByPosition(Vector3 position)
+    public UrbanVertex GetVertexByPosition(Vector3 position)
     {
         foreach (var vertex in _vertices)
         {
-            if(Vector3.Distance(position,vertex.Position) <= vertex.Object.transform.localScale.x)
+            if (Vector3.Distance(position, vertex.Position) <= vertex.Object.transform.localScale.x)
             {
                 return vertex;
             }
@@ -82,14 +72,14 @@ public class Graph
         throw new Exception("there are no vertices at this point");
     }
 
-    public Vertex SearchNearestVertex(Vector3 position)
+    public UrbanVertex SearchNearestVertex(Vector3 position)
     {
         float distance = float.MaxValue;
-        Vertex nearestVertex = null;
+        UrbanVertex nearestVertex = null;
 
         foreach (var vertex in _vertices)
         {
-            if(Vector3.Distance(position,vertex.Position) < distance)
+            if (Vector3.Distance(position, vertex.Position) < distance)
             {
                 nearestVertex = vertex;
                 distance = Vector3.Distance(position, vertex.Position);
@@ -99,12 +89,12 @@ public class Graph
         return nearestVertex;
     }
 
-    public List<Vertex> GetWakableAdjacentVertex(Vertex vertex, bool isAgent)
+    public List<UrbanVertex> GetWakableAdjacentVertex(UrbanVertex verteõ)
     {
-        List<Vertex> adjacentVertex = GetVerticesList(vertex);
+        List<UrbanVertex> adjacentVertex = GetVerticesList(verteõ);
         for (int i = adjacentVertex.Count - 1; i >= 0; i--)
         {
-            if (IsVertexWakable(adjacentVertex[i].VertexType, isAgent) == false)
+            if (IsVertexWalkable(adjacentVertex[i].VertexType) == false)
             {
                 adjacentVertex.RemoveAt(i);
             }
@@ -112,9 +102,9 @@ public class Graph
         return adjacentVertex;
     }
 
-    public List<Vertex> GetVerticesList(Vertex vertex)
+    public List<UrbanVertex> GetVerticesList(UrbanVertex vertex)
     {
-        var list = new List<Vertex>();
+        var list = new List<UrbanVertex>();
 
         foreach (var edge in _edges)
         {
@@ -127,17 +117,13 @@ public class Graph
         return list;
     }
 
-    public bool IsVertexWakable(VertexType vertexType, bool aiAgent = false)
+    public bool IsVertexWalkable(VertexType vertexType)
     {
-        if (aiAgent)
-        {
-            return vertexType == VertexType.Road;
-        }
-        return vertexType == VertexType.Empty || vertexType == VertexType.Road;
+        return vertexType == VertexType.Road;
     }
 
-    public float GetCostOfEnteringVertex(Vertex current, Vertex neighbour)
-    {   
+    public float GetCostOfEnteringVertex(UrbanVertex current, UrbanVertex neighbour)
+    {
         foreach (var edge in _edges)
         {
             if (edge.From == current && edge.To == neighbour)

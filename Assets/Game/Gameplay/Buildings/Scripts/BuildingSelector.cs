@@ -10,6 +10,7 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
     [Inject] private Camera _camera;
     [Inject] private BuildingCreator _buildingCreator;
     [Inject] private Graph _graph;
+    [Inject] private PlacementManager _placementManager;
 
     private UnityEntity _currentBulding;
     private float _maximumDistance = 30f;
@@ -46,14 +47,16 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
         }
 
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit raycastHit;
 
-        if (Physics.Raycast(ray, out raycastHit) == true)
+        if (Physics.Raycast(ray, out RaycastHit raycastHit) == true)
         {
             if (raycastHit.collider != null)
             {
                 _currentBulding = raycastHit.collider.GetComponent<UnityEntityProxy>();
                 _graph.RemoveVertex(_graph.GetVertexByPosition(_currentBulding.transform.position));
+
+                var buldingConfig = _currentBulding.Get<IComponent_GetBuildingConfig>().GetBuildingConfig();
+                _placementManager.RemoveBuilding(buldingConfig);
             }
         }
     }
@@ -68,10 +71,17 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
         var position = _currentBulding.transform.position;
         var building = _currentBulding.GameObject();
         var neighbour = _graph.SearchNearestVertex(position);
+        var type = _currentBulding.Get<IComponent_GetVertexTypeBuilding>().GetVertexTypeBuilding();
 
-        Vertex newVertex = new(position, building, VertexType.Residential_Building);
+        _currentBulding.Get<IComponent_PositionBuilding>().SetPosition(position);
+
+        UrbanVertex newVertex = new(position, building, type);
         _graph.AddVertex(newVertex);
         _graph.AddEdge(newVertex, neighbour);
+
+        var buldingConfig = _currentBulding.Get<IComponent_GetBuildingConfig>().GetBuildingConfig();
+        buldingConfig.SetNearestRoad(GetNearestRoad(position));
+        _placementManager.AddBuilding(buldingConfig);
 
         _currentBulding = null;
     }
@@ -79,7 +89,7 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
     private bool CanPutUpBuilding()
     {
         if (_currentBulding != null &&
-            _currentBulding.Get<ICanBuild_Component>().CanBuild() == true &&
+            _currentBulding.Get<IComponent_CanBuild>().CanBuild() == true &&
             Vector3.Distance(_currentBulding.transform.position, _graph.SearchNearestVertex(_currentBulding.transform.position).Position) <= _maximumDistance)
         {
 
@@ -87,5 +97,22 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
         }
 
         return false;
+    }
+
+    private Vector3 GetNearestRoad(Vector3 position)
+    {
+       var vertex = _graph.GetVertexByPosition(position);
+       var neighbors = _graph.GetVerticesList(vertex);
+
+        foreach (var neighbor in neighbors)
+        {
+            if(neighbor.VertexType == VertexType.Road)
+            {
+                return neighbor.Position;
+            }
+        }
+
+        throw new Exception("there are no roads among the neighbors");
+
     }
 }

@@ -5,8 +5,8 @@ using Zenject;
 
 public class PlacementRoad : MonoBehaviour
 {
-    public event Action<Vertex> RoadSegmentChanged;
-    public event Action<Vertex, Vertex> RoadSegmentsChanged;
+    public event Action<UrbanVertex> RoadSegmentChanged;
+    public event Action<UrbanVertex, UrbanVertex> RoadSegmentsChanged;
 
     [SerializeField] private Transform _parentTransfrom;
 
@@ -49,16 +49,16 @@ public class PlacementRoad : MonoBehaviour
         }
     }
 
-    private void ContinueRoad(Vertex currnetSegmentRoad, Vector3 endPosition, GameObject roadStraight)
+    private void ContinueRoad(UrbanVertex currnetSegmentRoad, Vector3 endPosition, GameObject roadStraight)
     {
         // PlaceNewRoad(currnetSegmentRoad.Position, endPosition, roadStraight);
         var segmentsRoadList = CreateRoad(currnetSegmentRoad.Position, endPosition, roadStraight);
 
-        Vertex roadTMP = currnetSegmentRoad;
+        UrbanVertex roadTMP = currnetSegmentRoad;
 
         for (int i = 0; i < segmentsRoadList.Count; i++)
         {
-            var vertexGraph = new Vertex(segmentsRoadList[i].transform.position, segmentsRoadList[i], VertexType.Road);
+            var vertexGraph = new UrbanVertex(segmentsRoadList[i].transform.position, segmentsRoadList[i], VertexType.Road);
             _graph.AddVertex(vertexGraph);
 
             _graph.AddEdge(roadTMP, vertexGraph);
@@ -68,17 +68,17 @@ public class PlacementRoad : MonoBehaviour
         RoadSegmentChanged?.Invoke(currnetSegmentRoad);
     }
 
-    private void ConnectRoads(Vertex firstSegmentRoad, Vertex secondSegmentRoad, GameObject roadStraight)
+    private void ConnectRoads(UrbanVertex firstSegmentRoad, UrbanVertex secondSegmentRoad, GameObject roadStraight)
     {
         // PlaceNewRoad(firstSegmentRoad.Position, secondSegmentRoad.Position, roadStraight);
 
         var segmentsRoadList = CreateRoad(firstSegmentRoad.Position, secondSegmentRoad.Position, roadStraight);
 
-        Vertex roadTMP = firstSegmentRoad;
+        UrbanVertex roadTMP = firstSegmentRoad;
 
         for (int i = 0; i < segmentsRoadList.Count; i++)
         {
-            var vertexGraph = new Vertex(segmentsRoadList[i].transform.position, segmentsRoadList[i], VertexType.Road);
+            var vertexGraph = new UrbanVertex(segmentsRoadList[i].transform.position, segmentsRoadList[i], VertexType.Road);
             _graph.AddVertex(vertexGraph);
 
             _graph.AddEdge(roadTMP, vertexGraph);
@@ -94,12 +94,12 @@ public class PlacementRoad : MonoBehaviour
     {
         var segmentsRoadList = CreateRoad(startPosition, endPosition, roadStraight);
 
-        Vertex roadTMP = new Vertex(segmentsRoadList[0].transform.position, segmentsRoadList[0], VertexType.Road);
+        UrbanVertex roadTMP = new UrbanVertex(segmentsRoadList[0].transform.position, segmentsRoadList[0], VertexType.Road);
         _graph.AddVertex(roadTMP);
 
         for (int i = 1; i < segmentsRoadList.Count; i++)
         {
-            var vertexGraph = new Vertex(segmentsRoadList[i].transform.position, segmentsRoadList[i], VertexType.Road);
+            var vertexGraph = new UrbanVertex(segmentsRoadList[i].transform.position, segmentsRoadList[i], VertexType.Road);
 
             _graph.AddVertex(vertexGraph);
             _graph.AddEdge(roadTMP, vertexGraph);
@@ -140,7 +140,7 @@ public class PlacementRoad : MonoBehaviour
         return segmentsRoadList;
     }
 
-    public bool CheckingIfThereNeighbors(Vertex vertex)
+    public bool CheckingIfThereNeighbors(UrbanVertex vertex)
     {
         var neighbours = _graph.GetVerticesList(vertex);
 
@@ -154,7 +154,7 @@ public class PlacementRoad : MonoBehaviour
         }
     }
 
-    public List<Vertex> GetNeighbourt(Vertex vertex)
+    public List<UrbanVertex> GetNeighbourt(UrbanVertex vertex)
     {
         var neighbours = _graph.GetVerticesList(vertex);
         return neighbours;

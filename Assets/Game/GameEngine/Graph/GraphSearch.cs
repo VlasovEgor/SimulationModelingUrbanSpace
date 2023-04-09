@@ -1,78 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
 
 public class GraphSearch {
 
-    public List<Vertex> AStarSearch(Graph graph, Vertex startPosition, Vertex endPosition, bool isAgent = false)
+    [Inject] private Graph _graph;
+
+    private List<UrbanVertex> _openList =new();
+    private List<UrbanVertex> _closedList = new();
+
+    public List<UrbanVertex> AStar(Vector3 start, Vector3 end)
     {
-        List<Vertex> path = new List<Vertex>();
+        var startPosition = _graph.GetVertexByPosition(start);
+        var endPosition = _graph.GetVertexByPosition(end);
 
-        List<Vertex> positionsToCheck = new List<Vertex>();
-        Dictionary<Vertex, float> costDictionary = new Dictionary<Vertex, float>();
-        Dictionary<Vertex, float> priorityDictionary = new Dictionary<Vertex, float>();
-        Dictionary<Vertex, Vertex> parentsDictionary = new Dictionary<Vertex, Vertex>();
+        _openList.Add(startPosition);
 
-        positionsToCheck.Add(startPosition);
-        priorityDictionary.Add(startPosition, 0);
-        costDictionary.Add(startPosition, 0);
-        parentsDictionary.Add(startPosition, null);
+        startPosition.gCost = 0;
+        startPosition.hCost = CalculateDistance(startPosition, endPosition);
+        startPosition.CalculateFCost();
 
-        while (positionsToCheck.Count > 0)
+        while (_openList.Count > 0)
         {
-            Vertex current = GetClosestVertex(positionsToCheck, priorityDictionary);
-            positionsToCheck.Remove(current);
+            UrbanVertex currentVertex = GetLowestFCostNode(_openList);
 
-            if (current.Equals(endPosition))
+            if(currentVertex == endPosition)
             {
-                path = GeneratePath(parentsDictionary, current);
-                return path;
+                return CalculatePath(endPosition);
             }
 
-            foreach (Vertex neighbour in graph.GetWakableAdjacentVertex(current, isAgent))
+            _openList.Remove(currentVertex);
+            _closedList.Add(currentVertex);
+
+           var neighbourList = _graph.GetWakableAdjacentVertex(currentVertex);
+
+            foreach (var neighbourVertex in neighbourList)
             {
-                float newCost = costDictionary[current] + graph.GetCostOfEnteringVertex(current, neighbour);
-                if (!costDictionary.ContainsKey(neighbour) || newCost < costDictionary[neighbour])
+                if(_closedList.Contains(neighbourVertex))
                 {
-                    costDictionary[neighbour] = newCost;
+                    continue;
+                }
 
-                    float priority = newCost + ManhattanDiscance(endPosition, neighbour);
-                    positionsToCheck.Add(neighbour);
-                    priorityDictionary[neighbour] = priority;
+                float tentativeGCost = currentVertex.gCost + CalculateDistance(currentVertex, neighbourVertex);
 
-                    parentsDictionary[neighbour] = current;
+                if(tentativeGCost < neighbourVertex.gCost)
+                {
+                    neighbourVertex.cameFromNode = currentVertex;
+                    neighbourVertex.gCost = tentativeGCost;
+                    neighbourVertex.hCost = CalculateDistance(neighbourVertex, endPosition);
+                    neighbourVertex.CalculateFCost();
+
+                    if(_openList.Contains(neighbourVertex) == false)
+                    {
+                        _openList.Add(neighbourVertex);
+                    }
                 }
             }
         }
-        return path;
+
+        throw new Exception("the path was not found");
     }
 
-    private Vertex GetClosestVertex(List<Vertex> list, Dictionary<Vertex, float> distanceMap)
+    private float CalculateDistance(UrbanVertex first, UrbanVertex second)
     {
-        Vertex candidate = list[0];
-        foreach (Vertex vertex in list)
+        return Vector3.Distance(first.Position, second.Position);
+    }
+
+    private UrbanVertex GetLowestFCostNode(List<UrbanVertex> vertexList)
+    {
+        UrbanVertex lowestFCostNode = vertexList[0];
+
+        for (int i = 1; i < vertexList.Count; i++)
         {
-            if (distanceMap[vertex] < distanceMap[candidate])
+            if (vertexList[i].fCost < lowestFCostNode.fCost)
             {
-                candidate = vertex;
+                lowestFCostNode = vertexList[i];
             }
         }
-        return candidate;
+
+        return lowestFCostNode;
     }
 
-    private float ManhattanDiscance(Vertex endPos, Vertex point)
+    private List<UrbanVertex> CalculatePath(UrbanVertex endVertex)
     {
-        return Math.Abs(endPos.Position.x - point.Position.x) + Math.Abs(endPos.Position.y - point.Position.y);
-    }
+        List<UrbanVertex> path = new() { endVertex };
 
-    private List<Vertex> GeneratePath(Dictionary<Vertex, Vertex> parentMap, Vertex endState)
-    {
-        List<Vertex> path = new List<Vertex>();
-        Vertex parent = endState;
-        while (parent != null && parentMap.ContainsKey(parent))
+        UrbanVertex currentVertex = endVertex;
+
+        while (currentVertex.cameFromNode != null)
         {
-            path.Add(parent);
-            parent = parentMap[parent];
+            path.Add(currentVertex.cameFromNode);
+            currentVertex = currentVertex.cameFromNode;
         }
+
         return path;
     }
 }

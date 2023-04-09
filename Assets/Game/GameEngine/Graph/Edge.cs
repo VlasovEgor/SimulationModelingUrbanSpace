@@ -1,13 +1,13 @@
 
 public class Edge 
 {
-    public Vertex From { get; set; }
+    public UrbanVertex From { get; set; }
 
-    public Vertex To { get; set; }
+    public UrbanVertex To { get; set; }
 
     public float Weight { get; set; }
 
-    public Edge(Vertex from, Vertex to, float weight = 1)
+    public Edge(UrbanVertex from, UrbanVertex to, float weight = 1)
     {
         From = from;
         To = to;

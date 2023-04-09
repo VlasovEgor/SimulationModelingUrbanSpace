@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RoadManager : MonoBehaviour
 {
-    public PlacementManager placementManager;
+    public PlacementManagerGovn placementManager;
 
     public List<Vector3Int> temporaryPlacementPositions = new List<Vector3Int>();
     public List<Vector3Int> roadPositionsToRecheck = new List<Vector3Int>();
@@ -36,7 +36,7 @@ public class RoadManager : MonoBehaviour
             startPosition = position;
 
             temporaryPlacementPositions.Add(position);
-         //   placementManager.PlaceTemporaryStructure(position, roadFixer.deadEnd, CellType.Road);
+            //placementManager.PlaceTemporaryStructure(position, roadFixer.deadEnd, CellType.Road);
 
         }
         else

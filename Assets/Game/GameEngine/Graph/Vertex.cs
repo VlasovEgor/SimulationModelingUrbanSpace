@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Vertex
 {
-   // public int Number { get; set; }
-
     public Vector3 Position { get; set; }
 
-    public VertexType VertexType;
+    public float gCost = float.MaxValue;
+    public float hCost;
+    public float fCost;
 
-    public GameObject Object { get; set; }
-
-    public Vertex(Vector3 position, GameObject gameObject, VertexType vertexType)
+    public Vertex(Vector3 position)
     {
-        //Number = number;
-        VertexType = vertexType;
         Position = position;
-        Object = gameObject;
+    }
+
+    public void CalculateFCost()
+    {
+        fCost = gCost + hCost;
     }
 }

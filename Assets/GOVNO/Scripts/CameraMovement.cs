@@ -14,7 +14,7 @@ namespace SVS
         public float cameraMovementSpeed = 5;
 
         public float maxOrthographicSize = 5f, minOrthographicSize = 0.5f;
-        public float sensitivity = 0.1f;
+        public float sensitivity = 10;
 
         private void Start()
         {

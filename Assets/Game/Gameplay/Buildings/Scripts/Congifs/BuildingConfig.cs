@@ -1,16 +1,35 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-
-//[CreateAssetMenu(
-//    fileName = "Building",
-//    menuName = "Buildings/ New Building")]
-public class BuildingConfig : ScriptableObject
+public class BuildingConfig : MonoBehaviour
 {
-   // [SerializeField] public string ID;
-   // [SerializeField] public GameObject BuildigPrefab;
-   // 
-   // public Building InstantiateBuilding()
-   // {
-   //     return new Building(this);
-   // }
+   [SerializeField] private VertexType _vertexType;
+   [ShowInInspector, ReadOnly] private Vector3 _nearestRoad;
+   [ShowInInspector,ReadOnly] private Vector3 _position;
+    
+    public VertexType GetVertexType()
+    {
+        return _vertexType;
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        _position= position;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return _position;
+    }
+
+    public void SetNearestRoad(Vector3 position)
+    {
+        _nearestRoad = position;
+    }
+
+    public Vector3 GetNearestRoad()
+    {
+        return _nearestRoad;
+    }
+
 }
