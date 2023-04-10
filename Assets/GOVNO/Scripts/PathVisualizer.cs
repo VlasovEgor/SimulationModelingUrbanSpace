@@ -7,7 +7,7 @@ using UnityEngine;
 public class PathVisualizerGOVNO : MonoBehaviour
 {
     LineRenderer lineRenderer;
-    HumanAgent currentAgent;
+    Agent currentAgent;
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class PathVisualizerGOVNO : MonoBehaviour
         lineRenderer.positionCount = 0;
     }
 
-    public void ShowPath(List<Vector3> path, HumanAgent agent, Color color)
+    public void ShowPath(List<Vector3> path, Agent agent, Color color)
     {
         ResetPath();
         lineRenderer.positionCount = path.Count;

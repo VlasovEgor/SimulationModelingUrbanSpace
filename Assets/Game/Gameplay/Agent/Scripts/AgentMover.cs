@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanMover : MonoBehaviour
+public class AgentMover : MonoBehaviour
 {
-    [SerializeField] private Transform _humanTransfrom;
+    [SerializeField] private Transform _agentTransfrom;
     [SerializeField] private float _speed;
     [SerializeField] private Vector3 _movementVector;
 
-    [SerializeField] private HumanAgent _humanAI;
+    [SerializeField] private Agent _humanAI;
 
     private void Start()
     {
@@ -34,7 +32,7 @@ public class HumanMover : MonoBehaviour
     {
         var step = _speed * Time.deltaTime;
 
-        _humanTransfrom.position = Vector3.MoveTowards(_humanTransfrom.position, _movementVector, step);
-        _humanTransfrom.rotation = Quaternion.LookRotation(_movementVector);
+        _agentTransfrom.position = Vector3.MoveTowards(_agentTransfrom.position, _movementVector, step);
+        _agentTransfrom.rotation = Quaternion.LookRotation(_movementVector);
     }
 }

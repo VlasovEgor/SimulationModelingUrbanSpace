@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Component_SetPath : MonoBehaviour, IComponent_SetPath
 {
-    [SerializeField] private HumanAgent _humanAgent;
+    [SerializeField] private Agent _humanAgent;
 
     public void SetPath(List<Vector3> path)
     {

@@ -1,40 +1,41 @@
 using Sirenix.OdinInspector;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanAgent : MonoBehaviour
+public class Agent : MonoBehaviour
 {
     public event Action OnDeath;
     public event Action<Vector3> OnMove;
 
-   [SerializeField] private Animator _animator;
-    [SerializeField] private Transform _humanTransform;
+   // [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _agentTransform;
+
+    [SerializeField] private AgentType _agentType;
 
     [SerializeField] private List<Vector3> _path;
     [ShowInInspector, ReadOnly] private Vector3 _currentTargetPosition;
 
-    [SerializeField] private float _speed;
     [SerializeField] private float _arriveDistance = 0.3f;
     [SerializeField] private float _lastpointArriveDistance = 0.1f;
 
     [ShowInInspector, ReadOnly] private bool _isMove = false;
+
     private int _index;
 
     public void SetPath(List<Vector3> path)
     {
         if (path.Count == 0)
         {
-            Debug.Log("PRIEXALI_SetPath");
+            //Debug.Log("PRIEXALI_SetPath");
             return;
         }
 
         _path = path;
         _index = 0;
         _currentTargetPosition = _path[_index];
-        _isMove = true;
-        _animator.SetBool("Walk", true);
+        SetMove(true);
+        //_animator.SetBool("Walk", true);
     }
 
 
@@ -55,7 +56,7 @@ public class HumanAgent : MonoBehaviour
                 distanceToCheck = _lastpointArriveDistance;
             }
 
-            if (Vector3.Distance(_currentTargetPosition, _humanTransform.position) < distanceToCheck)
+            if (Vector3.Distance(_currentTargetPosition, _agentTransform.position) < distanceToCheck)
             {
                 SetNextTargetIndex();
             }
@@ -77,7 +78,7 @@ public class HumanAgent : MonoBehaviour
         if (_index >= _path.Count)
         {
             _isMove = false;
-            _animator.SetBool("Walk", false);
+           // _animator.SetBool("Walk", false);
             Debug.Log("PRIEXALI_SetNextTargetIndex");
         }
         else
@@ -85,4 +86,26 @@ public class HumanAgent : MonoBehaviour
             _currentTargetPosition = _path[_index];
         }
     }
+
+    public bool IsThisLastPathIndex()
+    {
+        return _index>= _path.Count-1;
+    }
+
+    public AgentType GetAgentType()
+    {
+        return _agentType;
+    }
+
+    public void SetMove(bool value)
+    {
+        _isMove = value;
+    }
 }
+
+public enum AgentType
+{
+    HUMAN = 0,
+    CAR = 1
+}
+

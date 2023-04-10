@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vertexType: 3
+  _visualTransform: {fileID: 3561586114131199580}
 --- !u!1 &6842605004092929233
 GameObject:
   m_ObjectHideFlags: 0

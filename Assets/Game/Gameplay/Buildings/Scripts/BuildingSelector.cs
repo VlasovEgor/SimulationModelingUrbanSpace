@@ -68,12 +68,10 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
             return;
         }
 
-        var position = _currentBulding.transform.position;
+        var position = _currentBulding.Get<IComponent_PositionBuilding>().GetPosition();
         var building = _currentBulding.GameObject();
         var neighbour = _graph.SearchNearestVertex(position);
         var type = _currentBulding.Get<IComponent_GetVertexTypeBuilding>().GetVertexTypeBuilding();
-
-        _currentBulding.Get<IComponent_PositionBuilding>().SetPosition(position);
 
         UrbanVertex newVertex = new(position, building, type);
         _graph.AddVertex(newVertex);
@@ -88,9 +86,10 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
 
     private bool CanPutUpBuilding()
     {
+        var buildingPosition = _currentBulding.Get<IComponent_PositionBuilding>().GetPosition();
         if (_currentBulding != null &&
             _currentBulding.Get<IComponent_CanBuild>().CanBuild() == true &&
-            Vector3.Distance(_currentBulding.transform.position, _graph.SearchNearestVertex(_currentBulding.transform.position).Position) <= _maximumDistance)
+            Vector3.Distance(buildingPosition, _graph.SearchNearestVertex(buildingPosition).Position) <= _maximumDistance)
         {
 
             return true;

@@ -10,6 +10,7 @@ public class BuildingMover : MonoBehaviour
     [Inject] private BuildingSelector _buildingSelector;
 
     [ShowInInspector, ReadOnly] private UnityEntity _currentBulding;
+
     private Plane _plane;
 
     private void OnEnable()

@@ -3,23 +3,19 @@ using UnityEngine;
 
 public class BuildingConfig : MonoBehaviour
 {
-   [SerializeField] private VertexType _vertexType;
-   [ShowInInspector, ReadOnly] private Vector3 _nearestRoad;
-   [ShowInInspector,ReadOnly] private Vector3 _position;
-    
+    [SerializeField] private VertexType _vertexType;
+    [SerializeField] private Transform _visualTransform;
+
+    [ShowInInspector, ReadOnly] private Vector3 _nearestRoad;
+
     public VertexType GetVertexType()
     {
         return _vertexType;
     }
 
-    public void SetPosition(Vector3 position)
-    {
-        _position= position;
-    }
-
     public Vector3 GetPosition()
     {
-        return _position;
+        return _visualTransform.position;
     }
 
     public void SetNearestRoad(Vector3 position)

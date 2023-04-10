@@ -31,15 +31,15 @@ namespace SimpleCity.AI
                 var startPosition = ((INeedingRoad)startStructure).RoadPosition;
                 var endPosition = ((INeedingRoad)endStructure).RoadPosition;
 
-                var startMarkerPosition = placementManager.GetStructureAt(startPosition).GetPedestrianSpawnMarker(startStructure.transform.position);
+                var startMarkerPosition = Vector3.zero;// placementManager.GetStructureAt(startPosition).GetPedestrianSpawnMarker(startStructure.transform.position);
                 var endMarkerPosition = placementManager.GetStructureAt(endPosition).GetNearestMarkerTo(endStructure.transform.position);
 
-                var agent = Instantiate(GetRandomPedestrian(), startMarkerPosition.GetPosition(), Quaternion.identity);
+                var agent = Instantiate(GetRandomPedestrian(), startMarkerPosition, Quaternion.identity);
                 var path = placementManager.GetPathBetween(startPosition, endPosition, true);
                 if(path.Count > 0)
                 {
                     path.Reverse();
-                    List<Vector3> agentPath = GetPedestrianPath(path, startMarkerPosition.GetPosition(), endMarkerPosition);
+                    List<Vector3> agentPath = GetPedestrianPath(path, startMarkerPosition, endMarkerPosition);
                     var aiAgent = agent.GetComponent<AiAgent>();
                     aiAgent.Initialize(agentPath);
                 }

@@ -1,3 +1,5 @@
+using Entities;
+using SimpleCity.AI;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +10,22 @@ using Zenject;
 public class AiDirector : MonoBehaviour
 {
     [SerializeField] private GameObject[] _pedestrianPrefabs;
+    [SerializeField] private GameObject[] _carPrefab;
 
     [Inject] private PlacementManager _placementManager;
     [Inject] private GraphSearch _graphSearch;
     [Inject] private Graph _graph;
 
     private PedesterianGraph _pedestrianGraph = new();
+    private PedesterianGraph _carGraph = new();
     private PedesterianGraphSearch _pedesterianGraphSearch = new();
+
+    private List<Vector3> _carPath = new();
 
     [Button]
     public void SpawnAgent()
     {
-        TrySpawningAnAgent(_placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building), _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building));
+        TrySpawningAnHuman(_placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building), _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building));
     }
 
     [Button]
@@ -27,15 +33,15 @@ public class AiDirector : MonoBehaviour
     {
         foreach (var residentialBuilding in _placementManager.GetAllBuildingConfigurationCertainType(VertexType.Residential_Building))
         {
-            TrySpawningAnAgent(residentialBuilding, _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building));
+            TrySpawningAnHuman(residentialBuilding, _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building));
         }
         foreach (var commericalBuilding in _placementManager.GetAllBuildingConfigurationCertainType(VertexType.Commercial_Building))
         {
-            TrySpawningAnAgent(commericalBuilding, _placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building));
+            TrySpawningAnHuman(commericalBuilding, _placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building));
         }
     }
 
-    private void TrySpawningAnAgent(BuildingConfig startStructure, BuildingConfig endStructure)
+    private void TrySpawningAnHuman(BuildingConfig startStructure, BuildingConfig endStructure)
     {
         if (startStructure != null && endStructure != null)
         {
@@ -45,14 +51,6 @@ public class AiDirector : MonoBehaviour
             var startMarker = _graph.GetVertexByPosition(startStructure.GetNearestRoad()).Object.GetComponent<RoadHelper>().GetClosestPedestrainPosition(startStructure.GetPosition());
             var endMarker = _graph.GetVertexByPosition(endStructure.GetNearestRoad()).Object.GetComponent<RoadHelper>().GetClosestPedestrainPosition(endStructure.GetPosition());
 
-            // Debug.Log(startStructure.GetPosition());
-            // Debug.Log(endStructure.GetPosition());
-
-            // Debug.Log(startMarker);
-            // Debug.Log(endMarker);
-
-            // Debug.Log(_graph.GetVertexByPosition(startStructure.GetNearestRoad()).Position);
-            // Debug.Log(_graph.GetVertexByPosition(endStructure.GetNearestRoad()).Position);
             var agent = Instantiate(GetRandomPedestrian(), startPosition, Quaternion.identity);
             var positionY = agent.transform.position.y;
             positionY += 2;
@@ -115,7 +113,7 @@ public class AiDirector : MonoBehaviour
 
                 if (marker.GetOpenForConnections() && i + 1 < path.Count)
                 {
-                    var nextRoadStructure = path[i+1].Object.GetComponent<RoadHelper>();
+                    var nextRoadStructure = path[i + 1].Object.GetComponent<RoadHelper>();
                     if (limitDistance)
                     {
                         tempDictionary.Add(marker, nextRoadStructure.GetClosestPedestrainPosition(marker.GetPosition()));
@@ -143,6 +141,12 @@ public class AiDirector : MonoBehaviour
     {
         var index = Random.Range(0, _pedestrianPrefabs.Length - 1);
         return _pedestrianPrefabs[index];
+    }
+
+    private GameObject GetRandomCar()
+    {
+        var index = Random.Range(0, _carPrefab.Length - 1);
+        return _carPrefab[index];
     }
 
     private List<Vector3> GetVectorPathBetween(Vector3 startPosition, Vector3 endPosition)
@@ -175,6 +179,119 @@ public class AiDirector : MonoBehaviour
                 Debug.DrawLine(vertex.Position + Vector3.up * 2, vertexNeighbour.Position + Vector3.up * 2, Color.red);
             }
         }
+
+        foreach (PedestrianVertex vertex in _carGraph.GetVertices())
+        {
+            foreach (var vertexNeighbour in _carGraph.GetConnectedVerticesTo(vertex))
+            {
+                Debug.DrawLine(vertex.Position + Vector3.up * 2, vertexNeighbour.Position + Vector3.up * 2, Color.white);
+            }
+        }
+
+        for (int i = 1; i < _carPath.Count; i++)
+        {
+            Debug.DrawLine(_carPath[i - 1] + Vector3.up * 3, _carPath[i] + Vector3.up * 3, Color.green);
+        }
+
+
+    }
+
+
+
+    [Button]
+    public void SpawnCar()
+    {
+        TrySpawnCar(_placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building), _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building));
+    }
+
+    public void TrySpawnCar(BuildingConfig startPosition, BuildingConfig endPosition)
+    {
+        if (startPosition != null && endPosition != null)
+        {
+            var startRoadPosition = startPosition.GetNearestRoad();
+            var endRoadPosition = endPosition.GetNearestRoad();
+
+            var path = GetPathBetween(startRoadPosition, endRoadPosition);
+            var vectorPath = GetVectorPathBetween(startRoadPosition, endRoadPosition);
+            vectorPath.Reverse();
+
+            var startMarkerPosition = _graph.GetVertexByPosition(startRoadPosition).Object.GetComponent<RoadHelper>().GetPositioForCarToSpawn(path[1].Position);
+            var endMarkerPosition = _graph.GetVertexByPosition(endRoadPosition).Object.GetComponent<RoadHelper>().GetPositioForCarToEnd(path[path.Count - 2].Position);
+
+            var car = Instantiate(GetRandomCar(), startMarkerPosition.GetPosition(), Quaternion.identity);
+            var positionY = car.transform.position.y;
+            positionY += 2;
+            var newPosition = new Vector3(car.transform.position.x, positionY, car.transform.position.z);
+            car.transform.position = newPosition;
+
+            if (path.Count > 0)
+            {
+                List<Vector3> carPath = GetCarPath(path, startMarkerPosition.GetPosition(), endMarkerPosition.GetPosition());
+                _carPath = carPath;
+                car.GetComponent<UnityEntity>().Get<IComponent_SetPath>().SetPath(carPath);
+            }
+        }
+    }
+
+    private List<Vector3> GetCarPath(List<UrbanVertex> path, Vector3 startPosition, Vector3 endPosition)
+    {
+        _carGraph.ClearGraph();
+        CreateCarGraph(path);
+        return _carGraph.AStarSearch(_carGraph, startPosition, endPosition);
+    }
+
+    private void CreateCarGraph(List<UrbanVertex> path)
+    {
+        Dictionary<Marker, Vector3> tempDictionary = new Dictionary<Marker, Vector3>();
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            var currentPosition = path[i];
+            var roadStructure = currentPosition.Object.GetComponent<RoadHelper>();
+            var markersList = roadStructure.GetAllCarMarkers();
+            bool limitDistance = markersList.Count > 3;
+            tempDictionary.Clear();
+            int debil = 0;
+            foreach (var marker in markersList)
+            {
+                _carGraph.AddVertex(marker.GetPosition());
+                // Debug.Log(marker.GetPosition());
+                foreach (var markerNeighbourPosition in marker.GetAdjacentPositions())
+                {
+                    _carGraph.AddEdge(marker.GetPosition(), markerNeighbourPosition);
+                   // Debug.Log("Vector 1: " + marker.GetPosition());
+                  //  Debug.Log("Vector 2: " + markerNeighbourPosition);
+                }
+
+                if (marker.GetOpenForConnections() && i + 1 < path.Count)
+                {
+                    var nextRoadStructure = path[i + 1].Object.GetComponent<RoadHelper>();
+                    if (limitDistance == true)
+                    {
+                        tempDictionary.Add(marker, nextRoadStructure.GetClosestCarMarkerPosition(marker.GetPosition()));
+                    }
+                    else
+                    {
+                        debil++;
+                        Debug.Log(debil);
+                        Debug.Log(marker.GetPosition());
+                        _carGraph.AddEdge(marker.GetPosition(), nextRoadStructure.GetClosestCarMarkerPosition(marker.GetPosition()));
+                    }
+                }
+            }
+
+            if (limitDistance == true  && tempDictionary.Count > 1)
+            {
+                var distanceSortedMarkers = tempDictionary.OrderBy(x => Vector3.Distance(x.Key.GetPosition(), x.Value)).ToList();
+                for (int j = 0; j < 2; j++)
+                {
+                   // Debug.Log("YEBA" + distanceSortedMarkers[j].Key.GetPosition());
+                   // Debug.Log(distanceSortedMarkers[j].Value);
+                    _carGraph.AddEdge(distanceSortedMarkers[j].Key.GetPosition(), distanceSortedMarkers[j].Value);
+                }
+            }
+        }
+
     }
 
 }

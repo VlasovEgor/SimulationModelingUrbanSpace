@@ -138,24 +138,26 @@ public class PedesterianGraph
         return Vector3.SqrMagnitude(position1 - position2) < 0.0001f;
     }
 
-    public void AddEdge(Vector3 position1, Vector3 position2)
+    public void AddEdge(Vector3 startPosition, Vector3 endPosition)
     {
-        if (CompareVertices(position1, position2))
+        if (CompareVertices(startPosition, endPosition))
         {
             return;
         }
-        PedestrianVertex v1 = GetVertexAt(position1);
-        PedestrianVertex v2 = GetVertexAt(position2);
+        PedestrianVertex v1 = GetVertexAt(startPosition);
+        PedestrianVertex v2 = GetVertexAt(endPosition);
         if (v1 == null)
         {
-            v1 = new PedestrianVertex(position1);
+            v1 = new PedestrianVertex(startPosition);
+            AddVertex(v1);
         }
         if (v2 == null)
         {
-            v2 = new PedestrianVertex(position2);
+            v2 = new PedestrianVertex(endPosition);
+            AddVertex(v2);
         }
         AddEdgeBetween(v1, v2);
-        AddEdgeBetween(v2, v1);
+       // AddEdgeBetween(v2, v1);
 
     }
 
@@ -217,13 +219,21 @@ public class PedesterianGraph
         return builder.ToString();
     }
 
+    private void CheckVertex(PedesterianGraph graph, Vector3 position)
+    {
+        Debug.Log(graph.GetVertexAt(position));
+    }
+
     public List<Vector3> AStarSearch(PedesterianGraph graph, Vector3 startPosition, Vector3 endPosition)
     {
         List<Vector3> path = new List<Vector3>();
-
+       // Debug.Log(startPosition);
+       // CheckVertex(graph, startPosition);
         PedestrianVertex start = graph.GetVertexAt(startPosition);
         PedestrianVertex end = graph.GetVertexAt(endPosition);
-        Debug.Log("END: "+end.Position);
+        
+      //  Debug.Log("START: "+start.Position);
+       // Debug.Log("END: "+end.Position);
 
         List<PedestrianVertex> positionsTocheck = new List<PedestrianVertex>();
         Dictionary<PedestrianVertex, float> costDictionary = new Dictionary<PedestrianVertex, float>();
@@ -237,12 +247,11 @@ public class PedesterianGraph
 
         while (positionsTocheck.Count > 0)
         {   
-            Debug.Log(positionsTocheck.Count);
+           // Debug.Log(positionsTocheck.Count);
             PedestrianVertex current = GetClosestVertex(positionsTocheck, priorityDictionary);
             positionsTocheck.Remove(current);
             if (current.Equals(end))
             {
-                Debug.Log("XYI");
                 path = GeneratePath(parentsDictionary, current);
                 return path;
             }
@@ -252,7 +261,7 @@ public class PedesterianGraph
                 float newCost = costDictionary[current] + 1;
                 if (!costDictionary.ContainsKey(neighbour) || newCost < costDictionary[neighbour])
                 {
-                    Debug.Log("ABOBA");
+                    //Debug.Log("ABOBA");
                     costDictionary[neighbour] = newCost;
 
                     float priority = newCost + ManhattanDiscance(end, neighbour);
@@ -261,7 +270,7 @@ public class PedesterianGraph
                     priorityDictionary[neighbour] = priority;
 
                     parentsDictionary[neighbour] = current;
-                    Debug.Log(current.Position);
+                    //Debug.Log(current.Position);
                 }
             }
         }
