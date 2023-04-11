@@ -3,31 +3,34 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AgentType
+{
+    HUMAN = 0,
+    CAR = 1
+}
+
 public class Agent : MonoBehaviour
 {
     public event Action OnDeath;
     public event Action<Vector3> OnMove;
 
-   // [SerializeField] private Animator _animator;
     [SerializeField] private Transform _agentTransform;
 
     [SerializeField] private AgentType _agentType;
 
-    [SerializeField] private List<Vector3> _path;
-    [ShowInInspector, ReadOnly] private Vector3 _currentTargetPosition;
-
     [SerializeField] private float _arriveDistance = 0.3f;
     [SerializeField] private float _lastpointArriveDistance = 0.1f;
 
+    [ShowInInspector, ReadOnly] private Vector3 _currentTargetPosition;
     [ShowInInspector, ReadOnly] private bool _isMove = false;
 
+    private List<Vector3> _path;
     private int _index;
 
     public void SetPath(List<Vector3> path)
     {
         if (path.Count == 0)
         {
-            //Debug.Log("PRIEXALI_SetPath");
             return;
         }
 
@@ -35,9 +38,7 @@ public class Agent : MonoBehaviour
         _index = 0;
         _currentTargetPosition = _path[_index];
         SetMove(true);
-        //_animator.SetBool("Walk", true);
     }
-
 
     private void FixedUpdate()
     {
@@ -63,7 +64,6 @@ public class Agent : MonoBehaviour
         }
     }
 
-
     private void Move()
     {
         if (_isMove == true)
@@ -75,11 +75,10 @@ public class Agent : MonoBehaviour
     private void SetNextTargetIndex()
     {
         _index++;
+
         if (_index >= _path.Count)
         {
             _isMove = false;
-           // _animator.SetBool("Walk", false);
-            Debug.Log("PRIEXALI_SetNextTargetIndex");
         }
         else
         {
@@ -89,7 +88,7 @@ public class Agent : MonoBehaviour
 
     public bool IsThisLastPathIndex()
     {
-        return _index>= _path.Count-1;
+        return _index >= _path.Count - 1;
     }
 
     public AgentType GetAgentType()
@@ -102,10 +101,3 @@ public class Agent : MonoBehaviour
         _isMove = value;
     }
 }
-
-public enum AgentType
-{
-    HUMAN = 0,
-    CAR = 1
-}
-

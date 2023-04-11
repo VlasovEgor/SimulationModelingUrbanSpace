@@ -1,4 +1,3 @@
-using SimpleCity.AI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,7 +156,7 @@ public class PedesterianGraph
             AddVertex(v2);
         }
         AddEdgeBetween(v1, v2);
-       // AddEdgeBetween(v2, v1);
+        AddEdgeBetween(v2, v1);
 
     }
 

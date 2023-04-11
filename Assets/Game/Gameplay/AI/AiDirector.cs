@@ -1,9 +1,7 @@
 using Entities;
-using SimpleCity.AI;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -223,11 +221,12 @@ public class AiDirector : MonoBehaviour
             positionY += 2;
             var newPosition = new Vector3(car.transform.position.x, positionY, car.transform.position.z);
             car.transform.position = newPosition;
-
+            Debug.Log(path.Count);
             if (path.Count > 0)
             {
                 List<Vector3> carPath = GetCarPath(path, startMarkerPosition.GetPosition(), endMarkerPosition.GetPosition());
                 _carPath = carPath;
+                Debug.Log(carPath.Count);
                 car.GetComponent<UnityEntity>().Get<IComponent_SetPath>().SetPath(carPath);
             }
         }
@@ -251,16 +250,15 @@ public class AiDirector : MonoBehaviour
             var markersList = roadStructure.GetAllCarMarkers();
             bool limitDistance = markersList.Count > 3;
             tempDictionary.Clear();
-            int debil = 0;
+
             foreach (var marker in markersList)
             {
                 _carGraph.AddVertex(marker.GetPosition());
-                // Debug.Log(marker.GetPosition());
+
                 foreach (var markerNeighbourPosition in marker.GetAdjacentPositions())
                 {
                     _carGraph.AddEdge(marker.GetPosition(), markerNeighbourPosition);
-                   // Debug.Log("Vector 1: " + marker.GetPosition());
-                  //  Debug.Log("Vector 2: " + markerNeighbourPosition);
+
                 }
 
                 if (marker.GetOpenForConnections() && i + 1 < path.Count)
@@ -272,9 +270,7 @@ public class AiDirector : MonoBehaviour
                     }
                     else
                     {
-                        debil++;
-                        Debug.Log(debil);
-                        Debug.Log(marker.GetPosition());
+
                         _carGraph.AddEdge(marker.GetPosition(), nextRoadStructure.GetClosestCarMarkerPosition(marker.GetPosition()));
                     }
                 }
@@ -285,8 +281,7 @@ public class AiDirector : MonoBehaviour
                 var distanceSortedMarkers = tempDictionary.OrderBy(x => Vector3.Distance(x.Key.GetPosition(), x.Value)).ToList();
                 for (int j = 0; j < 2; j++)
                 {
-                   // Debug.Log("YEBA" + distanceSortedMarkers[j].Key.GetPosition());
-                   // Debug.Log(distanceSortedMarkers[j].Value);
+
                     _carGraph.AddEdge(distanceSortedMarkers[j].Key.GetPosition(), distanceSortedMarkers[j].Value);
                 }
             }
