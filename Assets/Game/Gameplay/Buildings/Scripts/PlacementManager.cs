@@ -14,13 +14,10 @@ public class PlacementManager
         if (buildingConfig.GetVertexType() == VertexType.Residential_Building)
         {
             _residentialBuildingsDictionary.Add(position, buildingConfig);
-            Debug.Log(_residentialBuildingsDictionary.Count);
-
         }
         else if (buildingConfig.GetVertexType() == VertexType.Commercial_Building)
         {
             _commericalBuildingsDictionary.Add(position, buildingConfig);
-            Debug.Log(_commericalBuildingsDictionary.Count);
         }
     }
 

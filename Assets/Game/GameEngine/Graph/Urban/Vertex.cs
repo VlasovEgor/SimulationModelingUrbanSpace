@@ -17,4 +17,12 @@ public class Vertex
     {
         fCost = gCost + hCost;
     }
+
+    public void ClearValue()
+    {
+        gCost = float.MaxValue;
+        hCost = 0;
+        fCost= 0;
+
+    }
 }

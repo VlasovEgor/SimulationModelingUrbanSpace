@@ -104,7 +104,7 @@ public class AgentGraph
         adjacencyDictionary.Clear();
     }
 
-    public IEnumerable<Vertex> GetVertices()
+    public IEnumerable<AgentVertex> GetVertices()
     {
         return adjacencyDictionary.Keys;
     }

@@ -68,6 +68,7 @@ public class ManipulationInput : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             float timeSinceLastClick = Time.time - _lastClickTime;
+            _lastClickTime = Time.time;
 
             if (timeSinceLastClick <= DOUBLE_CLICK_TIME) 
             {
@@ -77,8 +78,6 @@ public class ManipulationInput : MonoBehaviour
             {
                 LeftMouseButtonDown?.Invoke();
             }
-
-            _lastClickTime= Time.time;
         }
     }
 

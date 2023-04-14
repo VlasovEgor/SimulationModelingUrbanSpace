@@ -45,12 +45,12 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
         {
             return;
         }
-
+        
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit raycastHit) == true)
         {
-            if (raycastHit.collider != null)
+            if (raycastHit.collider != null);
             {
                 _currentBulding = raycastHit.collider.GetComponent<UnityEntityProxy>();
                 _graph.RemoveVertex(_graph.GetVertexByPosition(_currentBulding.transform.position));

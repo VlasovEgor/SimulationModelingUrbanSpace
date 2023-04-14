@@ -382,8 +382,6 @@ MonoBehaviour:
   - {fileID: 9213334616769316315}
   _isCorner: 0
   _hasCrosswalks: 0
-  _incomming: {fileID: 0}
-  _outgoing: {fileID: 0}
   _leftMarker90: {fileID: 115486488386162670}
   _rightMarker90: {fileID: 9213334616769316315}
 --- !u!1 &5726373815395568176

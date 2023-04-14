@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AgentGraphSearch
-{
+{   
     public List<Vector3> AStarSearch(AgentGraph graph, Vector3 startPosition, Vector3 endPosition)
     {
         List<Vector3> path = new List<Vector3>();
 
+        Debug.Log("START: " + startPosition);
+        Debug.Log("END: " + endPosition);
         AgentVertex start = graph.GetVertexAt(startPosition);
         AgentVertex end = graph.GetVertexAt(endPosition);
 

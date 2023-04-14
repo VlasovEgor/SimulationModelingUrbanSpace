@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class GraphSearch {
+public class GraphSearch
+{
 
     [Inject] private Graph _graph;
 
-    private List<UrbanVertex> _openList =new();
+    private List<UrbanVertex> _openList = new();
     private List<UrbanVertex> _closedList = new();
 
     public List<UrbanVertex> AStar(Vector3 start, Vector3 end)
@@ -24,34 +25,34 @@ public class GraphSearch {
         while (_openList.Count > 0)
         {
             UrbanVertex currentVertex = GetLowestFCostNode(_openList);
-
-            if(currentVertex == endPosition)
+            if (currentVertex == endPosition)
             {
+                ClearVertexValue();
                 return CalculatePath(endPosition);
             }
 
             _openList.Remove(currentVertex);
             _closedList.Add(currentVertex);
 
-           var neighbourList = _graph.GetWakableAdjacentVertex(currentVertex);
+            var neighbourList = _graph.GetWakableAdjacentVertex(currentVertex);
 
             foreach (var neighbourVertex in neighbourList)
             {
-                if(_closedList.Contains(neighbourVertex))
+                if (_closedList.Contains(neighbourVertex))
                 {
                     continue;
                 }
 
                 float tentativeGCost = currentVertex.gCost + CalculateDistance(currentVertex, neighbourVertex);
 
-                if(tentativeGCost < neighbourVertex.gCost)
+                if (tentativeGCost < neighbourVertex.gCost)
                 {
                     neighbourVertex.cameFromNode = currentVertex;
                     neighbourVertex.gCost = tentativeGCost;
                     neighbourVertex.hCost = CalculateDistance(neighbourVertex, endPosition);
                     neighbourVertex.CalculateFCost();
 
-                    if(_openList.Contains(neighbourVertex) == false)
+                    if (_openList.Contains(neighbourVertex) == false)
                     {
                         _openList.Add(neighbourVertex);
                     }
@@ -59,6 +60,7 @@ public class GraphSearch {
             }
         }
 
+        ClearVertexValue();
         throw new Exception("the path was not found");
     }
 
@@ -91,9 +93,22 @@ public class GraphSearch {
         while (currentVertex.cameFromNode != null)
         {
             path.Add(currentVertex.cameFromNode);
+            currentVertex.ClearValue();
             currentVertex = currentVertex.cameFromNode;
         }
 
         return path;
+    }
+
+    private void ClearVertexValue()
+    {
+        foreach (var vertex in _openList)
+        {
+            vertex.ClearValue();
+        }
+        foreach (var vertex in _closedList)
+        {
+            vertex.ClearValue();
+        }
     }
 }

@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class BuildingInfoShower: IInitializable, IDisposable
+public class BuildingInfoShower : IInitializable, IDisposable
 {
     [Inject] private ManipulationInput _manipulationInput;
     [Inject] private Camera _camera;
@@ -29,9 +29,9 @@ public class BuildingInfoShower: IInitializable, IDisposable
 
         if (Physics.Raycast(ray, out RaycastHit raycastHit) == true)
         {
-            if (raycastHit.collider != null)
+            if (raycastHit.collider != null && raycastHit.collider.GetComponent<UnityEntityProxy>())
             {
-                 _currentBuilding = raycastHit.collider.GetComponent<UnityEntityProxy>();
+                _currentBuilding = raycastHit.collider.GetComponent<UnityEntityProxy>();
 
                 if (_currentBuilding.Get<IComponent_GetVertexTypeBuilding>().GetVertexTypeBuilding() == VertexType.Commercial_Building)
                 {

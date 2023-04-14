@@ -15,16 +15,16 @@ public class AiDirector : MonoBehaviour
     [Inject] private Graph _graph;
 
     private AgentGraphSearch _agentGraphSearch = new();
-
+    private AgentGraph _agentGraph;
 
     [Button]
     public void SpawnHuman()
     {
         var startPosition = _placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building);
         var endPosition = _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building);
+
         TrySpawningAgent(AgentType.HUMAN, startPosition, endPosition);
     }
-
 
     [Button]
     public void SpawnCar()
@@ -55,7 +55,7 @@ public class AiDirector : MonoBehaviour
                 }
                 else
                 {
-                    startPosition = _graph.GetVertexByPosition(startRoadPosition).Object.GetComponent<RoadHelper>().GetPositioForCarToSpawn(path[1].Position).GetPosition();
+                    startPosition = _graph.GetVertexByPosition(startRoadPosition).Object.GetComponent<RoadHelper>().GetPositioForCarToSpawn(path[0].Position).GetPosition();
                     endPosition = _graph.GetVertexByPosition(endRoadPosition).Object.GetComponent<RoadHelper>().GetPositioForCarToEnd(path[path.Count - 2].Position).GetPosition();
                 }
 
@@ -149,7 +149,6 @@ public class AiDirector : MonoBehaviour
                     }
                     else
                     {
-
                         agentGraph.AddEdge(marker.GetPosition(), nextRoadStructure.GetClosestAgentPosition(agentType,marker.GetPosition()));
                     }
                 }
@@ -166,6 +165,26 @@ public class AiDirector : MonoBehaviour
             }
         }
 
+        _agentGraph = agentGraph;
         return agentGraph;
+    }
+
+    private void Update()
+    {   
+        if(_agentGraph != null)
+        {
+            DrawCraphPath();
+        }
+    }
+
+    private void DrawCraphPath()
+    {
+        foreach (var vertex in _agentGraph.GetVertices())
+        {
+            foreach (var vertexNeighbour in _agentGraph.GetConnectedVerticesTo(vertex))
+            {
+                Debug.DrawLine(vertex.Position + Vector3.up * 2, vertexNeighbour.Position + Vector3.up * 2, Color.red);
+            }
+        }
     }
 }
