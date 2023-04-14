@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6617038795306094082}
-  - component: {fileID: 8182145509837375375}
+  - component: {fileID: 6883051943264958328}
   m_Layer: 0
   m_Name: '[CONFIG]'
   m_TagString: Untagged
@@ -276,7 +276,7 @@ Transform:
   m_Father: {fileID: 3561586114588050492}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8182145509837375375
+--- !u!114 &6883051943264958328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,11 +285,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753125230116178202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f88ccfd2a54227d40a595ca834fe9f90, type: 3}
+  m_Script: {fileID: 11500000, guid: 0760d49c5f74c9b409da0079ca9ca28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _vertexType: 2
   _visualTransform: {fileID: 3561586114131199580}
+  _totalNumberInhabitants: 0
+  _numberResidentsWithHigherEducation: 0
+  _numberResidentsWithSecondaryEducation: 0
+  _numberResidentsWithoutEducation: 0
 --- !u!1 &2091168344120623041
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +624,7 @@ MonoBehaviour:
   - {fileID: 3483063441736912960}
   - {fileID: 3057894488006070006}
   - {fileID: 95947156080164519}
-  - {fileID: 2650535289022908458}
+  - {fileID: 1684735861079794437}
 --- !u!1 &5672971635635116166
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +636,7 @@ GameObject:
   - component: {fileID: 2119043835790473937}
   - component: {fileID: 3057894488006070006}
   - component: {fileID: 95947156080164519}
-  - component: {fileID: 2650535289022908458}
+  - component: {fileID: 1684735861079794437}
   m_Layer: 0
   m_Name: Config
   m_TagString: Untagged
@@ -667,7 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42194062aaeb3934aa4dd3c7c3f223ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingConfig: {fileID: 8182145509837375375}
+  _buildingConfig: {fileID: 6883051943264958328}
 --- !u!114 &95947156080164519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,8 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ccc3f6aa314e84aa2eca6151903962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingConfig: {fileID: 8182145509837375375}
---- !u!114 &2650535289022908458
+  _buildingConfig: {fileID: 6883051943264958328}
+--- !u!114 &1684735861079794437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -690,10 +694,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5672971635635116166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc130d3641fac248957d942b009504a, type: 3}
+  m_Script: {fileID: 11500000, guid: c64b933878217ad45b0e76c06c801202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingConfig: {fileID: 8182145509837375375}
+  _buildingConfig: {fileID: 6883051943264958328}
 --- !u!1 &7144119263232273482
 GameObject:
   m_ObjectHideFlags: 0

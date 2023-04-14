@@ -89,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2100345786477648002}
-  - component: {fileID: 3513427667861943239}
+  - component: {fileID: 1438876686037202995}
   m_Layer: 0
   m_Name: Street_Deadend
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3513427667861943239
+--- !u!114 &1438876686037202995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,16 +124,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1120765361980748800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061749052b93b894f98c62586fb5bc86, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e990e6832369d045918493b6027df92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pedestrianMarkers:
-  - {fileID: 2607502676601316520}
-  - {fileID: 2770485053541830105}
   - {fileID: 7247009888476434755}
+  - {fileID: 2770485053541830105}
+  - {fileID: 2607502676601316520}
   _carMarkers:
-  - {fileID: 1154660762119784526}
   - {fileID: 5864268775918792079}
+  - {fileID: 1154660762119784526}
   _isCorner: 0
   _hasCrosswalks: 0
   _incomming: {fileID: 5864268775918792079}

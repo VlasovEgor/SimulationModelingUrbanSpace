@@ -55,7 +55,7 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
                 _currentBulding = raycastHit.collider.GetComponent<UnityEntityProxy>();
                 _graph.RemoveVertex(_graph.GetVertexByPosition(_currentBulding.transform.position));
 
-                var buldingConfig = _currentBulding.Get<IComponent_GetBuildingConfig>().GetBuildingConfig();
+                var buldingConfig = _currentBulding.Get<IComponent_GetCommercalBuildingConfig>().GetBuildingConfig();
                 _placementManager.RemoveBuilding(buldingConfig);
             }
         }
@@ -77,9 +77,20 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
         _graph.AddVertex(newVertex);
         _graph.AddEdge(newVertex, neighbour);
 
-        var buldingConfig = _currentBulding.Get<IComponent_GetBuildingConfig>().GetBuildingConfig();
-        buldingConfig.SetNearestRoad(GetNearestRoad(position));
-        _placementManager.AddBuilding(buldingConfig);
+        
+        if(_currentBulding.Get<IComponent_GetVertexTypeBuilding>().GetVertexTypeBuilding() == VertexType.Commercial_Building)
+        {
+            var buldingConfig = _currentBulding.Get<IComponent_GetCommercalBuildingConfig>().GetBuildingConfig();
+            buldingConfig.SetNearestRoad(GetNearestRoad(position));
+            _placementManager.AddBuilding(buldingConfig);
+        }
+        else
+        {
+            var buldingConfig = _currentBulding.Get<IComponent_GetResidentialBuildingConfig>().GetBuildingConfig();
+            buldingConfig.SetNearestRoad(GetNearestRoad(position));
+            _placementManager.AddBuilding(buldingConfig);
+        }
+       
 
         _currentBulding = null;
     }

@@ -381,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5155644068091976813}
-  - component: {fileID: 8005931431764836858}
+  - component: {fileID: -3398023363298399054}
   - component: {fileID: 5732958218346537189}
   m_Layer: 0
   m_Name: Street_4Way
@@ -409,7 +409,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8005931431764836858
+--- !u!114 &-3398023363298399054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,14 +418,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3351635067702010651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061749052b93b894f98c62586fb5bc86, type: 3}
+  m_Script: {fileID: 11500000, guid: ad82f65babadff247a44b82007ca42ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pedestrianMarkers:
-  - {fileID: 947593921041054663}
-  - {fileID: 3290532463741787581}
-  - {fileID: 548501202571064035}
   - {fileID: 6395282494885926336}
+  - {fileID: 548501202571064035}
+  - {fileID: 3290532463741787581}
+  - {fileID: 947593921041054663}
   _carMarkers:
   - {fileID: 2063229744211695572}
   - {fileID: 1311198633842583981}
@@ -439,11 +439,18 @@ MonoBehaviour:
   - {fileID: 6022492871530167606}
   - {fileID: 3772264558681920311}
   - {fileID: 8858657818362847991}
-  - {fileID: 0}
   _isCorner: 0
-  _hasCrosswalks: 1
-  _incomming: {fileID: 0}
-  _outgoing: {fileID: 0}
+  _hasCrosswalks: 0
+  _incommingMarkers:
+  - {fileID: 5023765638376692626}
+  - {fileID: 6400887416120688678}
+  - {fileID: 2063229744211695572}
+  - {fileID: 8858657818362847991}
+  _outgoingMarkers:
+  - {fileID: 1350880450457856274}
+  - {fileID: 4465826000444148653}
+  - {fileID: 1311198633842583981}
+  - {fileID: 3772264558681920311}
 --- !u!114 &5732958218346537189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &570723768609482194
 Transform:
   m_ObjectHideFlags: 0

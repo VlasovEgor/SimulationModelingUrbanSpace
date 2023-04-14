@@ -546,10 +546,8 @@ MonoBehaviour:
   - {fileID: 6847447073685845132}
   - {fileID: 4239189869926804659}
   - {fileID: 3679810132297123185}
-  _isCorner: 0
+  _isCorner: 1
   _hasCrosswalks: 0
-  _incomming: {fileID: 0}
-  _outgoing: {fileID: 0}
   _incommingMarkers:
   - {fileID: 462031544287496634}
   - {fileID: 3679810132297123185}

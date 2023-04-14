@@ -1,37 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadHelper : MonoBehaviour
+public abstract class RoadHelper : MonoBehaviour
 {
-    [SerializeField]
-    private List<Marker> _pedestrianMarkers;
-    [SerializeField]
-    private List<Marker> _carMarkers;
-    [SerializeField]
-    private bool _isCorner;
-    [SerializeField]
-    private bool _hasCrosswalks;
+    [SerializeField] private List<Marker> _pedestrianMarkers;
+    [SerializeField] private List<Marker> _carMarkers;
+    [SerializeField] private bool _isCorner;
+    [SerializeField] private bool _hasCrosswalks;
 
     private float _approximateThresholdCorner = 0.3f;
 
-    [SerializeField] private Marker _incomming;
-
-    [SerializeField] private Marker _outgoing;
-    public virtual Marker GetpositioForPedestrianToSpwan(Vector3 structurePosition)
+    public Marker GetpositioForPedestrianToSpwan(Vector3 structurePosition)
     {
         return GetClosestMarkeTo(structurePosition, _pedestrianMarkers);
     }
 
-    public virtual Marker GetPositioForCarToSpawn(Vector3 nextPathPosition)
-    {
-        return _outgoing;
-    }
+    public abstract Marker GetPositioForCarToSpawn(Vector3 nextPathPosition);
+    public abstract Marker GetPositioForCarToEnd(Vector3 previousPathPosition);
 
-    public virtual Marker GetPositioForCarToEnd(Vector3 previousPathPosition)
-    {
-        return _incomming;
-    }
 
     protected Marker GetClosestMarkeTo(Vector3 structurePosition, List<Marker> pedestrianMarkers, bool isCorner = false)
     {
@@ -63,6 +49,19 @@ public class RoadHelper : MonoBehaviour
             }
             return closestMarker;
         }
+    }
+
+    public Vector3 GetClosestAgentPosition(AgentType agentType, Vector3 currentPosition)
+    {   
+        if(agentType == AgentType.HUMAN) 
+        {
+            return GetClosestMarkeTo(currentPosition, _pedestrianMarkers, _isCorner).GetPosition();
+        }
+        else
+        {
+            return GetClosestMarkeTo(currentPosition, _carMarkers, false).GetPosition();
+        }
+       
     }
 
     public Vector3 GetClosestPedestrainPosition(Vector3 currentPosition)

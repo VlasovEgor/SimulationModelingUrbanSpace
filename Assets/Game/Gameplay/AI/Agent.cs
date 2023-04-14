@@ -23,8 +23,8 @@ public class Agent : MonoBehaviour
 
     [ShowInInspector, ReadOnly] private Vector3 _currentTargetPosition;
     [ShowInInspector, ReadOnly] private bool _isMove = false;
+    [ShowInInspector, ReadOnly] private List<Vector3> _path;
 
-    private List<Vector3> _path;
     private int _index;
 
     public void SetPath(List<Vector3> path)

@@ -597,8 +597,6 @@ MonoBehaviour:
   - {fileID: 4016074667847840125}
   _isCorner: 0
   _hasCrosswalks: 1
-  _incomming: {fileID: 0}
-  _outgoing: {fileID: 0}
   _incommingMarkers:
   - {fileID: 7990898700014512819}
   - {fileID: 578842425725767552}
@@ -899,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1875515284810387546
 Transform:
   m_ObjectHideFlags: 0

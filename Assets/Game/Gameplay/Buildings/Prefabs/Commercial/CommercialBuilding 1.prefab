@@ -584,7 +584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 215635975366186375}
-  - component: {fileID: 3251016601825813198}
+  - component: {fileID: 6780285164506733084}
   m_Layer: 0
   m_Name: '[CONFIG]'
   m_TagString: Untagged
@@ -607,7 +607,7 @@ Transform:
   m_Father: {fileID: 3561586114588050492}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3251016601825813198
+--- !u!114 &6780285164506733084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -616,11 +616,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5924734166229161239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f88ccfd2a54227d40a595ca834fe9f90, type: 3}
+  m_Script: {fileID: 11500000, guid: 8072be5f7e0e90041a2609a340e4d70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _vertexType: 3
   _visualTransform: {fileID: 3561586114131199580}
+  _buidingType: 0
+  _numberEmployeesWithHigherEducation: 0
+  _numberEmployeesWithSecondaryEducation: 0
+  _numberEmployeesWithoutEducation: 0
+  _maximumNumberVisitors: 0
+  _amountOfSatisfactionOfNeed: 0
+  _startWork:
+    _hour: 0
+    _minute: 0
+  _finishWork:
+    _hour: 0
+    _minute: 0
 --- !u!1 &6842605004092929233
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42194062aaeb3934aa4dd3c7c3f223ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingConfig: {fileID: 3251016601825813198}
+  _buildingConfig: {fileID: 6780285164506733084}
 --- !u!114 &9039526694619121963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ccc3f6aa314e84aa2eca6151903962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingConfig: {fileID: 3251016601825813198}
+  _buildingConfig: {fileID: 6780285164506733084}
 --- !u!114 &7948660936479690184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc130d3641fac248957d942b009504a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingConfig: {fileID: 3251016601825813198}
+  _buildingConfig: {fileID: 6780285164506733084}
 --- !u!1 &7144119263232273482
 GameObject:
   m_ObjectHideFlags: 0

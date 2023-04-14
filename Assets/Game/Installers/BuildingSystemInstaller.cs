@@ -12,6 +12,7 @@ public class BuildingSystemInstaller : MonoInstaller
         BindBuildingSelector();
         BindBuildingCreator();
         BindBuildingDestroyer();
+        BindBuildingInfoShower();
     }
 
     private void BindBuildingFactory()
@@ -45,6 +46,12 @@ public class BuildingSystemInstaller : MonoInstaller
     private void BindBuildingDestroyer()
     {
         Container.BindInterfacesAndSelfTo<BuildingDestroyer>().
+            AsSingle();
+    }
+
+    private void BindBuildingInfoShower()
+    {
+        Container.BindInterfacesAndSelfTo<BuildingInfoShower>().
             AsSingle();
     }
 }
