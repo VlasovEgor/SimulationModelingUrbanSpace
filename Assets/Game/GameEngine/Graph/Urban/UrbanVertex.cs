@@ -17,4 +17,12 @@ public class UrbanVertex : Vertex
         Position = position;
         Object = gameObject;
     }
+
+    public void ClearValue()
+    {
+        gCost = float.MaxValue;
+        hCost = 0;
+        fCost = 0;
+        cameFromNode = null;
+    }
 }

@@ -8,8 +8,8 @@ public class AgentGraphSearch
     {
         List<Vector3> path = new List<Vector3>();
 
-        Debug.Log("START: " + startPosition);
-        Debug.Log("END: " + endPosition);
+        //Debug.Log("START: " + startPosition);
+       // Debug.Log("END: " + endPosition);
         AgentVertex start = graph.GetVertexAt(startPosition);
         AgentVertex end = graph.GetVertexAt(endPosition);
 

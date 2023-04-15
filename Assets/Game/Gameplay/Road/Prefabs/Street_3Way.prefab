@@ -47,7 +47,7 @@ MonoBehaviour:
   _openForConnections: 0
   _adjacentMarkers:
   - {fileID: 827520213224177802}
-  - {fileID: 6526883807204336766}
+  - {fileID: 8110400839486822847}
 --- !u!1 &196504242359804470
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,8 +664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _openForConnections: 0
   _adjacentMarkers:
-  - {fileID: 5890112630082344405}
-  - {fileID: 7588862796725671847}
   - {fileID: 668624279447766743}
 --- !u!1 &2951581894848557636
 GameObject:
@@ -1009,6 +1007,7 @@ MonoBehaviour:
   _openForConnections: 0
   _adjacentMarkers:
   - {fileID: 5890112630082344405}
+  - {fileID: 4100530628900882918}
 --- !u!1 &7400168951167251275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _openForConnections: 0
   _adjacentMarkers:
-  - {fileID: 7588862796725671847}
   - {fileID: 4016074667847840125}
   - {fileID: 941718987177887238}
 --- !u!1001 &3980161112727540688

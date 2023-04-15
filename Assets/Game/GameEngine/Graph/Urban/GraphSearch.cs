@@ -5,40 +5,38 @@ using Zenject;
 
 public class GraphSearch
 {
-
     [Inject] private Graph _graph;
-
-    private List<UrbanVertex> _openList = new();
-    private List<UrbanVertex> _closedList = new();
 
     public List<UrbanVertex> AStar(Vector3 start, Vector3 end)
     {
+        List<UrbanVertex> openList = new();
+        List<UrbanVertex> closedList = new();
+
         var startPosition = _graph.GetVertexByPosition(start);
         var endPosition = _graph.GetVertexByPosition(end);
 
-        _openList.Add(startPosition);
+        openList.Add(startPosition);
 
         startPosition.gCost = 0;
         startPosition.hCost = CalculateDistance(startPosition, endPosition);
         startPosition.CalculateFCost();
 
-        while (_openList.Count > 0)
-        {
-            UrbanVertex currentVertex = GetLowestFCostNode(_openList);
+        while (openList.Count > 0)
+        {   
+            UrbanVertex currentVertex = GetLowestFCostNode(openList);
             if (currentVertex == endPosition)
             {
-                ClearVertexValue();
                 return CalculatePath(endPosition);
             }
 
-            _openList.Remove(currentVertex);
-            _closedList.Add(currentVertex);
+            openList.Remove(currentVertex);
+            closedList.Add(currentVertex);
 
             var neighbourList = _graph.GetWakableAdjacentVertex(currentVertex);
 
             foreach (var neighbourVertex in neighbourList)
             {
-                if (_closedList.Contains(neighbourVertex))
+                if (closedList.Contains(neighbourVertex))
                 {
                     continue;
                 }
@@ -52,15 +50,16 @@ public class GraphSearch
                     neighbourVertex.hCost = CalculateDistance(neighbourVertex, endPosition);
                     neighbourVertex.CalculateFCost();
 
-                    if (_openList.Contains(neighbourVertex) == false)
+                    if (openList.Contains(neighbourVertex) == false)
                     {
-                        _openList.Add(neighbourVertex);
+                        openList.Add(neighbourVertex);
                     }
                 }
             }
         }
-
-        ClearVertexValue();
+        
+        ClearVerticesValue(openList);
+        ClearVerticesValue(closedList);
         throw new Exception("the path was not found");
     }
 
@@ -93,22 +92,18 @@ public class GraphSearch
         while (currentVertex.cameFromNode != null)
         {
             path.Add(currentVertex.cameFromNode);
-            currentVertex.ClearValue();
             currentVertex = currentVertex.cameFromNode;
         }
 
+        ClearVerticesValue(path);
         return path;
     }
 
-    private void ClearVertexValue()
+    private void ClearVerticesValue(List<UrbanVertex> urbanVertices)
     {
-        foreach (var vertex in _openList)
-        {
-            vertex.ClearValue();
-        }
-        foreach (var vertex in _closedList)
-        {
-            vertex.ClearValue();
-        }
+       foreach (var vertex in urbanVertices)
+       {
+           vertex.ClearValue();
+       }
     }
 }

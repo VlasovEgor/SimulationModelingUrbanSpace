@@ -117,6 +117,21 @@ public class Graph
         return list;
     }
 
+    public List<UrbanVertex> GetAllVerticesOfCertainType(VertexType vertexType)
+    {
+        List<UrbanVertex> urbanVertices = new();
+
+        foreach (var vertex in _vertices)
+        {
+            if(vertex.VertexType == vertexType)
+            {
+                urbanVertices.Add(vertex);
+            }
+        }
+
+        return urbanVertices;
+    }
+
     public bool IsVertexWalkable(VertexType vertexType)
     {
         return vertexType == VertexType.Road;
