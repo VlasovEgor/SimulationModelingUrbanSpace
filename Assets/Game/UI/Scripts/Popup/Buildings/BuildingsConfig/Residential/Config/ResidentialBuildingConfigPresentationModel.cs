@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
+using UnityEngine;
 
 public class ResidentialBuildingConfigPresentationModel : IResidentialBuildingConfigPresentationModel
 {   
     private ResidentialBuildingConfig _buildingConfig;
     private ResidentialBuildingConfigRedactor _configRedactor;
-    private List<string> _buildingType;
 
     public ResidentialBuildingConfigPresentationModel(ResidentialBuildingConfig buildingConfig, ResidentialBuildingConfigRedactor configRedactor)
     {
@@ -17,9 +15,8 @@ public class ResidentialBuildingConfigPresentationModel : IResidentialBuildingCo
     void IResidentialBuildingConfigPresentationModel.OnAcceptButtonClicked(ResidentialBuildingConfig newBuildingConfig)
     {
         _configRedactor.ChangeValuesInConfig(_buildingConfig, newBuildingConfig);
+        _configRedactor.ChangeNumberCitizens(_buildingConfig);
     }
-
-
 
     public string GetNumberEmployeesWithHigherEducation()
     {

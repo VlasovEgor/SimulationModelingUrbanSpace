@@ -24,7 +24,7 @@ public class GameContextInstaller : MonoInstaller
 
     private void BindPlacementManager()
     {
-        Container.Bind<PlacementManager>().
+        Container.BindInterfacesAndSelfTo<PlacementManager>().
             AsSingle();
     }
 

@@ -17,6 +17,9 @@ public class CommericalBuildingInfoPopup : Popup
     [SerializeField] private TextMeshProUGUI _amountOfSatisfactionOfNeed;
 
     [Space]
+    [SerializeField] private TextMeshProUGUI _averageTimeInBuilding;
+
+    [Space]
     [SerializeField] private TextMeshProUGUI _workTime;
 
     protected override void OnShow(object args)
@@ -30,12 +33,14 @@ public class CommericalBuildingInfoPopup : Popup
 
         _type.text = presenter.GetStringBuildingType();
 
-        _numberEmployeesWithHigherEducation.text = presenter.GetNumberEmployeesWithHigherEducation();
-        _numberEmployeesWithSecondaryEducation.text = presenter.GetNumberEmployeesWithSecondaryEducation();
-        _numberEmployeesWithoutEducation.text = presenter.GetNumberEmployeesWithoutEducation();
+        _numberEmployeesWithHigherEducation.text = presenter.GetCurrentNumberEmployeesWithHigherEducation()  + " ÈÇ " + presenter.GetMaximumNumberEmployeesWithHigherEducation();
+        _numberEmployeesWithSecondaryEducation.text = presenter.GetCurrentNumberEmployeesWithSecondaryEducation() + " ÈÇ " + presenter.GetMaximumNumberEmployeesWithSecondaryEducation();
+        _numberEmployeesWithoutEducation.text = presenter.GetCurrentNumberEmployeesWithoutEducation() + " ÈÇ " + presenter.GetMaximumNumberEmployeesWithoutEducation();
 
         _numberVisitors.text = presenter.GetMaximumNumberVisitors();
         _amountOfSatisfactionOfNeed.text = presenter.GetAmountOfSatisfactionOfNeed();
+
+        _averageTimeInBuilding.text = presenter.GetAverageTimeInBuilding();
 
         var hourStartWork = presenter.GetHourStartWork();
         var minuteStartWork = presenter.GetMinuteStartWork();

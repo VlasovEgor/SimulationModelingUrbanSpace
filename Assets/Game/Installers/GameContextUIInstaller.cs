@@ -11,6 +11,8 @@ public class GameContextUIInstaller : MonoInstaller
         BindResidentialBuildingConfigFactory();
         BindResidentialBuildingConfigShower();
         BindResidentialBuildingConfigRedactor();
+
+        BindClock();
     }
 
     private void BindCommericalBuildingConfigFactory()
@@ -27,7 +29,7 @@ public class GameContextUIInstaller : MonoInstaller
 
     private void BindCommericalBuildingConfigRedactor()
     {
-        Container.Bind<CommericalBuildingConfigRedactor>().
+        Container.BindInterfacesAndSelfTo<CommericalBuildingConfigRedactor>().
             AsSingle(); 
     }
 
@@ -46,6 +48,12 @@ public class GameContextUIInstaller : MonoInstaller
     private void BindResidentialBuildingConfigRedactor()
     {
         Container.Bind<ResidentialBuildingConfigRedactor>().
+            AsSingle();
+    }
+
+    private void BindClock()
+    {
+        Container.BindInterfacesAndSelfTo<Clock>().
             AsSingle();
     }
 }

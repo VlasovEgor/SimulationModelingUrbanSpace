@@ -15,28 +15,27 @@ public class AiDirector : MonoBehaviour
     [Inject] private GraphSearch _graphSearch;
     [Inject] private Graph _graph;
 
+    [Inject] private CitizensManager _citizensManager;
+
     private AgentGraphSearch _agentGraphSearch = new();
     private AgentGraph _agentGraph = new();
 
     [Button]
-    public void SpawnHuman()
+    public void SendHumanToBuilding(BuidingType buidingType)
     {
-        var startPosition = _placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building);
-        var endPosition = _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building);
+        var human = _citizensManager.GetRandomCitizen();
 
-        TrySpawningAgent(AgentType.HUMAN, startPosition, endPosition);
-    }
+        BuildingConfig startPosition = human.GetPlaceActivity(BuidingType.WORK);
+        BuildingConfig endPosition = human.GetPlaceActivity(buidingType);
 
-    [Button]
-    public void SpawnCar()
-    {
-        var startPosition = _placementManager.GetRandomBuildingCertainType(VertexType.Residential_Building);
-        var endPosition = _placementManager.GetRandomBuildingCertainType(VertexType.Commercial_Building);
-
-        Debug.Log("START: " + startPosition.GetPosition());
-        Debug.Log("END:" + endPosition.GetPosition());
-
-        TrySpawningAgent(AgentType.CAR, endPosition, startPosition);
+        if(Vector3.Distance(startPosition.GetPosition(),endPosition.GetPosition())<200)
+        {
+            TrySpawningAgent(AgentType.CAR, startPosition, endPosition);
+        }
+        else
+        {
+            TrySpawningAgent(AgentType.HUMAN, startPosition, endPosition);
+        }
     }
 
     private void TrySpawningAgent(AgentType agentType, BuildingConfig startStructure, BuildingConfig endStructure)

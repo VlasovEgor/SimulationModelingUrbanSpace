@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public interface ICommericalBuildingConfigPresentationModel
 {
@@ -13,11 +12,17 @@ public interface ICommericalBuildingConfigPresentationModel
 
     string GetStringBuildingType();
 
-    string GetNumberEmployeesWithHigherEducation();
+    string GetCurrentNumberEmployeesWithHigherEducation();
 
-    string GetNumberEmployeesWithSecondaryEducation();
+    string GetCurrentNumberEmployeesWithSecondaryEducation();
 
-    string GetNumberEmployeesWithoutEducation();
+    string GetCurrentNumberEmployeesWithoutEducation();
+
+    string GetMaximumNumberEmployeesWithHigherEducation();
+
+    string GetMaximumNumberEmployeesWithSecondaryEducation();
+
+    string GetMaximumNumberEmployeesWithoutEducation();
 
     string GetMaximumNumberVisitors();
 
@@ -31,4 +36,5 @@ public interface ICommericalBuildingConfigPresentationModel
 
     string GetMinuteFinishWork();
     List<string> ListCommericalBuildingType();
+    string GetAverageTimeInBuilding();
 }

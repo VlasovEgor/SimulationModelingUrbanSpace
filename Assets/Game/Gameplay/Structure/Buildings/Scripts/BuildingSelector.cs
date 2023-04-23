@@ -82,12 +82,19 @@ public class BuildingSelector : Zenject.IInitializable, IDisposable
         {
             var buldingConfig = _currentBulding.Get<IComponent_GetCommercalBuildingConfig>().GetBuildingConfig();
             buldingConfig.SetNearestRoad(GetNearestRoad(position));
+
+            if(buldingConfig.GetBuidingType() == BuidingType.NONE || buldingConfig.GetBuidingType() == BuidingType.RESIDENTIAL)
+            {
+                buldingConfig.SetType(BuidingType.WORK);
+
+            }
             _placementManager.AddBuilding(buldingConfig);
         }
         else
         {
             var buldingConfig = _currentBulding.Get<IComponent_GetResidentialBuildingConfig>().GetBuildingConfig();
             buldingConfig.SetNearestRoad(GetNearestRoad(position));
+            buldingConfig.SetType(BuidingType.RESIDENTIAL);
             _placementManager.AddBuilding(buldingConfig);
         }
        

@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,10 @@ public class CommericalBuildingConfigPopup : Popup
     [Space]
     [SerializeField] private TMP_InputField _maximumNumberVisitors;
     [SerializeField] private TMP_InputField _amountOfSatisfactionOfNeed;
+
+    [Space]
+    [SerializeField] private TMP_InputField _averageTimeInBuilding;
+
 
     [Space]
     [SerializeField] private TMP_InputField _hourStartWork;
@@ -43,14 +48,15 @@ public class CommericalBuildingConfigPopup : Popup
 
         _typeDropdown.ClearOptions();
         _typeDropdown.AddOptions(presenter.ListCommericalBuildingType());
-       
 
-        _numberEmployeesWithHigherEducation.text = presenter.GetNumberEmployeesWithHigherEducation();
-        _numberEmployeesWithSecondaryEducation.text = presenter.GetNumberEmployeesWithSecondaryEducation();
-        _numberEmployeesWithoutEducation.text = presenter.GetNumberEmployeesWithoutEducation();
+
+        _numberEmployeesWithHigherEducation.text = presenter.GetMaximumNumberEmployeesWithHigherEducation();
+        _numberEmployeesWithSecondaryEducation.text = presenter.GetMaximumNumberEmployeesWithSecondaryEducation();
+        _numberEmployeesWithoutEducation.text = presenter.GetMaximumNumberEmployeesWithoutEducation();
 
         _maximumNumberVisitors.text = presenter.GetMaximumNumberVisitors();
         _amountOfSatisfactionOfNeed.text = presenter.GetAmountOfSatisfactionOfNeed();
+        _averageTimeInBuilding.text = presenter.GetAverageTimeInBuilding();
 
         _hourStartWork.text = presenter.GetHourStartWork();
         _minuteStartWork.text = presenter.GetMinuteStartWork();
@@ -77,14 +83,16 @@ public class CommericalBuildingConfigPopup : Popup
         CommericalBuildingConfig newData = new();
 
         newData.SetName(_nameInputField.text);
-        newData.SetType(_typeDropdown.value);
+        newData.SetType(_typeDropdown.value+2);
 
-        newData.SetMaximumNumberEmployeesWithHigherEducation(int.Parse(_numberEmployeesWithHigherEducation.text));
-        newData.SetMaximumNumberEmployeesWithSecondaryEducation(int.Parse(_numberEmployeesWithSecondaryEducation.text));
-        newData.SetMaximumNumberEmployeesWithoutEducation(int.Parse(_numberEmployeesWithoutEducation.text));
+        newData.SetMaximumNumberEmployeesOfCertainEducation(Education.HIGHER_EDUCATION,int.Parse(_numberEmployeesWithHigherEducation.text));
+        newData.SetMaximumNumberEmployeesOfCertainEducation(Education.SECOND_EDUCATION, int.Parse(_numberEmployeesWithSecondaryEducation.text));
+        newData.SetMaximumNumberEmployeesOfCertainEducation(Education.WITOUT_EDUCATION, int.Parse(_numberEmployeesWithoutEducation.text));
 
         newData.SetMaximumNumberVisitors(int.Parse(_maximumNumberVisitors.text));
         newData.SetAmountOfSatisfactionOfNeed(int.Parse(_amountOfSatisfactionOfNeed.text));
+
+        newData.SetAverageTimeInBuilding(int.Parse(_averageTimeInBuilding.text));
 
         HourMinute hourMinute = new();
         hourMinute.Hour = int.Parse(_hourStartWork.text);

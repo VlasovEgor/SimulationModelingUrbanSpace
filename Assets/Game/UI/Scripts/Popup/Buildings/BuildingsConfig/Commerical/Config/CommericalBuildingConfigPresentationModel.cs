@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class CommericalBuildingConfigPresentationModel : ICommericalBuildingConfigPresentationModel
 {   
@@ -26,19 +27,25 @@ public class CommericalBuildingConfigPresentationModel : ICommericalBuildingConf
 
     public List<string> ListCommericalBuildingType()
     {
-        _buildingType =  Enum.GetValues(typeof(CommericalBuidingType)).
-            Cast<CommericalBuidingType>().
+        _buildingType =  Enum.GetValues(typeof(BuidingType)).
+            Cast<BuidingType>().
             Select(v => v.ToString()).
             ToList();
 
-        return _buildingType;
+        var typeList = new List<string>();
+        for(int i=2; i< _buildingType.Count;i++)
+        {
+            typeList.Add(_buildingType[i]);
+        }
+
+        return typeList;
     }
 
     public int GetIndexBuildingType()
-    {
-        for (int i = 0; i < _buildingType.Count; i++)
+    {   
+        for (int i = 2; i < _buildingType.Count; i++)
         {
-            if (_buildingType[i] == _buildingConfig.GetCommericalBuidingType().ToString())
+            if (_buildingType[i] == _buildingConfig.GetBuidingType().ToString())
             {
                 return i;
             }    
@@ -48,11 +55,12 @@ public class CommericalBuildingConfigPresentationModel : ICommericalBuildingConf
     }
 
     public string GetStringBuildingType()
-    {
+    { 
         var buildingsType = ListCommericalBuildingType();
+
         for (int i = 0; i < buildingsType.Count; i++)
         {
-            if (buildingsType[i] == _buildingConfig.GetCommericalBuidingType().ToString())
+            if (buildingsType[i] == _buildingConfig.GetBuidingType().ToString())
             {
                 return buildingsType[i];
             }
@@ -61,19 +69,19 @@ public class CommericalBuildingConfigPresentationModel : ICommericalBuildingConf
         throw new Exception("there are no buildings of this type");
     }
 
-    public string GetNumberEmployeesWithHigherEducation()
+    public string GetMaximumNumberEmployeesWithHigherEducation()
     {
-        return _buildingConfig.GetMaximumNumberEmployeesWithHigherEducation().ToString();
+        return _buildingConfig.GetMaximumNumberEmployeesOfCertainEducation(Education.HIGHER_EDUCATION).ToString();
     }
 
-    public string GetNumberEmployeesWithSecondaryEducation()
+    public string GetMaximumNumberEmployeesWithSecondaryEducation()
     {
-        return _buildingConfig.GetMaximumNumberEmployeesWithSecondaryEducation().ToString();
+        return _buildingConfig.GetMaximumNumberEmployeesOfCertainEducation(Education.SECOND_EDUCATION).ToString();
     }
 
-    public string GetNumberEmployeesWithoutEducation()
+    public string GetMaximumNumberEmployeesWithoutEducation()
     {
-        return _buildingConfig.GetMaximumNumberEmployeesWithoutEducation().ToString();
+        return _buildingConfig.GetMaximumNumberEmployeesOfCertainEducation(Education.WITOUT_EDUCATION).ToString();
     }
 
     public string GetMaximumNumberVisitors()
@@ -104,5 +112,25 @@ public class CommericalBuildingConfigPresentationModel : ICommericalBuildingConf
     public string GetMinuteFinishWork()
     {
         return _buildingConfig.GetFinishWork().Minute.ToString();
+    }
+
+    public string GetAverageTimeInBuilding()
+    {
+        return _buildingConfig.GetAverageTimeInBuilding().ToString();   
+    }
+
+    public string GetCurrentNumberEmployeesWithHigherEducation()
+    {
+        return _buildingConfig.GetCurrentNumberEmployeesOfCertainEducation(Education.HIGHER_EDUCATION).ToString();
+    }
+
+    public string GetCurrentNumberEmployeesWithSecondaryEducation()
+    {
+        return _buildingConfig.GetCurrentNumberEmployeesOfCertainEducation(Education.SECOND_EDUCATION).ToString();
+    }
+
+    public string GetCurrentNumberEmployeesWithoutEducation()
+    {
+        return _buildingConfig.GetCurrentNumberEmployeesOfCertainEducation(Education.WITOUT_EDUCATION).ToString();
     }
 }

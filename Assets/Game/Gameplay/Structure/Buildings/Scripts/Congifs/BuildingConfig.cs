@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class BuildingConfig : MonoBehaviour
 {
+    [Space]
+    [SerializeField] protected BuidingType _buidingType;
+
     [SerializeField] private VertexType _vertexType;
     [SerializeField] private Transform _visualTransform;
 
@@ -11,6 +14,16 @@ public class BuildingConfig : MonoBehaviour
     public VertexType GetVertexType()
     {
         return _vertexType;
+    }
+
+    public BuidingType GetBuidingType()
+    {
+        return _buidingType;
+    }
+
+    public void SetType(BuidingType buidingType)
+    {
+        _buidingType = buidingType;
     }
 
     public Vector3 GetPosition()

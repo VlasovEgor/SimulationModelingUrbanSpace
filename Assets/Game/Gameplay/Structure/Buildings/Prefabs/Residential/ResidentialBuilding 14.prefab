@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionCheck: {fileID: 3561586114326479640}
-  _meshRenderer1: {fileID: 0}
-  _meshRenderer2: {fileID: 0}
+  _meshRenderer1: {fileID: 6323382350695853988}
+  _meshRenderer2: {fileID: 6323722720514882616}
 --- !u!1 &1095950427030736968
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0760d49c5f74c9b409da0079ca9ca28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buidingType: 0
   _vertexType: 2
   _visualTransform: {fileID: 3561586114131199580}
   _numberResidentsWithHigherEducation: 0
@@ -1077,5 +1078,15 @@ PrefabInstance:
 --- !u!4 &6305655377306559006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4942378196220094, guid: 6ec2847feecbeeb43871391ad3f8b993, type: 3}
+  m_PrefabInstance: {fileID: 6310597755229739680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6323382350695853988 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23245359319610628, guid: 6ec2847feecbeeb43871391ad3f8b993, type: 3}
+  m_PrefabInstance: {fileID: 6310597755229739680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6323722720514882616 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23045173135255192, guid: 6ec2847feecbeeb43871391ad3f8b993, type: 3}
   m_PrefabInstance: {fileID: 6310597755229739680}
   m_PrefabAsset: {fileID: 0}

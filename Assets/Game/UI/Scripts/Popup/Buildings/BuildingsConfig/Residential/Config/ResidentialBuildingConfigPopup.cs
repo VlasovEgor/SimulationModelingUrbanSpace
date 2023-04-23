@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ResidentialBuildingConfigPopup : Popup
 {
-
     [Space]
     [SerializeField] private TMP_InputField _numberResidentsWithHigherEducation;
     [SerializeField] private TMP_InputField _numberResidentsWithSecondaryEducation;

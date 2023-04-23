@@ -139,7 +139,7 @@ public class RoadFixer : MonoBehaviour, IInitializable, IDisposable
         }
         else if (directions[3].direction == true && directions[0].direction == true)
         {
-            ModifyRoad(roadSegment, _corner, directions[4].position);
+            ModifyRoad(roadSegment, _corner, directions[0].position);
         }
     }
 

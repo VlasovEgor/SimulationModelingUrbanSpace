@@ -6,10 +6,8 @@ public class AgentGraphSearch
 {   
     public List<Vector3> AStarSearch(AgentGraph graph, Vector3 startPosition, Vector3 endPosition)
     {
-        List<Vector3> path = new List<Vector3>();
+        List<Vector3> path = new();
 
-        //Debug.Log("START: " + startPosition);
-       // Debug.Log("END: " + endPosition);
         AgentVertex start = graph.GetVertexAt(startPosition);
         AgentVertex end = graph.GetVertexAt(endPosition);
 
@@ -72,7 +70,7 @@ public class AgentGraphSearch
 
     public List<Vector3> GeneratePath(Dictionary<AgentVertex, AgentVertex> parentMap, AgentVertex endState)
     {
-        List<Vector3> path = new List<Vector3>();
+        List<Vector3> path = new();
         AgentVertex parent = endState;
         while (parent != null && parentMap.ContainsKey(parent))
         {

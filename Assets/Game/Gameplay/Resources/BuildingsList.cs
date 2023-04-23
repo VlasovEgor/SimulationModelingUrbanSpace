@@ -10,9 +10,4 @@ public class BuildingsList : ScriptableObject
 {
     [SerializeField] public List<Building> Buildings;
     [SerializeField] public string ID;
-
-   // public static BuildingsList BuildingsInstance
-   // {
-   //     get { return Resources.Load<BuildingsList>("CommericalBuildingsList"); }
-   // }
 }
