@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public enum AgentType
 {
@@ -15,15 +16,22 @@ public class Agent : MonoBehaviour
     public event Action<Vector3> OnMove;
 
     [SerializeField] private Transform _agentTransform;
+    [SerializeField] private GameObject _parentGameObject;
 
+    [Space]
     [SerializeField] private AgentType _agentType;
 
+    [Space]
     [SerializeField] private float _arriveDistance = 0.3f;
     [SerializeField] private float _lastpointArriveDistance = 0.1f;
 
+    [Space]
     [ShowInInspector, ReadOnly] private Vector3 _currentTargetPosition;
     [ShowInInspector, ReadOnly] private bool _isMove = false;
     [ShowInInspector, ReadOnly] private List<Vector3> _path;
+
+    [Inject] private CarPool _carPool;
+    [Inject] private HumanPool _humanPool;
 
     private int _index;
 
@@ -36,7 +44,10 @@ public class Agent : MonoBehaviour
 
         _path = path;
         _index = 0;
+
         _currentTargetPosition = _path[_index];
+        _parentGameObject.transform.position = _currentTargetPosition;
+
         SetMove(true);
     }
 
@@ -79,6 +90,8 @@ public class Agent : MonoBehaviour
         if (_index >= _path.Count)
         {
             _isMove = false;
+            TurnOff();
+
         }
         else
         {
@@ -99,5 +112,62 @@ public class Agent : MonoBehaviour
     public void SetMove(bool value)
     {
         _isMove = value;
+    }
+
+    public void Created()
+    {
+        _parentGameObject.SetActive(false);
+    }
+
+    public void Init(List<Vector3> path)
+    {
+        gameObject.SetActive(true);
+        _parentGameObject.SetActive(true);
+        SetPath(path);
+    }
+
+    public void TurnOff()
+    {
+        _humanPool.Despawn(this);
+        _carPool.Despawn(this);
+
+        _parentGameObject.SetActive(false);
+        _path.Clear();
+    }
+
+    public class CarPool: MonoMemoryPool<List<Vector3>, Agent> 
+    {
+        protected override void OnCreated(Agent agent)
+        {
+            agent.Created();
+        }
+
+        protected override void OnDespawned(Agent agent)
+        {
+           // agent.TurnOff();
+        }
+
+        protected override void Reinitialize(List<Vector3> path, Agent agent)
+        {
+            agent.Init(path);
+        }
+    }
+
+    public class HumanPool : MonoMemoryPool<List<Vector3>, Agent>
+    {
+        protected override void OnCreated(Agent agent)
+        {
+            agent.Created();
+        }
+
+        protected override void OnDespawned(Agent agent)
+        {
+            // agent.TurnOff();
+        }
+
+        protected override void Reinitialize(List<Vector3> path, Agent agent)
+        {
+            agent.Init(path);
+        }
     }
 }

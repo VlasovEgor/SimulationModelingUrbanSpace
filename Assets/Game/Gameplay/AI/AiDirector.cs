@@ -11,11 +11,11 @@ public class AiDirector : MonoBehaviour
     [SerializeField] private GameObject[] _carPrefab;
     [SerializeField] private Transform _parentTransfrom;
 
-    [Inject] private PlacementManager _placementManager;
     [Inject] private GraphSearch _graphSearch;
     [Inject] private Graph _graph;
 
     [Inject] private CitizensManager _citizensManager;
+    [Inject] private AgentSpawner _agentSpawner;
 
     private AgentGraphSearch _agentGraphSearch = new();
     private AgentGraph _agentGraph = new();
@@ -28,7 +28,7 @@ public class AiDirector : MonoBehaviour
         BuildingConfig startPosition = human.GetPlaceActivity(BuidingType.WORK);
         BuildingConfig endPosition = human.GetPlaceActivity(buidingType);
 
-        if(Vector3.Distance(startPosition.GetPosition(),endPosition.GetPosition())<200)
+        if (Vector3.Distance(startPosition.GetPosition(), endPosition.GetPosition()) > 200)
         {
             TrySpawningAgent(AgentType.CAR, startPosition, endPosition);
         }
@@ -74,13 +74,7 @@ public class AiDirector : MonoBehaviour
 
                 List<Vector3> agentPath = GetAgentPath(agentType, path, startPosition, endPosition);
 
-                var agent = Instantiate(GetRandomAgent(agentType), startPosition, Quaternion.identity, _parentTransfrom); //убрать это отсюда
-                var positionY = agent.transform.position.y;
-                positionY += 2;
-                var newPosition = new Vector3(agent.transform.position.x, positionY, agent.transform.position.z);
-                agent.transform.position = newPosition;
-
-                agent.GetComponent<UnityEntity>().Get<IComponent_SetPath>().SetPath(agentPath);
+                _agentSpawner.AddAgent(agentType, agentPath);
             }
         }
     }

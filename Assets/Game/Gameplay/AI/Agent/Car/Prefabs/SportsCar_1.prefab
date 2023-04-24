@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agentTransform: {fileID: 3517434876084253439}
+  _parentGameObject: {fileID: 3517434876084253437}
   _agentType: 1
-  _path: []
   _arriveDistance: 0.3
   _lastpointArriveDistance: 0.1
 --- !u!1 &3517434876084253437

@@ -502,8 +502,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agentTransform: {fileID: 4152161388484107386}
+  _parentGameObject: {fileID: 4152161388484107385}
+  _visualModel: {fileID: 3722225422664177533}
+  _models:
+  - {fileID: 8814532312049202637}
+  - {fileID: 919132149155446097, guid: 028ba62dbb6ac5241bd37c90b248e98a, type: 3}
+  - {fileID: 919132149155446097, guid: ab71e878439414e49b832554b9f2d72e, type: 3}
+  - {fileID: 919132149155446097, guid: a31a51846967d5d49a287198adc2ab83, type: 3}
+  - {fileID: 919132149155446097, guid: 46faa621acf12844cbda3a0edd212128, type: 3}
+  - {fileID: 919132149155446097, guid: 3e9c8e50ed6cc94468adaba55505550d, type: 3}
+  - {fileID: 919132149155446097, guid: 45201c88cdabcc740bc9233679ec2cf7, type: 3}
   _agentType: 1
-  _path: []
   _arriveDistance: 0.3
   _lastpointArriveDistance: 0.1
 --- !u!1001 &4569299420509547052
@@ -561,8 +570,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCar1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 028ba62dbb6ac5241bd37c90b248e98a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 028ba62dbb6ac5241bd37c90b248e98a, type: 3}
+--- !u!1 &3722225422664177533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 028ba62dbb6ac5241bd37c90b248e98a, type: 3}
+  m_PrefabInstance: {fileID: 4569299420509547052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4099349747962465735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 028ba62dbb6ac5241bd37c90b248e98a, type: 3}
