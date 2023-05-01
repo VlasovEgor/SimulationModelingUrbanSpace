@@ -1,44 +1,38 @@
-using Entities;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public class AiDirector : MonoBehaviour
+public class AgentPath: ITickable
 {
-    [SerializeField] private GameObject[] _pedestrianPrefabs;
-    [SerializeField] private GameObject[] _carPrefab;
-    [SerializeField] private Transform _parentTransfrom;
-
     [Inject] private GraphSearch _graphSearch;
     [Inject] private Graph _graph;
 
-    [Inject] private CitizensManager _citizensManager;
     [Inject] private AgentSpawner _agentSpawner;
 
     private AgentGraphSearch _agentGraphSearch = new();
     private AgentGraph _agentGraph = new();
 
     [Button]
-    public void SendHumanToBuilding(BuidingType buidingType)
+    public void SendHumanToBuilding(Citizen human, BuidingType startBuidingType, BuidingType endBuidingType)
     {
-        var human = _citizensManager.GetRandomCitizen();
-
-        BuildingConfig startPosition = human.GetPlaceActivity(BuidingType.WORK);
-        BuildingConfig endPosition = human.GetPlaceActivity(buidingType);
+        BuildingConfig startPosition = human.GetPlaceActivity(startBuidingType);
+        BuildingConfig endPosition = human.GetPlaceActivity(endBuidingType);
 
         if (Vector3.Distance(startPosition.GetPosition(), endPosition.GetPosition()) > 200)
         {
-            TrySpawningAgent(AgentType.CAR, startPosition, endPosition);
+            TrySpawningAgent(human, AgentType.CAR, startPosition, endPosition);
         }
         else
         {
-            TrySpawningAgent(AgentType.HUMAN, startPosition, endPosition);
+            TrySpawningAgent(human, AgentType.HUMAN, startPosition, endPosition);
         }
+
+        human.SetWorth(false);
     }
 
-    private void TrySpawningAgent(AgentType agentType, BuildingConfig startStructure, BuildingConfig endStructure)
+    private void TrySpawningAgent(Citizen citizen,AgentType agentType, BuildingConfig startStructure, BuildingConfig endStructure)
     {
         foreach (var vertex in _graph.GetAllVerticesOfCertainType(VertexType.Road))
         {
@@ -74,7 +68,8 @@ public class AiDirector : MonoBehaviour
 
                 List<Vector3> agentPath = GetAgentPath(agentType, path, startPosition, endPosition);
 
-                _agentSpawner.AddAgent(agentType, agentPath);
+                citizen.SetAgent(_agentSpawner.AddAgent(agentType, agentPath));
+                citizen.SetCurrentBuidling(endStructure);
             }
         }
     }
@@ -83,21 +78,6 @@ public class AiDirector : MonoBehaviour
     {
         var resultPath = _graphSearch.AStar(startPosition, endPosition);
         return resultPath;
-    }
-
-    private GameObject GetRandomAgent(AgentType agentType)
-    {
-        if (agentType == AgentType.HUMAN)
-        {
-            var index = Random.Range(0, _pedestrianPrefabs.Length - 1);
-            return _pedestrianPrefabs[index];
-        }
-        else
-        {
-            var index = Random.Range(0, _carPrefab.Length - 1);
-            return _carPrefab[index];
-        }
-
     }
 
     private List<Vector3> GetAgentPath(AgentType agentType, List<UrbanVertex> path, Vector3 startPosition, Vector3 endPosition)
@@ -177,7 +157,7 @@ public class AiDirector : MonoBehaviour
         return agentGraph;
     }
 
-    private void Update()
+    public void Tick()
     {
         if (_agentGraph != null)
         {

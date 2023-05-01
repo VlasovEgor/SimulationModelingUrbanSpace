@@ -14,6 +14,8 @@ public class AIInstaller : MonoInstaller
     {
         BindAgentsPool();
         BindAgentSpawner();
+        BindAgentsManager();
+        BindAgentPath();
     }
 
     private void BindAgentsPool()
@@ -34,6 +36,18 @@ public class AIInstaller : MonoInstaller
     private void BindAgentSpawner()
     {
         Container.Bind<AgentSpawner>().
+            AsSingle();
+    }
+
+    private void BindAgentsManager()
+    {
+        Container.BindInterfacesAndSelfTo<TimeManager>().
+            AsSingle();
+    }
+
+    private void BindAgentPath()
+    {
+        Container.BindInterfacesAndSelfTo<AgentPath>().
             AsSingle();
     }
 }

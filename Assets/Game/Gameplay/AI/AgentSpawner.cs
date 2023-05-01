@@ -11,28 +11,36 @@ public class AgentSpawner
     private List<Agent> _agnetsHumanPool = new();
     private List<Agent> _agnetsCarPool = new();
 
-    public void AddAgent(AgentType agentType, List<Vector3> agentPath)
+    public Agent AddAgent(AgentType agentType, List<Vector3> agentPath)
     {
+        Agent agent;
+
         if (agentType == AgentType.HUMAN)
         {
-            AddHumanAgent(agentPath);
+            agent = AddHumanAgent(agentPath);
         }
         else
         {
-            AddCarAgent(agentPath);
+            agent = AddCarAgent(agentPath);
         }
+
+        return agent;
     }
 
-    public void AddHumanAgent(List<Vector3> path)
+    private Agent AddHumanAgent(List<Vector3> path)
     {
         var agent = _humanPool.Spawn(path);
         _agnetsHumanPool.Add(agent);
+
+        return agent;
     }
 
-    public void AddCarAgent(List<Vector3> path)
+    private Agent AddCarAgent(List<Vector3> path)
     {
         var agent = _carPool.Spawn(path);
         _agnetsCarPool.Add(agent);
+
+        return agent;
     }
 
     public void RemoveHumanAgent()
@@ -48,6 +56,4 @@ public class AgentSpawner
         _carPool.Despawn(agent);
         _agnetsHumanPool.Remove(agent);
     }
-
-   
 }

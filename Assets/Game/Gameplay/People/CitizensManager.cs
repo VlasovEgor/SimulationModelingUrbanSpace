@@ -27,6 +27,28 @@ public class CitizensManager : IInitializable, IDisposable
         _commericalBuildingConfigRedactor.BuildingRedacted -= GettingActivitePlace;
     }
 
+    public List<Citizen> GetCitizensList()
+    {
+        return _citizens;
+    }
+
+    public int GetCitizensCount()
+    {
+        return _citizens.Count;
+    }
+
+    public int GetOverallLevelHappiness()
+    {
+        int levelHappiness = 0;
+
+        foreach (var citizen in _citizens)
+        {
+            levelHappiness += citizen.GetHappinessLevel();
+        }
+
+        return levelHappiness / _citizens.Count;
+    }
+
     public void ChangingParametersHouse(Vector3 position, int HEvalue, int SEvalue, int WEvalue)
     {
         var totalNumber = HEvalue + SEvalue + WEvalue;
@@ -139,11 +161,19 @@ public class CitizensManager : IInitializable, IDisposable
 
             citizen.SetPlaceActivity(buidingType, _placementManager.GetBuildingNearestBuildingToHouseCertainBuildingsType(buidingType, citizen));
         }
-
     }
 
-    public Citizen GetRandomCitizen()
+    public int GetNumberUnemployed()
     {
-        return _citizens[UnityEngine.Random.Range(0, _citizens.Count)];
+        int number = 0;
+        foreach (var citizen in _citizens)
+        {
+            if (citizen.TryGetPlaceActivity(BuidingType.WORK) == false)
+            {
+                number++;
+            }
+        }
+
+        return number;
     }
 }

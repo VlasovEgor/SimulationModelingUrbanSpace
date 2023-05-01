@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 using Zenject;
@@ -6,6 +5,10 @@ using Zenject;
 public class Clock : ITickable
 {
     public event Action<DateTime> Tick;
+    public event Action<DateTime> MinutePassed;
+    public event Action HourPassed;
+    public event Action DayPassed;
+
     private DateTime _dateTime = new(2000, 01, 01, 00, 00, 00);
 
     [SerializeField] private float secPerMin = 1;
@@ -36,27 +39,27 @@ public class Clock : ITickable
         {
             _minute++;
             _dateTime = _dateTime.AddMinutes(1);
+            MinutePassed?.Invoke(_dateTime);
 
             if (_minute >= MINUTE_OF_HOUR)
             {
                 _minute = 0;
                 _hour++;
-                _dateTime = _dateTime.AddHours(1);
+                HourPassed?.Invoke();
+
                 if (_hour >= HOUR_OF_DAY)
                 {
                     _hour = 0;
                     _day++;
-                    _dateTime = _dateTime.AddDays(1);
+                    DayPassed?.Invoke();
                     if (_day >= DAY_OF_MONTH)
                     {
                         _day = 1;
                         _month++;
-                        _dateTime = _dateTime.AddMonths(1);
                         if (_month >= MONTH_OF_YEAR)
                         {
                             _month = 1;
                             _year++;
-                            _dateTime = _dateTime.AddYears(1);
                         }
                     }
                 }

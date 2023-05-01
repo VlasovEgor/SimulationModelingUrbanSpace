@@ -14,6 +14,7 @@ public class Agent : MonoBehaviour
 {
     public event Action OnDeath;
     public event Action<Vector3> OnMove;
+    public event Action<bool> ArrivedAtDestination;
 
     [SerializeField] private Transform _agentTransform;
     [SerializeField] private GameObject _parentGameObject;
@@ -133,6 +134,8 @@ public class Agent : MonoBehaviour
 
         _parentGameObject.SetActive(false);
         _path.Clear();
+
+        ArrivedAtDestination?.Invoke(true);
     }
 
     public class CarPool: MonoMemoryPool<List<Vector3>, Agent> 

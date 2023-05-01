@@ -74,7 +74,6 @@ public class PlacementManager : IInitializable, IDisposable
 
     }
 
-
     public bool CheckingWhetherThereBuildingsOfType(BuidingType buildingType)
     {
         var buildingList = _dictionaryBuildingsVariousTypes[buildingType];
@@ -96,28 +95,16 @@ public class PlacementManager : IInitializable, IDisposable
         var BuildingList = _dictionaryBuildingsVariousTypes[buildingType];
 
         foreach (var building in BuildingList)
-        {
+        {   
             if (Vector3.Distance(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL).GetPosition(), building.GetPosition()) < distance)
             {
-
+                //Debug.Log(building.GetBuidingType());
                 nearestBuilding = (CommericalBuildingConfig)building;
                 distance = Vector3.Distance(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL).GetPosition(), building.GetPosition());
             }
         }
 
         return nearestBuilding;
-    }
-
-    public CommericalBuildingConfig GetRandomBildingCertainBuildingsType(BuidingType buildingType)
-    {
-        var buildingList = _dictionaryBuildingsVariousTypes[buildingType];
-        var randomBilding = buildingList[UnityEngine.Random.Range(0, buildingList.Count-1)];
-        return (CommericalBuildingConfig)randomBilding;
-    }
-
-    public List<BuildingConfig> GetBuildingsListCertainType(BuidingType buidingType)
-    {
-        return _dictionaryBuildingsVariousTypes[buidingType];
     }
 
     public List<CommericalBuildingConfig> GetCommericalBuildingConfigList()
@@ -155,11 +142,6 @@ public class PlacementManager : IInitializable, IDisposable
 
     public BuildingConfig GetBuildingInCertainPosition(BuidingType buidingType, Vector3 position)
     {
-       
-        foreach (var item in _commericalBuildingsList)
-        {
-            Debug.Log("BUILDING: " +item.GetPosition());
-        }
 
         var buildingList = _dictionaryBuildingsVariousTypes[buidingType];
 
@@ -185,5 +167,24 @@ public class PlacementManager : IInitializable, IDisposable
             }
         }
         _dictionaryBuildingsVariousTypes[buildingConfig.GetBuidingType()].Add(buildingConfig);
+    }
+
+    public int GetNumberBuildingsOfCertainType(BuidingType buildingsType)
+    {
+        return _dictionaryBuildingsVariousTypes[buildingsType].Count;
+    }
+
+    public int GetTotalNumberOfVacancies()
+    {
+        int numberOfVacancies = 0;
+
+        foreach (var buildingConfig in _commericalBuildingsList)
+        {
+            numberOfVacancies += buildingConfig.GetMaximumNumberEmployeesOfCertainEducation(Education.HIGHER_EDUCATION) - buildingConfig.GetCurrentNumberEmployeesOfCertainEducation(Education.HIGHER_EDUCATION);
+            numberOfVacancies += buildingConfig.GetMaximumNumberEmployeesOfCertainEducation(Education.SECOND_EDUCATION) - buildingConfig.GetCurrentNumberEmployeesOfCertainEducation(Education.SECOND_EDUCATION);
+            numberOfVacancies += buildingConfig.GetMaximumNumberEmployeesOfCertainEducation(Education.WITOUT_EDUCATION) - buildingConfig.GetCurrentNumberEmployeesOfCertainEducation(Education.WITOUT_EDUCATION);
+        }
+
+        return numberOfVacancies;
     }
 }

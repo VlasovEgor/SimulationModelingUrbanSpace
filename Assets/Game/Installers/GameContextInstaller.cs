@@ -8,6 +8,7 @@ public class GameContextInstaller : MonoInstaller
         BindGraphSearch();
         BindPlacementManager();
         BindStructureCreator();
+        BindStatisticsCollector();
     }
 
     private void BindGraph()
@@ -31,6 +32,12 @@ public class GameContextInstaller : MonoInstaller
     private void BindStructureCreator()
     {
         Container.Bind<StructureCreator>().
+            AsSingle();
+    }
+
+    private void BindStatisticsCollector()
+    {
+        Container.BindInterfacesAndSelfTo<StatisticsCollector>().
             AsSingle();
     }
 }
