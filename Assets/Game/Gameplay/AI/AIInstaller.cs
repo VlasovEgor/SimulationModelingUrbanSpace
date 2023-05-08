@@ -10,6 +10,8 @@ public class AIInstaller : MonoInstaller
     [SerializeField] private Transform _humanTransform;
     [SerializeField] private Transform _carTransform;
 
+    [SerializeField] private AgentPath _agentPath;
+
     public override void InstallBindings()
     {
         BindAgentsPool();
@@ -21,13 +23,13 @@ public class AIInstaller : MonoInstaller
     private void BindAgentsPool()
     {
         Container.BindMemoryPool<Agent, Agent.HumanPool>().
-            WithInitialSize(100).
+            WithInitialSize(10).
             ExpandByOneAtATime().
             FromComponentInNewPrefab(_humanPrefab).
             UnderTransform(_humanTransform);
 
         Container.BindMemoryPool<Agent, Agent.CarPool>().
-          WithInitialSize(100).
+          WithInitialSize(10).
           ExpandByOneAtATime().
           FromComponentInNewPrefab(_carPrefab).
           UnderTransform(_carTransform);
@@ -48,6 +50,7 @@ public class AIInstaller : MonoInstaller
     private void BindAgentPath()
     {
         Container.BindInterfacesAndSelfTo<AgentPath>().
+            FromInstance(_agentPath).
             AsSingle();
     }
 }

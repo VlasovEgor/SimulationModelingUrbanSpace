@@ -2,6 +2,7 @@ using System;
 using Zenject;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 
 public class TimeManager : IInitializable, IDisposable
 {
@@ -28,12 +29,21 @@ public class TimeManager : IInitializable, IDisposable
     {
         _citizens = _citizensManager.GetCitizensList();
 
-
-        foreach (var citizen in _citizens)
+        for (int i = 0; i < _citizens.Count; i++)
         {
+            var citizen = _citizens[i];
+
             citizen.SetCurrnetTime(dateTime);
-            //citizen.CheckingIfBusy();
+
+            if (citizen.CheckingForTransitionToNextBuilding() == true)
+            {
+                citizen.MoveToNextBuilding();
+            }
+
+            _citizens[i] = citizen;
         }
+
+
     }
 
     private void OnDayPassed()
@@ -42,7 +52,8 @@ public class TimeManager : IInitializable, IDisposable
         {
             citizen.SelectNewNearestActivityLocations(_placementManager);
             citizen.IncreasingNeeds();
-           // citizen.SetPlanForDay(_planForDay.DefiningPlanForDay(citizen));
+            var planForDay = _planForDay.MakePlanForDay(citizen);
+            citizen.SetPlanForDay(planForDay);
         }
     }
 }

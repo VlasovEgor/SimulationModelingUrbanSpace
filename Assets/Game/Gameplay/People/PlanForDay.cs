@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class PlanForDay
 {
@@ -16,7 +18,7 @@ public class PlanForDay
 
         List<CommericalBuildingConfig> buildingsOpenAtThisTime = new();
 
-        foreach (var keyValue in citizen.GetDictionartPlacesActivity())
+        foreach (var keyValue in citizen.GetDictionaryPlacesActivity())
         {
             var currnetBuildng = (CommericalBuildingConfig)keyValue.Value;
             if(currnetBuildng !=null)
@@ -79,7 +81,7 @@ public class PlanForDay
 
         buildingsOpenAtThisTime.Clear();
 
-        foreach (var keyValue in citizen.GetDictionartPlacesActivity())
+        foreach (var keyValue in citizen.GetDictionaryPlacesActivity())
         {
             var currnetBuildng = (CommericalBuildingConfig)keyValue.Value;
             if (currnetBuildng.GetStartWork().Hour < endDay.Hour && buildingsPlanForDay.Contains(currnetBuildng) == false)
@@ -129,5 +131,38 @@ public class PlanForDay
         }
 
         return buildingsPlanForDay;
+    }
+
+    public List<BuildingConfig> MakePlanForDay(Citizen citizen)
+    {
+
+        var startTime = citizen.GetActiveTimeStart().Hour * 60 + citizen.GetActiveTimeStart().Minute;
+        var endTime = citizen.GetActiveTimeEnd().Hour * 60 + citizen.GetActiveTimeEnd().Minute;
+
+        var plan = new List<BuildingConfig>();
+
+        var currentTime = startTime;
+
+        var buildings = citizen.GetDictionaryPlacesActivity().ToList();
+        var commericalBuildings = new List<CommericalBuildingConfig>();
+
+        plan.Add(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL));
+
+        foreach (var buidling in buildings)
+        {
+            if(buidling.Value.GetBuidingType() != BuidingType.NONE && buidling.Value.GetBuidingType() != BuidingType.RESIDENTIAL)
+            {
+                commericalBuildings.Add((CommericalBuildingConfig)buidling.Value);
+            }
+        }
+
+        for (int i = 0; i < commericalBuildings.Count; i++)
+        {
+            plan.Add(commericalBuildings[i]);
+        }
+
+        plan.Add(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL));
+
+        return plan;
     }
 }

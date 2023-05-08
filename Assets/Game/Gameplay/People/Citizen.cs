@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public struct Citizen
 {
@@ -12,25 +13,33 @@ public struct Citizen
     private Dictionary<BuidingType, BuildingConfig> _placesActivity;
 
     private bool _isWorth;
+    private bool _isActive;
 
     private DateTime _releaseTime;
     private DateTime _currentTime;
-    private CommericalBuildingConfig _currnetBuildng;
+    private CommericalBuildingConfig _currnetCommericalBuildng;
     private Agent _currentAgent;
 
     private HourMinute _activeTimeStart;
     private HourMinute _activeTimeEnd;
 
-    private List<CommericalBuildingConfig> _planForDay;
+    private List<BuildingConfig> _planForDay;
 
-    private int _buildingCounter;
+    public int _buildingCounter;
     private AgentPath _agentPath;
+
+    public int BuildingCounter
+    {
+        get { return _buildingCounter; }
+        set { _buildingCounter = value; }
+    }
 
     public Citizen(Education education, AgentPath agentPath) : this()
     {
         _agentPath = agentPath;
 
-        _isWorth = false;
+        _isWorth = true;
+        _isActive = false;
 
         _education = education;
 
@@ -46,6 +55,7 @@ public struct Citizen
         _activeTimeEnd.Minute = 0;
 
         _buildingCounter = 0;
+        _planForDay = new List<BuildingConfig>();
 
         foreach (var type in values)
         {
@@ -54,7 +64,7 @@ public struct Citizen
 
         SetHealth();
         SetPersonalityTypeh();
-        
+
     }
 
     private void SetHealth()
@@ -143,65 +153,50 @@ public struct Citizen
 
     public void IncreasingNeeds()
     {
-
-
-        foreach (var need in _citizenNeeds)
+        if (_personalityType == PersonalityType.GLUTTON)
         {
-            if (need.Key == Needs.FOOD)
-            {
-                if (_personalityType == PersonalityType.GLUTTON)
-                {
-                    IncreaseNeed(need.Key, 3);
-                }
-                else
-                {
-                    IncreaseNeed(need.Key, 2);
-                }
-            }
-            else if (need.Key == Needs.SPORT)
-            {
-                if (_personalityType == PersonalityType.SPORTSMAN)
-                {
-                    IncreaseNeed(need.Key, 3);
-                }
-                else if (_personalityType == PersonalityType.LAZY_PERSON)
-                {
-                    IncreaseNeed(need.Key, 1);
-                }
-                else
-                {
-                    IncreaseNeed(need.Key, 2);
-                }
-            }
-            else if (need.Key == Needs.REST)
-            {
-                if (_personalityType == PersonalityType.PARTY_BOY)
-                {
-                    IncreaseNeed(need.Key, 3);
-                }
-                else if (_personalityType == PersonalityType.HOMEBODY)
-                {
-                    IncreaseNeed(need.Key, 1);
-                }
-                else
-                {
-                    IncreaseNeed(need.Key, 2);
-                }
-            }
-            else if (need.Key == Needs.HEALTH)
-            {
-                if (_personalityType == PersonalityType.WORKAHOLIC)
-                {
-                    IncreaseNeed(need.Key, 3);
-                }
-                else
-                {
-                    IncreaseNeed(need.Key, 2);
-                }
-            }
-
-
+            IncreaseNeed(Needs.FOOD, 3);
         }
+        else
+        {
+            IncreaseNeed(Needs.FOOD, 2);
+        }
+
+        if (_personalityType == PersonalityType.SPORTSMAN)
+        {
+            IncreaseNeed(Needs.SPORT, 3);
+        }
+        else if (_personalityType == PersonalityType.LAZY_PERSON)
+        {
+            IncreaseNeed(Needs.SPORT, 1);
+        }
+        else
+        {
+            IncreaseNeed(Needs.SPORT, 2);
+        }
+
+        if (_personalityType == PersonalityType.PARTY_BOY)
+        {
+            IncreaseNeed(Needs.REST, 3);
+        }
+        else if (_personalityType == PersonalityType.HOMEBODY)
+        {
+            IncreaseNeed(Needs.REST, 1);
+        }
+        else
+        {
+            IncreaseNeed(Needs.REST, 2);
+        }
+
+        if (_personalityType == PersonalityType.WORKAHOLIC)
+        {
+            IncreaseNeed(Needs.HEALTH, 3);
+        }
+        else
+        {
+            IncreaseNeed(Needs.HEALTH, 2);
+        }
+
     }
 
     public void IncreaseNeed(Needs need, int value)
@@ -214,15 +209,31 @@ public struct Citizen
         }
     }
 
+    public int GetHappinessLevel()
+    {
+        var happiness = 0;
+
+        foreach (var keyValuePair in _citizenNeeds)
+        {
+            happiness += keyValuePair.Value;
+        }
+
+        return happiness / _citizenNeeds.Count;
+    }
+
     public void SelectNewNearestActivityLocations(PlacementManager placementManager)
     {
         var values = Enum.GetValues(typeof(BuidingType)).Cast<BuidingType>();
 
         foreach (var buidingType in values)
         {
+            if (buidingType == BuidingType.NONE || buidingType == BuidingType.RESIDENTIAL || buidingType == BuidingType.WORK)
+            {
+                continue;
+            }
             if (placementManager.CheckingWhetherThereBuildingsOfType(buidingType) == true)
             {
-                //SetPlaceActivity(buidingType, placementManager.GetBuildingNearestBuildingToHouseCertainBuildingsType(buidingType, this));
+                SetPlaceActivity(buidingType, placementManager.GetBuildingNearestBuildingToHouseCertainBuildingsType(buidingType, _placesActivity[BuidingType.RESIDENTIAL].GetPosition()));
             }
         }
     }
@@ -230,14 +241,18 @@ public struct Citizen
     public void SetWorth(bool value)
     {
         _isWorth = value;
+        Debug.Log("Worth " + _isWorth);
+
+        //_currentAgent.ArrivedAtDestination -= SetWorth;
 
         if (_isWorth == true)
         {
-            _currentAgent.ArrivedAtDestination -= SetWorth;
-            _currentAgent = null;
-
-            SetReleaseTime();
+            if (_currnetCommericalBuildng != null)
+            {
+                SetReleaseTime();
+            }
         }
+
     }
 
     public void SetAgent(Agent agent)
@@ -246,89 +261,60 @@ public struct Citizen
         _currentAgent.ArrivedAtDestination += SetWorth;
     }
 
-    public bool CheckingWhetherItIsWorthIt()
-    {
-        return _isWorth;
-    }
-
     public bool CheckingIfBusy()
     {
-        if(_releaseTime > _currentTime) 
+        if (_releaseTime > _currentTime)
         {
             return true;
         }
         else
         {
-            AccrualNeed();
-            SetNewBuilding();
-
+            // AccrualNeed();
             return false;
         }
     }
 
     private void AccrualNeed()
     {
-        if (_currnetBuildng.GetBuidingType() == BuidingType.FOOD)
+        if (_currnetCommericalBuildng.GetBuidingType() == BuidingType.FOOD)
         {
-            IncreaseNeed(Needs.FOOD, _currnetBuildng.GetAmountOfSatisfactionOfNeed());
+            IncreaseNeed(Needs.FOOD, _currnetCommericalBuildng.GetAmountOfSatisfactionOfNeed());
         }
-        else if (_currnetBuildng.GetBuidingType() == BuidingType.RELAX)
+        else if (_currnetCommericalBuildng.GetBuidingType() == BuidingType.RELAX)
         {
-            IncreaseNeed(Needs.REST, _currnetBuildng.GetAmountOfSatisfactionOfNeed());
+            IncreaseNeed(Needs.REST, _currnetCommericalBuildng.GetAmountOfSatisfactionOfNeed());
         }
-        else if (_currnetBuildng.GetBuidingType() == BuidingType.SPORT)
+        else if (_currnetCommericalBuildng.GetBuidingType() == BuidingType.SPORT)
         {
-            IncreaseNeed(Needs.SPORT, _currnetBuildng.GetAmountOfSatisfactionOfNeed());
+            IncreaseNeed(Needs.SPORT, _currnetCommericalBuildng.GetAmountOfSatisfactionOfNeed());
         }
-        else if (_currnetBuildng.GetBuidingType() == BuidingType.HEALTH)
+        else if (_currnetCommericalBuildng.GetBuidingType() == BuidingType.HEALTH)
         {
-            IncreaseNeed(Needs.HEALTH, _currnetBuildng.GetAmountOfSatisfactionOfNeed());
+            IncreaseNeed(Needs.HEALTH, _currnetCommericalBuildng.GetAmountOfSatisfactionOfNeed());
         }
-    }
-
-    private void SetNewBuilding()
-    {   
-        if(_buildingCounter == 0)
-        {
-            _agentPath.SendHumanToBuilding(this, BuidingType.RESIDENTIAL, _planForDay[0].GetBuidingType());
-            _buildingCounter++;
-        }
-        else if (_buildingCounter < _planForDay.Count)
-        {
-            _currnetBuildng = _planForDay[_buildingCounter];
-            _buildingCounter++;
-        }
-        else
-        {
-            _agentPath.SendHumanToBuilding(this, _planForDay.Last().GetBuidingType(), BuidingType.RESIDENTIAL);
-        }
-
     }
 
     public void SetReleaseTime()
     {
         _releaseTime = _currentTime;
 
-        if(_currnetBuildng.GetBuidingType() != BuidingType.RESIDENTIAL || _currnetBuildng.GetBuidingType() != BuidingType.NONE) 
-        {
-            _releaseTime.AddHours(_currnetBuildng.GetAverageTimeInBuilding() / 60);
-            _releaseTime.AddMinutes(_currnetBuildng.GetAverageTimeInBuilding() % 60);
-        }
-        else
-        {
-            _releaseTime = _currentTime;
-        }
-       
+        _releaseTime.AddHours(_currnetCommericalBuildng.GetAverageTimeInBuilding() / 60);
+        _releaseTime.AddMinutes(_currnetCommericalBuildng.GetAverageTimeInBuilding() % 60);
     }
 
     public void SetCurrnetTime(DateTime dateTime)
     {
         _currentTime = dateTime;
-    }
 
-    public void SetCurrentBuidling(BuildingConfig BuildingConfig)
-    {
-        _currnetBuildng = (CommericalBuildingConfig)BuildingConfig;
+        if (_currentTime.Hour >= _activeTimeStart.Hour
+           && _currentTime.Hour < _activeTimeEnd.Hour)
+        {
+            _isActive = true;
+        }
+        else
+        {
+            _isActive = false;
+        }
     }
 
     public HourMinute GetActiveTimeStart()
@@ -341,32 +327,88 @@ public struct Citizen
         return _activeTimeEnd;
     }
 
-    public Dictionary<BuidingType, BuildingConfig> GetDictionartPlacesActivity()
+    public Dictionary<BuidingType, BuildingConfig> GetDictionaryPlacesActivity()
     {
         return _placesActivity;
     }
 
     public Dictionary<Needs, int> GetDictionartNeeds()
     {
-        return _citizenNeeds ;
+        return _citizenNeeds;
     }
 
-    public void SetPlanForDay(List<CommericalBuildingConfig> planForDay)
+    public void SetPlanForDay(List<BuildingConfig> planForDay)
     {
         _buildingCounter = 0;
         _planForDay.Clear();
-        _planForDay = planForDay;
+        _planForDay.AddRange(planForDay);
     }
 
-    public int GetHappinessLevel()
-    {
-        var happiness = 0;
 
-        foreach (var keyValuePair in _citizenNeeds)
+    public bool CheckingForTransitionToNextBuilding()
+    {
+       // if(_isActive == true)
+       // {
+       //     Debug.Log("_isActive == true");
+       //
+       // }
+       // else
+       // {
+       //     Debug.Log("_isActive == false");
+       // }
+
+        if (_isWorth == true)
         {
-            happiness += keyValuePair.Value;
+            Debug.Log(" _isWorth == true");
         }
-        
-        return happiness / _citizenNeeds.Count;
+        else
+        {
+            Debug.Log(" _isWorth == false");
+        }
+
+       // if(CheckingIfBusy() == false)
+       // {
+       //     Debug.Log("CheckingIfBusy() == false");
+       // }
+       // else
+       // {
+       //     Debug.Log("CheckingIfBusy() == true");
+       // }
+       //
+       // if(_buildingCounter < _planForDay.Count == true)
+       // {
+       //     Debug.Log("_buildingCounter < _planForDay.Count == true");
+       // }
+       // else
+       // {
+       //     Debug.Log("_buildingCounter < _planForDay.Count == false");
+       // }
+
+        if (_isActive == true && _isWorth == true && CheckingIfBusy() == false && _buildingCounter < _planForDay.Count == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void MoveToNextBuilding()
+    {
+        Debug.Log(_buildingCounter);
+        _buildingCounter++;
+        Debug.Log(_buildingCounter);
+        _agentPath.SendHumanToBuilding(ref this, _planForDay[_buildingCounter - 1].GetBuidingType(), _planForDay[_buildingCounter].GetBuidingType());
+
+        if (_planForDay[_buildingCounter].GetBuidingType() != BuidingType.NONE && _planForDay[_buildingCounter].GetBuidingType() != BuidingType.RESIDENTIAL)
+        {
+            _currnetCommericalBuildng = (CommericalBuildingConfig)_planForDay[_buildingCounter];
+        }
+        else
+        {
+            _currnetCommericalBuildng = null;
+        }
+
     }
 }

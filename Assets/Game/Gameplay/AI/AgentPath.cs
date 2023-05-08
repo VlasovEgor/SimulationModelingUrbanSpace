@@ -4,35 +4,57 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public class AgentPath: ITickable
+public class AgentPath: MonoBehaviour, ITickable
 {
     [Inject] private GraphSearch _graphSearch;
     [Inject] private Graph _graph;
 
     [Inject] private AgentSpawner _agentSpawner;
 
+    [Inject] private CitizensManager _citizensManager;
+
     private AgentGraphSearch _agentGraphSearch = new();
     private AgentGraph _agentGraph = new();
 
+
     [Button]
-    public void SendHumanToBuilding(Citizen human, BuidingType startBuidingType, BuidingType endBuidingType)
+    public void SendRandomHumanToBuilding(BuidingType startBuidingType, BuidingType endBuidingType)
+    {
+        var human = _citizensManager.GetRandomCitizen();
+        BuildingConfig startPosition = human.GetPlaceActivity(startBuidingType);
+        BuildingConfig endPosition = human.GetPlaceActivity(endBuidingType);
+
+        if (Vector3.Distance(startPosition.GetPosition(), endPosition.GetPosition()) > 100)
+        {
+           // TrySpawningAgent(human, AgentType.CAR, startPosition, endPosition);
+        }
+        else
+        {
+           // TrySpawningAgent(human, AgentType.HUMAN, startPosition, endPosition);
+        }
+
+       // human.SetWorth(false);
+    }
+
+    [Button]
+    public void SendHumanToBuilding(ref Citizen human, BuidingType startBuidingType, BuidingType endBuidingType)
     {
         BuildingConfig startPosition = human.GetPlaceActivity(startBuidingType);
         BuildingConfig endPosition = human.GetPlaceActivity(endBuidingType);
 
         if (Vector3.Distance(startPosition.GetPosition(), endPosition.GetPosition()) > 200)
         {
-            TrySpawningAgent(human, AgentType.CAR, startPosition, endPosition);
+            TrySpawningAgent(ref human, AgentType.CAR, startPosition, endPosition);
         }
         else
         {
-            TrySpawningAgent(human, AgentType.HUMAN, startPosition, endPosition);
+            TrySpawningAgent(ref human, AgentType.HUMAN, startPosition, endPosition);
         }
 
-        human.SetWorth(false);
+      //  human.SetWorth(false);
     }
 
-    private void TrySpawningAgent(Citizen citizen,AgentType agentType, BuildingConfig startStructure, BuildingConfig endStructure)
+    private void TrySpawningAgent(ref Citizen citizen,AgentType agentType, BuildingConfig startStructure, BuildingConfig endStructure)
     {
         foreach (var vertex in _graph.GetAllVerticesOfCertainType(VertexType.Road))
         {
@@ -68,8 +90,10 @@ public class AgentPath: ITickable
 
                 List<Vector3> agentPath = GetAgentPath(agentType, path, startPosition, endPosition);
 
-                citizen.SetAgent(_agentSpawner.AddAgent(agentType, agentPath));
-                citizen.SetCurrentBuidling(endStructure);
+                citizen.SetWorth(false);
+                var agent = _agentSpawner.AddAgent(agentType, agentPath);
+                citizen.SetAgent(agent);
+               // citizen.SetCurrentBuidling(endStructure);
             }
         }
     }

@@ -159,7 +159,7 @@ public class CitizensManager : IInitializable, IDisposable
                 }
             }
 
-            citizen.SetPlaceActivity(buidingType, _placementManager.GetBuildingNearestBuildingToHouseCertainBuildingsType(buidingType, citizen));
+            citizen.SetPlaceActivity(buidingType, _placementManager.GetBuildingNearestBuildingToHouseCertainBuildingsType(buidingType, citizen.GetPlaceActivity(BuidingType.RESIDENTIAL).GetPosition()));
         }
     }
 
@@ -175,5 +175,11 @@ public class CitizensManager : IInitializable, IDisposable
         }
 
         return number;
+    }
+
+    public Citizen GetRandomCitizen()
+    {
+        int index = UnityEngine.Random.Range(0, _citizens.Count);
+        return _citizens[index];
     }
 }

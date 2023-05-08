@@ -88,7 +88,7 @@ public class PlacementManager : IInitializable, IDisposable
         }
     }
 
-    public CommericalBuildingConfig GetBuildingNearestBuildingToHouseCertainBuildingsType(BuidingType buildingType, Citizen citizen)
+    public CommericalBuildingConfig GetBuildingNearestBuildingToHouseCertainBuildingsType(BuidingType buildingType, Vector3 residentialPosition)
     {
         float distance = float.MaxValue;
         CommericalBuildingConfig nearestBuilding = null;
@@ -96,11 +96,11 @@ public class PlacementManager : IInitializable, IDisposable
 
         foreach (var building in BuildingList)
         {   
-            if (Vector3.Distance(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL).GetPosition(), building.GetPosition()) < distance)
+            if (Vector3.Distance(residentialPosition, building.GetPosition()) < distance)
             {
                 //Debug.Log(building.GetBuidingType());
                 nearestBuilding = (CommericalBuildingConfig)building;
-                distance = Vector3.Distance(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL).GetPosition(), building.GetPosition());
+                distance = Vector3.Distance(residentialPosition, building.GetPosition());
             }
         }
 

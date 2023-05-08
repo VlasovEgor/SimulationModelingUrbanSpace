@@ -8693,6 +8693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 615270023}
   - component: {fileID: 615270026}
+  - component: {fileID: 615270027}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -8731,6 +8732,19 @@ MonoBehaviour:
   _carPrefab: {fileID: 4152161388484107385, guid: 828c1938563b7ec4886d857c0a6b1cb8, type: 3}
   _humanTransform: {fileID: 1889494354}
   _carTransform: {fileID: 537376032}
+  _agentPath: {fileID: 615270027}
+--- !u!114 &615270027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615270022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f706e641932be4cb7e3625383028d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &635448131
 GameObject:
   m_ObjectHideFlags: 0

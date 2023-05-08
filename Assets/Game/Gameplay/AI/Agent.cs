@@ -91,6 +91,7 @@ public class Agent : MonoBehaviour
         if (_index >= _path.Count)
         {
             _isMove = false;
+            ArrivedAtDestination?.Invoke(true);
             TurnOff();
 
         }
@@ -128,26 +129,25 @@ public class Agent : MonoBehaviour
     }
 
     public void TurnOff()
-    {
-        _humanPool.Despawn(this);
-        _carPool.Despawn(this);
+    {   
+        if(GetAgentType() == AgentType.HUMAN)
+        {
+            _humanPool.Despawn(this);
+        }
+        else if (GetAgentType() == AgentType.CAR)
+        {
+            _carPool.Despawn(this);
+        }
 
         _parentGameObject.SetActive(false);
         _path.Clear();
-
-        ArrivedAtDestination?.Invoke(true);
     }
 
-    public class CarPool: MonoMemoryPool<List<Vector3>, Agent> 
+    public class CarPool : MonoMemoryPool<List<Vector3>, Agent>
     {
         protected override void OnCreated(Agent agent)
         {
             agent.Created();
-        }
-
-        protected override void OnDespawned(Agent agent)
-        {
-           // agent.TurnOff();
         }
 
         protected override void Reinitialize(List<Vector3> path, Agent agent)
@@ -161,11 +161,6 @@ public class Agent : MonoBehaviour
         protected override void OnCreated(Agent agent)
         {
             agent.Created();
-        }
-
-        protected override void OnDespawned(Agent agent)
-        {
-            // agent.TurnOff();
         }
 
         protected override void Reinitialize(List<Vector3> path, Agent agent)
