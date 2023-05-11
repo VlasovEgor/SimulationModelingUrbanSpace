@@ -35,8 +35,12 @@ public class ChangeTimeSpeed : MonoBehaviour
 
 
     public void SetAcceleratedTime()
-    {
-        Time.timeScale = _timeMultiplier;
-        Time.fixedDeltaTime = _startFixedDeltaTime * Time.timeScale;
+    {   
+        if(Time.timeScale <=90)
+        {
+            Time.timeScale += _timeMultiplier;
+            Time.fixedDeltaTime = _startFixedDeltaTime * Time.timeScale;
+        }
+
     }
 }

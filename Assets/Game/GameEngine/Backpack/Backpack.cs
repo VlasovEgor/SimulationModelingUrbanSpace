@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Backpack
 {
-    private List<Item> _bestItems = null;
+    private List<Item> _bestItems = new();
 
     private int _maxWeight;
 
@@ -13,13 +14,12 @@ public class Backpack
         _maxWeight = weight;
     }
 
-
     private int CalcWeigth(List<Item> items)
     {
         int sumW = 0;
 
         foreach (Item item in items)
-        {
+        {   
             sumW += item.Weigth;
         }
 
@@ -40,7 +40,7 @@ public class Backpack
 
     private void CheckSet(List<Item> items)
     {
-        if (_bestItems == null)
+        if (_bestItems.Count == 0)
         {
             if (CalcWeigth(items) <= _maxWeight)
             {

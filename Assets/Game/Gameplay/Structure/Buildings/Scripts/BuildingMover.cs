@@ -49,7 +49,8 @@ public class BuildingMover : MonoBehaviour
 
         Vector3 point = ray.GetPoint(distance);
 
-        _currentBulding.Get<IComponent_MoveBuilding>().MoveBuilding(point);
+        var correctPosition = new Vector3(point.x, point.y + 0.5f, point.z);
+        _currentBulding.Get<IComponent_MoveBuilding>().MoveBuilding(correctPosition);
     }
 
     private void RotateBuilding(int direction)

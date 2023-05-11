@@ -18,22 +18,18 @@ public class RoadHelperStraight : RoadHelper
     {
         if (Math.Abs(direction.z) > Math.Abs(direction.x) && direction.z > 0)
         {
-           // Debug.Log("UP");
             return Direction.UP;
         }
         else if (Math.Abs(direction.z) > Math.Abs(direction.x) && direction.z < 0)
         {
-           // Debug.Log("DOWN");
             return Direction.DOWN;
         }
         else if (Math.Abs(direction.x) > Math.Abs(direction.z) && direction.x > 0)
         {
-           // Debug.Log("RIGHT");
             return Direction.RIGHT;
         }
         else
         {
-           // Debug.Log("LEFT");
             return Direction.LEFT;
         }
     }
@@ -42,7 +38,6 @@ public class RoadHelperStraight : RoadHelper
     public override Marker GetPositioForCarToSpawn(Vector3 nextPathPosition)
     {
         var angle = transform.rotation.eulerAngles.y;
-       // Debug.Log("Angel : " + angle);
         var direction = nextPathPosition - transform.position;
         return GetCorrextMarker(angle, direction);
     }
@@ -57,8 +52,6 @@ public class RoadHelperStraight : RoadHelper
     private Marker GetCorrextMarker(float angle, Vector3 directionVerctor)
     {
         var direction = GetDirection(directionVerctor);
-       // Debug.Log(angle);
-
 
         if (direction == Direction.UP)
         {
@@ -104,7 +97,5 @@ public class RoadHelperStraight : RoadHelper
                 return _leftMarker90;
             }
         }
-
-
     }
 }

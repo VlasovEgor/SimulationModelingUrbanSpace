@@ -7,6 +7,7 @@ public class StatisticsCollector : IInitializable , IDisposable
     [Inject] private Clock _clock;
     [Inject] private CitizensManager _citizensManager;
     [Inject] private PlacementManager _placementManager;
+    [Inject] private AgentPath _agentPath;
 
     private List<int> _populationSize = new();
     private List<int> _levelHappiness = new();
@@ -18,6 +19,7 @@ public class StatisticsCollector : IInitializable , IDisposable
     private List<int> _numberBuildingsTypeRelax = new();
     private List<int> _numberVacancies = new();
     private List<int> _numberUnemployed = new();
+    private List<int> _percentageCarSelection = new();
 
     public void Initialize()
     {
@@ -41,6 +43,7 @@ public class StatisticsCollector : IInitializable , IDisposable
         _numberBuildingsTypeRelax.Add(_placementManager.GetNumberBuildingsOfCertainType(BuidingType.RELAX));
         _numberVacancies.Add(_placementManager.GetTotalNumberOfVacancies());
         _numberUnemployed.Add(_citizensManager.GetNumberUnemployed());
+        _percentageCarSelection.Add(_agentPath.GetPercentageCarSelection());
     }
 
     public List<int> GetPoulationSize()
@@ -92,5 +95,10 @@ public class StatisticsCollector : IInitializable , IDisposable
     public List<int> GetNumberUnemployed()
     {
         return _numberUnemployed;
+    }
+
+    public List<int> GetPercentageCarSelection()
+    {
+        throw new NotImplementedException();
     }
 }

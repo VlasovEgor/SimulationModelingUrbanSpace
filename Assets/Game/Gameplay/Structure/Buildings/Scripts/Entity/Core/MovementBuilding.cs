@@ -18,5 +18,8 @@ public class MovementBuilding : MonoBehaviour
     private void Move(Vector3 obj)
     {
         _visualTransfrom.position = obj;
+        var position = _visualTransfrom.position;
+        position.y += 0.5f;
+        _visualTransfrom.position = position;
     }
 }

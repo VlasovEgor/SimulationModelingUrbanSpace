@@ -44,17 +44,9 @@ public class WindowGraph : MonoBehaviour
     {
         _instance = this;
 
-       // List<int> valueList = new List<int>();
-       // for (int i = 0; i < 15; i++)
-       // {
-       //     valueList.Add(UnityEngine.Random.Range(0, 500));
-       // }
-
         _lineGraphVisual = new LineGraphVisual(_graphContainer, _dotSprite, Color.red, Color.white);
         _barChartVisual = new BarChartVisual(_graphContainer, Color.white, 0.8f);
         _graphVisual = _lineGraphVisual;
-     //   ShowGraph(valueList, barChartVisual, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f));
-
     }
 
     public static void ShowTooltip_Static(string tooltipText, Vector2 anchoredPosition)
@@ -169,6 +161,12 @@ public class WindowGraph : MonoBehaviour
         ShowGraph(_valueList, _graphVisual, _maxVisibleValueAmount, _getAxisLabelX, _getAxisLabelY);
     }
 
+    public void ShowPercentageCarSelection()
+    {
+        _valueList = _statisticsCollector.GetPercentageCarSelection();
+        ShowGraph(_valueList, _graphVisual, _maxVisibleValueAmount, _getAxisLabelX, _getAxisLabelY);
+    }
+
     private void ShowGraph(
         List<int> valueList,
         IGraphVisual graphVisual,
@@ -237,7 +235,7 @@ public class WindowGraph : MonoBehaviour
         yMaximum = yMaximum + (yDifference * 0.2f);
         yMinimum = yMinimum - (yDifference * 0.2f);
 
-        yMinimum = 0f; // Start the graph at zero
+        yMinimum = 0f;
 
         float xSize = graphWidth / (maxVisibleValueAmount + 1);
 

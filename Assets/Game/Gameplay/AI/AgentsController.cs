@@ -1,29 +1,25 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public class AgentsController : MonoBehaviour, IInitializable, IDisposable
+public class AgentsController
 {
-    [Inject] private TimeManager _timeManager;
     [Inject] private CitizensManager _citizensManager;
-    [Inject] private Clock _clock;
+    [Inject] private AgentPath _agentPath;
+    //[Inject] private PlanForDay _planForDay;
+
+    private PlanForDay _planForDay = new();
 
     private List<Citizen> _citizens = new();
     private List<CitizenCommander> _citizenCommanders = new();
 
-    public void Dispose()
+    public List<CitizenCommander> GetCitizenCommanderList()
     {
-        _clock.DayPassed += InitializationCitizenCommanders;
+        return _citizenCommanders;
     }
 
-    public void Initialize()
-    {
-        _clock.DayPassed -= InitializationCitizenCommanders;
-    }
-
-    private void InitializationCitizenCommanders()
+    public void InitializationCitizenCommanders()
     {
         GetListOfCitizens();
         ChangeNumberCitizenCommanders();
@@ -43,7 +39,7 @@ public class AgentsController : MonoBehaviour, IInitializable, IDisposable
         {
             while (_citizens.Count > _citizenCommanders.Count)
             {
-                CitizenCommander citizenCommander = new();
+                CitizenCommander citizenCommander = new(_agentPath);
                 _citizenCommanders.Add(citizenCommander);
             }
         }
@@ -62,6 +58,10 @@ public class AgentsController : MonoBehaviour, IInitializable, IDisposable
         for (int i = 0; i < _citizens.Count; i++)
         {
             _citizenCommanders[i].GetData(_citizens[i]);
+            var planForDay = _planForDay.DefiningPlanForDay(_citizenCommanders[i]);
+            _citizenCommanders[i].SetPlanForDay(planForDay);
+            _citizens[i].AccrualNeed(planForDay);
+
         }
     }
 

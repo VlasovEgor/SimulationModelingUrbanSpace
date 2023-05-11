@@ -1,36 +1,95 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine;
 
 public class PlanForDay
 {
-    public List<CommericalBuildingConfig> DefiningPlanForDay(Citizen citizen)
+    public List<BuildingConfig> DefiningPlanForDay(CitizenCommander citizen)
     {
-        List<CommericalBuildingConfig> buildingsPlanForDay = new List<CommericalBuildingConfig>();
-        var needs = citizen.GetDictionartNeeds();
+        List<BuildingConfig> buildingsPlanForDay = new();
+
+        var needs = citizen.GetDictionaryNeeds();
 
         var startDay = citizen.GetActiveTimeStart();
         var work = (CommericalBuildingConfig)citizen.GetPlaceActivity(BuidingType.WORK);
 
         var startWork = work.GetStartWork();
+        var endWork = work.GetFinishWork();
+        var timeStartWork = Random.Range((startWork.Hour * 60 + startWork.Minute), (endWork.Hour * 60 + endWork.Minute - work.GetwWorkingHoursOfEmployeesInMinute()));
+        var timeEndWork = timeStartWork + work.GetwWorkingHoursOfEmployeesInMinute();
 
-        var freeMorningTimeInMinute = (startWork.Hour * 60 + startWork.Minute) - (startDay.Hour * 60 + startDay.Minute);
+        var freeMorningTimeInMinute = timeStartWork - (startDay.Hour * 60 + startDay.Minute);
 
         List<CommericalBuildingConfig> buildingsOpenAtThisTime = new();
 
+        buildingsPlanForDay.Add(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL));
+
+        foreach (var keyValue in citizen.GetDictionaryPlacesActivity())
+        {   
+            if(keyValue.Key != BuidingType.NONE && keyValue.Key != BuidingType.RESIDENTIAL)
+            {
+                var currnetBuildng = (CommericalBuildingConfig)keyValue.Value;
+                if (currnetBuildng != null)
+                {
+                    if (currnetBuildng.GetStartWork().Hour < startWork.Hour)
+                    {
+                        buildingsOpenAtThisTime.Add(currnetBuildng);
+                    }
+                }
+            }
+           
+        }
+
+        List<Item> items = new();
+
+        items.AddRange(CreateItems(needs, buildingsOpenAtThisTime));
+
+        AddingCommercialBuildingsToPlan(freeMorningTimeInMinute, items, buildingsPlanForDay);
+
+        int timeSpentInBuildings = 30;
+
+        for (int i = 1; i < buildingsPlanForDay.Count; i++)
+        {
+            var currentBuilding = (CommericalBuildingConfig)buildingsPlanForDay[i];
+            timeSpentInBuildings += currentBuilding.GetAverageTimeInBuilding();
+        }
+
+        citizen.ChangeActiveTimeStart(timeSpentInBuildings);
+
+        buildingsPlanForDay.Add(work);
+
+        var endDay = citizen.GetActiveTimeEnd();
+        var freeEveningTimeInMinute = (endDay.Hour * 60 + endDay.Minute) - timeEndWork;
+
+        buildingsOpenAtThisTime.Clear();
+
         foreach (var keyValue in citizen.GetDictionaryPlacesActivity())
         {
-            var currnetBuildng = (CommericalBuildingConfig)keyValue.Value;
-            if(currnetBuildng !=null)
+            if (keyValue.Key != BuidingType.NONE && keyValue.Key != BuidingType.RESIDENTIAL)
             {
-                if (currnetBuildng.GetStartWork().Hour < startWork.Hour)
+                var currnetBuildng = (CommericalBuildingConfig)keyValue.Value;
+                if (currnetBuildng != null && buildingsPlanForDay.Contains(currnetBuildng) == false)
                 {
-                    buildingsOpenAtThisTime.Add(currnetBuildng);
+                    if (currnetBuildng.GetStartWork().Hour < endDay.Hour)
+                    {
+                        buildingsOpenAtThisTime.Add(currnetBuildng);
+                    }
                 }
-
             }
         }
 
+        items.Clear();
+
+        items.AddRange(CreateItems(needs, buildingsOpenAtThisTime));
+
+        AddingCommercialBuildingsToPlan(freeEveningTimeInMinute, items, buildingsPlanForDay);
+
+        buildingsPlanForDay.Add(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL));
+
+        return buildingsPlanForDay;
+    }
+
+    private List<Item> CreateItems(Dictionary<Needs, int> needs, List<CommericalBuildingConfig> buildingsOpenAtThisTime)
+    {
         List<Item> items = new();
 
         foreach (var buildingConfig in buildingsOpenAtThisTime)
@@ -57,112 +116,23 @@ public class PlanForDay
             items.Add(item);
         }
 
-        Backpack backpack = new Backpack(freeMorningTimeInMinute - 30); // 30 minutes on average on the road
-
-        backpack.MakeAllSets(items);
-
-        List<Item> solve = backpack.GetBestSet();
-
-        if (solve != null)
-        {
-            foreach (var item in solve)
-            {
-                buildingsPlanForDay.Add((CommericalBuildingConfig)item.Config);
-            }
-        }
-        solve.Clear();
-        buildingsPlanForDay.Add(work);
-
-
-
-        var endWork = work.GetFinishWork();
-        var endDay = citizen.GetActiveTimeEnd();
-        var freeEveningTimeInMinute = (endDay.Hour * 60 + endDay.Minute) - (endWork.Hour * 60 + endWork.Minute);
-
-        buildingsOpenAtThisTime.Clear();
-
-        foreach (var keyValue in citizen.GetDictionaryPlacesActivity())
-        {
-            var currnetBuildng = (CommericalBuildingConfig)keyValue.Value;
-            if (currnetBuildng.GetStartWork().Hour < endDay.Hour && buildingsPlanForDay.Contains(currnetBuildng) == false)
-            {
-                buildingsOpenAtThisTime.Add(currnetBuildng);
-            }
-        }
-
-        items = new();
-
-        foreach (var buildingConfig in buildingsOpenAtThisTime)
-        {
-            Item item = null;
-
-            if (buildingConfig.GetBuidingType() == BuidingType.FOOD)
-            {
-                item = new(buildingConfig, buildingConfig.GetAverageTimeInBuilding(), 100 - needs[Needs.FOOD]);
-            }
-            else if (buildingConfig.GetBuidingType() == BuidingType.SPORT)
-            {
-                item = new(buildingConfig, buildingConfig.GetAverageTimeInBuilding(), 100 - needs[Needs.SPORT]);
-            }
-            else if (buildingConfig.GetBuidingType() == BuidingType.RELAX)
-            {
-                item = new(buildingConfig, buildingConfig.GetAverageTimeInBuilding(), 100 - needs[Needs.REST]);
-            }
-            else if (buildingConfig.GetBuidingType() == BuidingType.HEALTH)
-            {
-                item = new(buildingConfig, buildingConfig.GetAverageTimeInBuilding(), 100 - needs[Needs.HEALTH]);
-            }
-
-            items.Add(item);
-        }
-
-        backpack = new Backpack(freeEveningTimeInMinute - 30); // 30 minutes on average on the road
-
-        backpack.MakeAllSets(items);
-
-        solve = backpack.GetBestSet();
-
-        if (solve != null)
-        {
-            foreach (var item in solve)
-            {
-                buildingsPlanForDay.Add((CommericalBuildingConfig)item.Config);
-            }
-        }
-
-        return buildingsPlanForDay;
+        return items;
     }
 
-    public List<BuildingConfig> MakePlanForDay(Citizen citizen)
+    private void AddingCommercialBuildingsToPlan(int freeTimeInMinute, List<Item> items, List<BuildingConfig> buildingsPlanForDay)
     {
+        Backpack backpack = new(freeTimeInMinute - 30);
+        backpack.MakeAllSets(items);
 
-        var startTime = citizen.GetActiveTimeStart().Hour * 60 + citizen.GetActiveTimeStart().Minute;
-        var endTime = citizen.GetActiveTimeEnd().Hour * 60 + citizen.GetActiveTimeEnd().Minute;
+        var solve = new List<Item>();
+        solve.AddRange(backpack.GetBestSet());
 
-        var plan = new List<BuildingConfig>();
-
-        var currentTime = startTime;
-
-        var buildings = citizen.GetDictionaryPlacesActivity().ToList();
-        var commericalBuildings = new List<CommericalBuildingConfig>();
-
-        plan.Add(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL));
-
-        foreach (var buidling in buildings)
+        if (solve != null)
         {
-            if(buidling.Value.GetBuidingType() != BuidingType.NONE && buidling.Value.GetBuidingType() != BuidingType.RESIDENTIAL)
+            foreach (var item in solve)
             {
-                commericalBuildings.Add((CommericalBuildingConfig)buidling.Value);
+                buildingsPlanForDay.Add((CommericalBuildingConfig)item.Config);
             }
         }
-
-        for (int i = 0; i < commericalBuildings.Count; i++)
-        {
-            plan.Add(commericalBuildings[i]);
-        }
-
-        plan.Add(citizen.GetPlaceActivity(BuidingType.RESIDENTIAL));
-
-        return plan;
     }
 }

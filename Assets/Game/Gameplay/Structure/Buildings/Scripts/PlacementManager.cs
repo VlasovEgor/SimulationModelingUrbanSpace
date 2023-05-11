@@ -98,7 +98,6 @@ public class PlacementManager : IInitializable, IDisposable
         {   
             if (Vector3.Distance(residentialPosition, building.GetPosition()) < distance)
             {
-                //Debug.Log(building.GetBuidingType());
                 nearestBuilding = (CommericalBuildingConfig)building;
                 distance = Vector3.Distance(residentialPosition, building.GetPosition());
             }

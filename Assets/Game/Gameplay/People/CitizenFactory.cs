@@ -3,11 +3,10 @@ using Zenject;
 public class CitizenFactory
 {
     [Inject] private PlacementManager _placementManager;
-    [Inject] private AgentPath _agentPath;
 
     public Citizen CreateCitizen(Education education, BuildingConfig homeConfig)
     {
-        var citizen = new Citizen(education, _agentPath);
+        var citizen = new Citizen(education);
 
         citizen.SetEducation(education);
 

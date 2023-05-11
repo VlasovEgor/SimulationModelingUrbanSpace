@@ -22,6 +22,7 @@ public class CommericalBuildingConfig : BuildingConfig
 
     [Space]
     [SerializeField] private int _averageTimeInBuilding;
+    [SerializeField] private int _workingHoursOfEmployeesInMinute = 540;
 
     [Space]
     [SerializeField] private HourMinute _startWork;
@@ -93,6 +94,11 @@ public class CommericalBuildingConfig : BuildingConfig
     public HourMinute GetFinishWork()
     {
         return _finishWork;
+    }
+
+    public int GetwWorkingHoursOfEmployeesInMinute()
+    {
+        return _workingHoursOfEmployeesInMinute;
     }
 
     public void SetName(string name)

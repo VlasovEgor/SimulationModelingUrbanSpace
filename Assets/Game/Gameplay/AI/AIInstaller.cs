@@ -18,18 +18,19 @@ public class AIInstaller : MonoInstaller
         BindAgentSpawner();
         BindAgentsManager();
         BindAgentPath();
+        BindAgentsController();
     }
 
     private void BindAgentsPool()
     {
         Container.BindMemoryPool<Agent, Agent.HumanPool>().
-            WithInitialSize(10).
+            WithInitialSize(300).
             ExpandByOneAtATime().
             FromComponentInNewPrefab(_humanPrefab).
             UnderTransform(_humanTransform);
 
         Container.BindMemoryPool<Agent, Agent.CarPool>().
-          WithInitialSize(10).
+          WithInitialSize(300).
           ExpandByOneAtATime().
           FromComponentInNewPrefab(_carPrefab).
           UnderTransform(_carTransform);
@@ -52,5 +53,11 @@ public class AIInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<AgentPath>().
             FromInstance(_agentPath).
             AsSingle();
+    }
+
+    private void BindAgentsController()
+    {
+        Container.BindInterfacesAndSelfTo<AgentsController>().
+              AsSingle();
     }
 }
