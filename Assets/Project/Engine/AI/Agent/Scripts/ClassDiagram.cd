@@ -1,0 +1,1398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AgentGraph" Collapsed="true">
+    <Position X="1.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAECA8AIAAAAAAACAAAAAAAQAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Agent\AgentGraph.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgentVertex" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AgentGraphSearch" Collapsed="true">
+    <Position X="1.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAAABAAAIA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Agent\AgentGraphSearch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgentGraph" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AgentVertex" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Agent\AgentVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edge" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAACAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Urban\Edge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Graph" Collapsed="true">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAIAQAAACACABAAAABACEABCAAAAgBAAgAAEA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Urban\Graph.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UrbanVertex" />
+      <Property Name="Edge" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GraphSearch" Collapsed="true">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABABAAAAAAACACAAAAgAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Urban\GraphSearch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Graph" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UrbanVertex" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAgAAAAQAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Urban\UrbanVertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vertex" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAMAAAACAAgAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\Vertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildingSystemInstaller" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAEgAACAEBAABACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Installers\BuildingSystemInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CitizensInstaller" Collapsed="true">
+    <Position X="2.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAACAAAAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Project\Installers\CitizensInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameContextInstaller" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAEAAAAAAAAAAAAAAAAAAQAAAACCAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Project\Installers\GameContextInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameContextUIInstaller" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAABhAAAIAAAAAEAACAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Project\Installers\GameContextUIInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputSystemInstaller" Collapsed="true">
+    <Position X="2.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAIAAAAAAAAAAAAAAAAQACEACAAAAYAAAIA=</HashCode>
+      <FileName>Assets\Project\Installers\InputSystemInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoadSystemInstaller" Collapsed="true">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAFAAAAAAAAAAAAAAAAAAAIACQAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Installers\RoadSystemInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIInstallers" Collapsed="true">
+    <Position X="0.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAACQAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Installers\UIInstallers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldInstaller" Collapsed="true">
+    <Position X="2.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAABACAAAgAAACAAAAA=</HashCode>
+      <FileName>Assets\Project\Installers\WorldInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonChoseBuildingType" Collapsed="true">
+    <Position X="14.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Button\ButtonChoseBuildingType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQAAQAAAAAAAAABAAAAAAAAEAAAAAACAAAAIAAEE=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Button\ButtonManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ButtonOpenCloseStats" Collapsed="true">
+    <Position X="9" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAIAAAAQAAAAAAiAAQAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Button\ButtonOpenCloseStats.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PopupManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ButtonUI" Collapsed="true">
+    <Position X="14.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAEAAAAAAABAAEAAAQAAIAAAAEAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Button\ButtonUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigBuidlingButton" Collapsed="true">
+    <Position X="14.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAAAAAAQAAAAAIAAAAAAAEAAAwAAgAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Button\ConfigBuidlingButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BuildingInfoShower" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BildingSelectionView" Collapsed="true">
+    <Position X="17.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAAAEAIAAAAAAABAAAAAAEAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BildingSelectionView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SelectButton" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingListPresenter" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAEJAAAAAAgAAEAAAAAAIAAEAEAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingListPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BildingSelectionView" />
+      <Property Name="BuildingSelectionPresenter" />
+      <Property Name="BuildingsManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CommericalBuildingConfigFactory" Collapsed="true">
+    <Position X="13" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAgAgAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Config\CommericalBuildingConfigFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CommericalBuildingConfigRedactor" />
+      <Property Name="CommericalBuildingConfigPresentationModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CommericalBuildingConfigPopup" Collapsed="true">
+    <Position X="19" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAgEAAAAAAAAhAAgAARAEAFAAACAAAAIAOAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Config\CommericalBuildingConfigPopup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ICommericalBuildingConfigPresentationModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CommericalBuildingConfigPresentationModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA4oAAAAgAAgIAACgEAAAAAhAAAAgJAAACAAAAAgBoA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Config\CommericalBuildingConfigPresentationModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CommericalBuildingConfigRedactor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAACAACAAAQAAAAAAAAAAQAAAAAAIAAAAAAAAAgQ=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Config\CommericalBuildingConfigRedactor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CommericalBuildingConfigShower" Collapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAIAAAAAAAAAAAAAQAAAAAACAQAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Config\CommericalBuildingConfigShower.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PopupManager" />
+      <Property Name="CommericalBuildingConfigFactory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CommericalBuildingInfoPopup" Collapsed="true">
+    <Position X="13.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKIAAAAEAAAAQAAAAAAgAAAAkAAAAAAAAAAAAECAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Info\CommericalBuildingInfoPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResidentialBuildingConfigFactory" Collapsed="true">
+    <Position X="11.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIACAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Config\ResidentialBuildingConfigFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ResidentialBuildingConfigRedactor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ResidentialBuildingConfigPopup" Collapsed="true">
+    <Position X="20.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAQAAACARAACBAAACAAAAAAEACA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Config\ResidentialBuildingConfigPopup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IResidentialBuildingConfigPresentationModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ResidentialBuildingConfigPresentationModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAEECAAAAAAAAQgAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Config\ResidentialBuildingConfigPresentationModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ResidentialBuildingConfigRedactor" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.185" Collapsed="true" />
+  </Class>
+  <Class Name="ResidentialBuildingInfoPopup" Collapsed="true">
+    <Position X="15.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAAAAAAAEACA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Info\ResidentialBuildingInfoPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildingSelectionPopup" Collapsed="true">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAQAAAAAAAAAAAAAAIBAAEAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingSelectionPopup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BuildingListPresenter" />
+      <Property Name="ButtonManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingSelectionPresenter" Collapsed="true">
+    <Position X="16.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABACAAgAAAAIAgAAAAAAAEAAAAIAAAAAAgAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingSelectionPresenter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BildingSelectionView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingsManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAACAAAAQAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SelectButton" Collapsed="true">
+    <Position X="19.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAIAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\SelectButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SwitchTypeBuildingButton" Collapsed="true">
+    <Position X="20.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAACIAIAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\SwitchTypeBuildingButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BuildingListPresenter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ChoseBuildnigTypeButton" Collapsed="true">
+    <Position X="10.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAIAAACQAAAgAACAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\ChoseBuildnigTypeButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PopupManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Popup" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAEAAAAAAABAAEAAAQAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Popup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PopupManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAAAAAAAAAEABAACAAAAAAAAAAACABAQAAAEA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\PopupManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GraphUI" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IISAIKACA0BIABRADAEACEkUAAIgEIAAAAQAA8KQBNA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Stats\GraphUI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StatisticsCollector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAsoABAAACAAwQAAAAAAAESARCAAQCAAAgAAUBAAkQE=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Stats\StatisticsCollector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StatsPopup" Collapsed="true">
+    <Position X="12" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Stats\StatsPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WindowGraph" Collapsed="true">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAcQAQEAAiBAQNAABBgDFACAJEAABABBAAwBACiwMA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Stats\WindowGraph.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GraphUI" />
+      <Property Name="StatisticsCollector" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeAdapter" Collapsed="true">
+    <Position X="24.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBQAAAACAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Time\TimeAdapter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TimeUI" />
+      <Property Name="Clock" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeUI" Collapsed="true">
+    <Position X="26.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Time\TimeUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResidentialBuildingConfigShower" Collapsed="true">
+    <Position X="8.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAEAIAAAAAAAAAAAAAQAAAAAACAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Config\ResidentialBuildingConfigShower.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ResidentialBuildingConfigFactory" />
+      <Property Name="PopupManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ResidentialBuildingConfigRedactor" Collapsed="true">
+    <Position X="12.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Config\ResidentialBuildingConfigRedactor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildingInfoShower" Collapsed="true">
+    <Position X="12.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkAAACAAAQAAAAABAAABAAAAAAQACAAAACQQQAE=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\BuildingInfoShower.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PopupManager" />
+      <Property Name="CommericalBuildingConfigFactory" />
+      <Property Name="ResidentialBuildingConfigFactory" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BoostController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACBAAAAAAgAAAAAAAAAAAAAgAgAAACAABAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Controllers\BoostController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_Boost" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoveInDirectionController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAABAAAgAAgAAAAAAAAAAAAAAAAAAACAABEAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Controllers\MoveInDirectionController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_MoveInDirection" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotateController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAgAABAAAAAAAAEAAAAAAAGAABAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Controllers\RotateController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_CameraRotate" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ZoomController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAQAAAAgAAAEAAAAAAAACAAAAAACAABAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Controllers\ZoomController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_Zoom" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CameraRotate" Collapsed="true">
+    <Position X="27.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAIEAAAAABACQA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\CameraRotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Component_Boost" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\Component_Boost.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_CameraRotate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\Component_CameraRotate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.141" Collapsed="true" />
+  </Class>
+  <Class Name="Component_CanMovement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\Component_CanMovement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_MoveInDirection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\Component_MoveInDirection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MoveInDirectionEngine" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_Zoom" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\Component_Zoom.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoveInDirectionEngine" Collapsed="true">
+    <Position X="31.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAIAAIAAAAAAQCAAAAIARAAAAAkAAAgIAAAECAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\MoveInDirectionEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoveInDirectionMechanics" Collapsed="true">
+    <Position X="31.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAEAAAAAAAQAAAAACAAAAAAAABAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\MoveInDirectionMechanics.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MoveInDirectionEngine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Zoom" Collapsed="true">
+    <Position X="29.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAABAAAAABAAAAAAAAIAAAAACAACAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Zoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChangeTimeSpeed" Collapsed="true">
+    <Position X="22.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAoAACAAAAAAgAAAAABAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Time\ChangeTimeSpeed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clock" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAASIAAkAAAAACEAAAMkgCAAAAAAAAAAQgAAQAA=</HashCode>
+      <FileName>Assets\Project\Engine\Time\Clock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuildingCreator" Collapsed="true">
+    <Position X="44.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAACAAAAAAEAAAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\BuildingCreator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IBuildingFactory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingDestroyer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="37.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABQAAAAAAAAAAAAAAQAABAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\BuildingDestroyer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_DestroyBuilding" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuildingFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="44.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\BuildingFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuildingMover" Collapsed="true">
+    <Position X="41.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAEAABAAAAAAAABAAAIAAAgAACAAAICAEAACAACQA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\BuildingMover.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_BuildingRotate" />
+      <Property Name="BuildingSelector" />
+      <Property Name="IComponent_MoveBuilding" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingSelector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43.75" Y="6.75" Width="1.5" />
+    <AssociationLine Name="IComponent_CanBuild" Type="IComponent_CanBuild" FixedFromPoint="true">
+      <Path>
+        <Point X="43.75" Y="7.062" />
+        <Point X="40.75" Y="7.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="IComponent_GetVertexTypeBuilding" Type="IComponent_GetVertexTypeBuilding" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="43.75" Y="6.875" />
+        <Point X="43.375" Y="6.875" />
+        <Point X="43.375" Y="5.031" />
+        <Point X="43" Y="5.031" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAEAAIAEAAACAEkAABIgCAQAABAEAACAABgCAAAJA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\BuildingSelector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PlacementManager" />
+      <Property Name="BuildingCreator" />
+      <Property Name="IComponent_CanBuild" />
+      <Property Name="IComponent_GetVertexTypeBuilding" />
+      <Property Name="IComponent_GetCommercalBuildingConfig" />
+      <Property Name="IComponent_GetResidentialBuildingConfig" />
+      <Property Name="IComponent_PositionBuilding" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuildingConfig" Collapsed="true">
+    <Position X="46" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAgAACAAAAAAAAAAAgBgAAAAAAQQAAAQAAAABAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Congifs\BuildingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommericalBuildingConfig" Collapsed="true">
+    <Position X="44.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECgAIQGAgEIBIBhSgCQUAABIAIUIEAAQABAAQEAABAQ=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Congifs\CommericalBuildingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResidentialBuildingConfig" Collapsed="true">
+    <Position X="47" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAACAAAAiCAAAgCAAAAACACA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Congifs\ResidentialBuildingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Building" Collapsed="true">
+    <Position X="48.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAAAEQAQABABAAAAAAAAACAAQAAAAEAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Building.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Component_BuildingRotate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="42.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_BuildingRotate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_BuildingRotate" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_CanBuild" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="39.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_CanBuild.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_CanBuild" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_DestroyBuilding" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="37.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAABAAAAAAAAAAAAABAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_DestroyBuilding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_DestroyBuilding" />
+      <Property Name="Destroy" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_GetCommericalBuildingConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="45.5" Y="8.25" Width="1.5" />
+    <AssociationLine Name="CommericalBuildingConfig" Type="CommericalBuildingConfig" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="47" Y="8.5" />
+        <Point X="47.438" Y="8.5" />
+        <Point X="47.438" Y="6.065" />
+        <Point X="45.5" Y="6.065" />
+        <Point X="45.5" Y="4.941" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEABIAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_GetCommericalBuildingConfig.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_GetCommercalBuildingConfig" />
+      <Property Name="CommericalBuildingConfig" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_GetResidentialBuildingConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="48" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAgAAAIAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_GetResidentialBuildingConfig.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_GetResidentialBuildingConfig" />
+      <Property Name="ResidentialBuildingConfig" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_GetVertexTypeBuilding" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="41.5" Y="5.75" Width="1.5" />
+    <AssociationLine Name="BuildingConfig" Type="BuildingConfig" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="41.5" Y="6.125" />
+        <Point X="41.2" Y="6.125" />
+        <Point X="41.2" Y="3.95" />
+        <Point X="46.5" Y="3.95" />
+        <Point X="46.5" Y="3.691" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_GetVertexTypeBuilding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_GetVertexTypeBuilding" />
+      <Property Name="BuildingConfig" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_MoveBuilding" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="39.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAQA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_MoveBuilding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_MoveBuilding" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_PositionBuilding" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="49.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAABg=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\Component_PositionBuilding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_PositionBuilding" />
+      <Property Name="BuildingConfig" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BuildingEngine" Collapsed="true">
+    <Position X="35.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAACAgAAAAACAAAAAAAAAIAAAAAABACgA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\BuildingEngine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CollisionCheck" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ChangeMaterial" Collapsed="true">
+    <Position X="35.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABIAgAACAAAgAAAAAAAAAAAAAAAIAAAAAABACAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\ChangeMaterial.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CollisionCheck" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CollisionCheck" Collapsed="true">
+    <Position X="35.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAQAABAAAAAAAAQAAAAoAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\CollisionCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Destroy" Collapsed="true">
+    <Position X="37.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\Destroy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovementBuilding" Collapsed="true">
+    <Position X="39.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAIAAQAAAAACAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\MovementBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovementCollisionLayer" Collapsed="true">
+    <Position X="38" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAABAAAAAABAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\MovementCollisionLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotateBuilding" Collapsed="true">
+    <Position X="42.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIEAAAAABACYA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Core\RotateBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlacementManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAEAgAAABCAAQwAAAAAQIAgAAAAIoAACEAgIAAAAAEE=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\PlacementManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CommericalBuildingConfig" />
+      <Property Name="ResidentialBuildingConfig" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RoadHelper" Collapsed="true">
+    <Position X="46.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAQIAAkAAAAIABABAQAABAABACgAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\Helpers\RoadHelper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Marker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RoadHelperDeadend" Collapsed="true">
+    <Position X="44" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAgAAAIAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\Helpers\RoadHelperDeadend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoadHelperMultipleCarMarkers" Collapsed="true">
+    <Position X="46.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAIAAAAAAAIAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\Helpers\RoadHelperMultipleCarMarkers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoadHelperStraight" Collapsed="true">
+    <Position X="48.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACKIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\Helpers\RoadHelperStraight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Marker" Collapsed="true">
+    <Position X="48.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAAAAAIgAAAAAAAAAAAAQAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\Marker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlacementRoad" Collapsed="true">
+    <Position X="46.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECgBAAAAAAEACAAAAAAAAAAAAAAAAAABAgAAAQgAAU=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\PlacementRoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoadFixer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="44.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAACAiAAQwAAAARAAEAAABACAAEAFAAEAAACAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\RoadFixer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RoadSystem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="46.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAEAAACAAAQAAAgAAAAFAAAAAAgBAWAAAACAEFAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\RoadSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PlacementRoad" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SmartCrosswalks" Collapsed="true">
+    <Position X="49" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABIAAAACAAAAAAAAAAAAAAAAAAKIAAUAAAEAAABAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\SmartCrosswalks.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SmartRoad" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SmartRoad" Collapsed="true">
+    <Position X="49" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAQgCAAAAAEAAAAgAAAAAAAAoAAQAAQAEAQBAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Road\Scripts\SmartRoad.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SmartCrosswalks" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StructureCreator" Collapsed="true">
+    <Position X="46.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABBBAAAAAAAAgAAAAAAAAAABAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\StructureCreator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Building" />
+      <Property Name="BuildingCreator" />
+      <Property Name="RoadSystem" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingsList" Collapsed="true">
+    <Position X="48.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Resources\BuildingsList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Building" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AgentMover" Collapsed="true">
+    <Position X="25.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAACAAiAAAAABDAEAAAAAAAAAAAAABAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\AgentMover.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CheckCollision" Collapsed="true">
+    <Position X="21.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAEAAAAAABAAAAEAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\CheckCollision.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Component_GetAgent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAABAAAEAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\Component_GetAgent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_GetAgent" />
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_GetAgentType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\Component_GetAgentType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_GetAgentType" />
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_GetPath" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="10.75" Width="1.5" />
+    <AssociationLine Name="Agent" Type="Agent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25.375" Y="11.441" />
+        <Point X="25.375" Y="13.188" />
+        <Point X="25" Y="13.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAgAAAAAAAEAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\Component_GetPath.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_GetPath" />
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Component_SetPath" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="10.75" Width="1.5" />
+    <AssociationLine Name="Agent" Type="Agent" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="26.875" Y="11.441" />
+        <Point X="26.875" Y="13.438" />
+        <Point X="25" Y="13.438" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAEAAAAAAAAAIAAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\Component_SetPath.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IComponent_SetPath" />
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Agent" Collapsed="true">
+    <Position X="23.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBUABIgAAoBCAgAAAAAhAKAAAAACIAQACBIKEAAAAIA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgentPath" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAIEAAAAAkCACAAAEAiAQAACAQAACAABAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\AgentPath.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgentSpawner" />
+      <Property Name="CitizenCommander" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AgentsController" Collapsed="true">
+    <Position X="29" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEBEAAAIBgAAgAAAAAAgAQAAAAAAAACAAABAgAAAgA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\AgentsController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgentPath" />
+      <Property Name="PlanForDay" />
+      <Property Name="CitizenCommander" />
+      <Property Name="Citizen" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AgentSpawner" Collapsed="true">
+    <Position X="29" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAgAIAAAAAAAI=</HashCode>
+      <FileName>Assets\Project\Engine\AI\AgentSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AIInstaller" Collapsed="true">
+    <Position X="28.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AggAIAAAIAAAAACAAkAABAQAAAEIACIAAAAAABAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\AIInstaller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgentsController" />
+      <Property Name="AgentSpawner" />
+      <Property Name="AgentPath" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MonoMemoryPool&lt;TParam1, TValue&gt;" Collapsed="true">
+    <Position X="23.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAABAAAEAAAAAACAAAAAAAAAAAAACgAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\MonoMemoryPool.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Agent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TimeManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="7.25" Width="1.5" />
+    <AssociationLine Name="AgentsController" Type="AgentsController" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="28.25" Y="7.688" />
+        <Point X="30.156" Y="7.688" />
+        <Point X="30.156" Y="10.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CitizenCommander" Type="CitizenCommander" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="28.25" Y="7.438" />
+        <Point X="30.667" Y="7.437" Type="JumpStart" />
+        <Point X="30.833" Y="7.438" Type="JumpEnd" />
+        <Point X="32.75" Y="7.438" />
+        <Point X="32.75" Y="11.375" />
+        <Point X="32.406" Y="11.375" />
+        <Point X="32.406" Y="11.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEBEAAAACAAAQgAAAIABAAAQABAQAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\TimeManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Clock" />
+      <Property Name="AgentsController" />
+      <Property Name="CitizenCommander" />
+      <Property Name="Citizen" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CitizenCommander" Collapsed="true">
+    <Position X="31" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABEAAAkQiAQQQAgIAEDAQCgQEBBAAAAAADAAEIAIA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CitizenCommander.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CitizenFactory" Collapsed="true">
+    <Position X="31.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CitizenFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Citizen" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CitizensManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABgAQAACAACSAAAAAABAQAQAAAQAIAAgAAAAAwAyA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CitizensManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CitizenFactory" />
+      <Property Name="Citizen" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlanForDay" Collapsed="true">
+    <Position X="31" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAIAAAAAAAhAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\People\PlanForDay.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CitizenCommander" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="HourMinute" Collapsed="true">
+    <Position X="22.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Time\HourMinute.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Citizen" Collapsed="true">
+    <Position X="31" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABEAAIoAGAAAACgCABAEACAQAAAQAAEkACAjEIAYA=</HashCode>
+      <FileName>Assets\Project\Engine\People\Citizen.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="ICommericalBuildingConfigPresentationModel" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwoAAAAgAAgIAACgAAAAAAhQAAAAIAAACAAAAAgBoA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Commerical\Config\ICommericalBuildingConfigPresentationModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IResidentialBuildingConfigPresentationModel" Collapsed="true">
+    <Position X="21.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAQAAQAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsConfig\Residential\Config\IResidentialBuildingConfigPresentationModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_Boost" Collapsed="true">
+    <Position X="26" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\IComponent_Boost.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_CameraRotate" Collapsed="true">
+    <Position X="27.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\IComponent_CameraRotate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_CanMovement" Collapsed="true">
+    <Position X="33" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\IComponent_CanMovement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_MoveInDirection" Collapsed="true">
+    <Position X="31.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\IComponent_MoveInDirection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_Zoom" Collapsed="true">
+    <Position X="29.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\User\Input\Scripts\Components\IComponent_Zoom.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_BuildingRotate" Collapsed="true">
+    <Position X="42.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_BuildingRotate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_CanBuild" Collapsed="true">
+    <Position X="39.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_CanBuild.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_DestroyBuilding" Collapsed="true">
+    <Position X="37.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_DestroyBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_GetCommercalBuildingConfig" Collapsed="true">
+    <Position X="45.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_GetCommercalBuildingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_GetResidentialBuildingConfig" Collapsed="true">
+    <Position X="48" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_GetResidentialBuildingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_GetVertexTypeBuilding" Collapsed="true">
+    <Position X="41.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_GetVertexTypeBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_MoveBuilding" Collapsed="true">
+    <Position X="39.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_MoveBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_PositionBuilding" Collapsed="true">
+    <Position X="49.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Entity\Components\IComponent_PositionBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IBuildingFactory" Collapsed="true">
+    <Position X="44.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\IBuildingFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BuildingFactory" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="IComponent_GetAgent" Collapsed="true">
+    <Position X="21" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\IComponent_GetAgent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_GetAgentType" Collapsed="true">
+    <Position X="22.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\IComponent_GetAgentType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_GetPath" Collapsed="true">
+    <Position X="24.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\IComponent_GetPath.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IComponent_SetPath" Collapsed="true">
+    <Position X="26.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent\Scripts\Components\IComponent_SetPath.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="VertexType" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAIAIAAAAAAAAAAAAAAAAAGAAAA=</HashCode>
+      <FileName>Assets\Project\Additionally\Graph\VertexType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ButtonName" Collapsed="true">
+    <Position X="14.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Button\ButtonName.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BuildingsTypePopupManagerArgs" Collapsed="true">
+    <Position X="20.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\Buildings\BuildingsTypePopupManagerArgs.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PopupName" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAQAAAAAAACAQAAAAABAAgAAEAAAAA=</HashCode>
+      <FileName>Assets\Project\UI\Scripts\Popup\PopupName.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BuidingType" Collapsed="true">
+    <Position X="44" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAIAgEAAAAgAA=</HashCode>
+      <FileName>Assets\Project\Engine\Structure\Buildings\Scripts\Congifs\BuidingType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AgentType" Collapsed="true">
+    <Position X="23.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\AI\Agent.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Education" Collapsed="true">
+    <Position X="33" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CharacteristicsCitizen.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PersonalityType" Collapsed="true">
+    <Position X="33" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQgCACAAAAAAAAAAAAgAAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CharacteristicsCitizen.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Needs" Collapsed="true">
+    <Position X="33" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAIAAAAAgAgAA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CharacteristicsCitizen.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PlacesActivity" Collapsed="true">
+    <Position X="33" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAACAAAAAAAAAAAAAAAAIAgEAAAAgAA=</HashCode>
+      <FileName>Assets\Project\Engine\People\CharacteristicsCitizen.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
